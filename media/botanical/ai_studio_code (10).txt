@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.85;">
+  <defs>
+    <clipPath id="teasel-clip">
+      <ellipse cx="250" cy="140" rx="35" ry="60" />
+    </clipPath>
+  </defs>
+  
+  <path d="M 250 480 L 250 200" />
+  
+  <!-- Architectural Bracts -->
+  <path d="M 250 200 C 200 220, 160 180, 150 120 C 160 150, 190 190, 250 190" />
+  <path d="M 250 200 C 300 220, 340 180, 350 120 C 340 150, 310 190, 250 190" />
+  <path d="M 250 200 C 220 230, 180 210, 170 160 C 180 180, 210 200, 250 195" />
+  <path d="M 250 200 C 280 230, 320 210, 330 160 C 320 180, 290 200, 250 195" />
+  
+  <!-- Thistle Core Head Outline -->
+  <ellipse cx="250" cy="140" rx="35" ry="60" />
+  
+  <!-- Textured Geometric Inner Core -->
+  <g clip-path="url(#teasel-clip)" stroke-opacity="0.4">
+    <!-- Diagonals Left to Right -->
+    <path d="M 200 80 L 300 180 M 200 100 L 300 200 M 200 120 L 300 220 M 200 140 L 300 240 M 200 160 L 300 260 M 200 180 L 300 280 M 200 60 L 300 160" />
+    <!-- Diagonals Right to Left -->
+    <path d="M 300 80 L 200 180 M 300 100 L 200 200 M 300 120 L 200 220 M 300 140 L 200 240 M 300 160 L 200 260 M 300 180 L 200 280 M 300 60 L 200 160" />
+  </g>
+  
+  <!-- Tiny Top Tuft -->
+  <path d="M 240 80 L 235 60 L 245 75 L 250 50 L 255 75 L 265 60 L 260 80" />
+</svg>

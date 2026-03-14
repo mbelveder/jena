@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.85;">
+  <path d="M250 480 Q240 300 250 150" />
+  <path d="M248 350 Q300 330 320 280" />
+  <path d="M246 250 Q180 230 160 160" />
+  
+  <!-- Translucent Pods -->
+  <circle cx="320" cy="280" r="30" />
+  <circle cx="335" cy="265" r="28" />
+  <circle cx="250" cy="150" r="32" />
+  <circle cx="265" cy="130" r="30" />
+  <circle cx="160" cy="160" r="30" />
+  <circle cx="145" cy="145" r="28" />
+  
+  <!-- Pod Inner Seams -->
+  <path d="M320 250 L320 310 M335 237 L335 293 M250 118 L250 182 M265 100 L265 160 M160 130 L160 190 M145 117 L145 173" stroke-opacity="0.4" />
+  
+  <!-- Subtle Seeds -->
+  <ellipse cx="320" cy="280" rx="3" ry="6" fill="currentColor" fill-opacity="0.3" stroke="none" />
+  <ellipse cx="335" cy="265" rx="3" ry="5" fill="currentColor" fill-opacity="0.3" stroke="none" />
+  <ellipse cx="250" cy="150" rx="3" ry="6" fill="currentColor" fill-opacity="0.3" stroke="none" />
+  <ellipse cx="265" cy="130" rx="3" ry="5" fill="currentColor" fill-opacity="0.3" stroke="none" />
+  <ellipse cx="160" cy="160" rx="3" ry="6" fill="currentColor" fill-opacity="0.3" stroke="none" />
+  <ellipse cx="145" cy="145" rx="3" ry="5" fill="currentColor" fill-opacity="0.3" stroke="none" />
+</svg>

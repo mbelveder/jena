@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Анахвакия и Евстахий — Свадьба 8 апреля 2006</title>
+  <meta name="description" content="Приглашение на свадьбу Анахвакии и Евстахия. 8 апреля 2006, хутор Светлинький, Ростовская губерния.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #F7F2E8;
+      --bg-alt: #EDE8DC;
+      --ink: #1A1410;
+      --accent-red: #C0392B;
+      --accent-gold: #B8860B;
+      --rule: #D4C9B0;
+      --muted: #7A7060;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Focus styles ── */
+    :focus-visible {
+      outline: 2px solid var(--accent-gold);
+      outline-offset: 3px;
+    }
+
+    /* ── Lampas (progress bar) ── */
+    .lampas {
+      position: fixed;
+      left: 24px;
+      top: 0;
+      width: 3px;
+      height: 100vh;
+      background-color: var(--accent-red);
+      transform: scaleY(0);
+      transform-origin: top;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    @media (max-width: 599px) {
+      .lampas { display: none; }
+    }
+
+    /* ── Section base ── */
+    .section {
+      width: 100%;
+      padding: 80px 0;
+    }
+
+    .section__inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(28px, 5vw, 40px);
+      text-align: center;
+      margin-bottom: 48px;
+      color: var(--ink);
+    }
+
+    @media (max-width: 600px) {
+      .section { padding: 60px 0; }
+      .section__inner { padding: 0 24px; }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+      padding: 64px 48px 0;
+      text-align: center;
+      position: relative;
+      background-color: var(--bg);
+    }
+
+    .hero__date {
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      color: var(--accent-red);
+      margin-bottom: 40px;
+      border: 1px solid var(--rule);
+      padding: 8px 24px;
+      display: inline-block;
+    }
+
+    .hero__name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(64px, 14vw, 130px);
+      color: var(--ink);
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      opacity: 0;
+      transform: translateY(20px);
+      display: block;
+    }
+
+    .hero__name--visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+    }
+
+    .hero__sunflower {
+      width: 48px;
+      height: 48px;
+      margin: 20px 0;
+    }
+
+    .hero__sunflower path,
+    .hero__sunflower circle {
+      fill: none;
+      stroke: var(--accent-gold);
+      stroke-width: 1.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .hero__sunflower .sunflower-draw {
+      stroke-dasharray: var(--dash-len);
+      stroke-dashoffset: var(--dash-len);
+    }
+
+    .hero__sunflower--animate .sunflower-draw {
+      animation: drawStroke 1.4s ease-out forwards;
+    }
+
+    @keyframes drawStroke {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .hero__tagline {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 360px;
+      margin: 32px auto 40px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero__scroll {
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px 16px;
+      margin-bottom: 48px;
+      transition: color 0.2s;
+    }
+
+    .hero__scroll:hover {
+      color: var(--ink);
+    }
+
+    .hero__border {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .hero__border svg {
+      display: block;
+      width: 100%;
+      height: 12px;
+    }
+
+    /* ── Diamond+cross SVG border ── */
+    .ornament-border {
+      display: block;
+      width: 100%;
+      height: 12px;
+    }
+
+    /* ── Alternating section bg ── */
+    .section--alt { background-color: var(--bg-alt); }
+
+    /* ── Вступление ── */
+    .story {
+      background-color: var(--bg-alt);
+    }
+
+    .story-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .story-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+      margin-top: 0.75em;
+      flex-shrink: 0;
+    }
+
+    .story p {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(18px, 2.5vw, 24px);
+      color: var(--ink);
+      line-height: 1.8;
+      text-align: center;
+      flex: 2;
+    }
+
+    /* ── День свадьбы ── */
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      width: 100%;
+      margin-top: 0;
+    }
+
+    @media (max-width: 600px) {
+      .schedule-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .schedule-card {
+      background-color: var(--bg);
+      padding: 56px 40px;
+      transition: background-color 0.2s, color 0.2s;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .schedule-card--visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.2s, color 0.2s;
+    }
+
+    .schedule-card:hover,
+    .schedule-card:focus-within {
+      background-color: var(--ink);
+    }
+
+    .schedule-card:hover .schedule-card__time,
+    .schedule-card:focus-within .schedule-card__time,
+    .schedule-card:hover .schedule-card__event,
+    .schedule-card:focus-within .schedule-card__event,
+    .schedule-card:hover .schedule-card__desc,
+    .schedule-card:focus-within .schedule-card__desc {
+      color: var(--bg);
+    }
+
+    .schedule-card__time {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .schedule-card__event {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 26px;
+      color: var(--ink);
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .schedule-card__desc {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.6;
+      transition: color 0.2s;
+    }
+
+    /* ── Место ── */
+    .venue-grid {
+      display: grid;
+      grid-template-columns: 40fr 60fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 600px) {
+      .venue-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .venue-info__name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 28px;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .venue-info__address {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .venue-info__link {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-red);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .venue-info__link:hover,
+    .venue-info__link:focus-visible {
+      border-bottom-color: var(--accent-red);
+    }
+
+    .venue-map-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+
+    .venue-map-placeholder svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── RSVP ── */
+    .rsvp .section__inner {
+      max-width: 560px;
+    }
+
+    .rsvp .ornament-border {
+      margin-bottom: 48px;
+    }
+
+    .rsvp-form {
+      transition: opacity 0.4s ease-out;
+    }
+
+    .rsvp-form--hidden {
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .rsvp-success {
+      text-align: center;
+      padding: 60px 0;
+      opacity: 0;
+      transition: opacity 0.4s 0.2s ease-out;
+    }
+
+    .rsvp-success--visible {
+      opacity: 1;
+    }
+
+    .rsvp-success__text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(28px, 5vw, 40px);
+      color: var(--ink);
+    }
+
+    .form-group {
+      margin-bottom: 32px;
+    }
+
+    .form-group label,
+    .form-group legend {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .form-group fieldset {
+      border: none;
+      padding: 0;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group textarea {
+      width: 100%;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--ink);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 10px 0;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group input[type="number"]:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-bottom-color: var(--accent-gold);
+    }
+
+    .form-group textarea {
+      min-height: 80px;
+    }
+
+    .form-group input[type="number"] {
+      max-width: 120px;
+    }
+
+    /* ── Radio buttons ── */
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .radio-option input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--rule);
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      transition: border-color 0.2s;
+    }
+
+    .radio-option input[type="radio"]:checked {
+      border-color: var(--accent-gold);
+    }
+
+    .radio-option input[type="radio"]:checked::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background-color: var(--accent-gold);
+      border-radius: 50%;
+    }
+
+    .radio-option input[type="radio"]:focus-visible {
+      outline: 2px solid var(--accent-gold);
+      outline-offset: 2px;
+    }
+
+    .radio-option span {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    /* ── Conditional guest count ── */
+    .form-group--conditional {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      margin-bottom: 0;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-out, margin-bottom 0.3s ease-out;
+    }
+
+    .form-group--conditional.form-group--open {
+      max-height: 120px;
+      opacity: 1;
+      margin-bottom: 32px;
+    }
+
+    /* ── Error messages ── */
+    .form-error {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--accent-red);
+      margin-top: 6px;
+      display: none;
+    }
+
+    .form-error--visible {
+      display: block;
+    }
+
+    /* ── Submit button ── */
+    .btn-submit {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 18px;
+      color: var(--accent-gold);
+      background: transparent;
+      border: 1.5px solid var(--accent-gold);
+      padding: 14px 48px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .btn-submit:hover,
+    .btn-submit:focus-visible {
+      background-color: var(--accent-gold);
+      color: var(--bg);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 48px 48px 64px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .footer__botanical {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 20px;
+    }
+
+    .footer__botanical svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .footer__contact {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .footer__contact a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.2s;
+    }
+
+    .footer__contact a:hover {
+      color: var(--ink);
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .hero__name {
+        opacity: 1;
+        transform: none;
+      }
+
+      .schedule-card {
+        opacity: 1;
+        transform: none;
+      }
+
+      .lampas {
+        display: none;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Lampas (scroll progress) -->
+  <div class="lampas" aria-hidden="true"></div>
+
+  <!-- ════════════ Hero ════════════ -->
+  <header class="hero" role="banner">
+    <p class="hero__date" aria-label="Дата свадьбы: 8 апреля 2006">8 апреля 2006</p>
+
+    <h1>
+      <span class="hero__name" id="name1">Евстахий</span>
+
+      <!-- SVG sunflower -->
+      <svg class="hero__sunflower" id="sunflower" viewBox="0 0 60 60" aria-hidden="true">
+        <!-- center -->
+        <circle class="sunflower-draw" cx="30" cy="30" r="7" style="--dash-len:44"/>
+        <!-- petals (8 directions) -->
+        <path class="sunflower-draw" d="M30 23 C28 16, 26 11, 30 6 C34 11, 32 16, 30 23Z" style="--dash-len:60"/>
+        <path class="sunflower-draw" d="M37 25 C42 20, 46 17, 51 19 C48 24, 43 24, 37 25Z" style="--dash-len:60"/>
+        <path class="sunflower-draw" d="M37 30 C44 28, 49 26, 54 30 C49 34, 44 32, 37 30Z" style="--dash-len:60"/>
+        <path class="sunflower-draw" d="M37 35 C43 36, 48 38, 51 42 C46 43, 42 40, 37 35Z" style="--dash-len:60"/>
+        <path class="sunflower-draw" d="M30 37 C32 44, 34 49, 30 54 C26 49, 28 44, 30 37Z" style="--dash-len:60"/>
+        <path class="sunflower-draw" d="M23 35 C18 40, 14 43, 9 42 C12 38, 17 36, 23 35Z" style="--dash-len:60"/>
+        <path class="sunflower-draw" d="M23 30 C16 32, 11 34, 6 30 C11 26, 16 28, 23 30Z" style="--dash-len:60"/>
+        <path class="sunflower-draw" d="M23 25 C17 24, 12 24, 9 19 C14 17, 18 20, 23 25Z" style="--dash-len:60"/>
+        <!-- stem -->
+        <path class="sunflower-draw" d="M30 37 L30 58" style="--dash-len:21" stroke-width="1.2"/>
+        <path class="sunflower-draw" d="M30 46 C26 42, 22 42, 19 44" style="--dash-len:20" stroke-width="1"/>
+      </svg>
+
+      <span class="hero__name" id="name2">Анахвакия</span>
+    </h1>
+
+    <p class="hero__tagline">Приглашение на свадьбу</p>
+
+    <button class="hero__scroll" type="button" aria-label="Прокрутить к разделу подробностей" id="scrollCta">
+      &#8595; Подробнее
+    </button>
+
+    <div class="hero__border" aria-hidden="true">
+      <svg class="ornament-border" viewBox="0 0 960 12" preserveAspectRatio="none">
+        <pattern id="diamond-cross-hero" x="0" y="0" width="48" height="12" patternUnits="userSpaceOnUse">
+          <line x1="24" y1="0" x2="36" y2="6" stroke="var(--rule)" stroke-width="1"/>
+          <line x1="36" y1="6" x2="24" y2="12" stroke="var(--rule)" stroke-width="1"/>
+          <line x1="24" y1="12" x2="12" y2="6" stroke="var(--rule)" stroke-width="1"/>
+          <line x1="12" y1="6" x2="24" y2="0" stroke="var(--rule)" stroke-width="1"/>
+          <line x1="0" y1="6" x2="12" y2="6" stroke="var(--rule)" stroke-width="1"/>
+          <line x1="36" y1="6" x2="48" y2="6" stroke="var(--rule)" stroke-width="1"/>
+          <line x1="24" y1="0" x2="24" y2="4" stroke="var(--rule)" stroke-width="0.8"/>
+          <line x1="24" y1="8" x2="24" y2="12" stroke="var(--rule)" stroke-width="0.8"/>
+        </pattern>
+        <rect width="960" height="12" fill="url(#diamond-cross-hero)"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ════════════ Вступление ════════════ -->
+  <section class="section story" id="story">
+    <div class="story-inner">
+      <span class="story-rule" aria-hidden="true"></span>
+      <p>
+        В Кубань? Ей-богу? Славные места!
+        Такой, братцы, край, что и во сне не увидишь, хоть три года спи!
+        Приволье! Сказывают, птицы этой самой, дичи, зверья всякого
+        и — боже ты мой! Трава круглый год растёт, народ — душа в душу,
+        земли — девать некуда!
+      </p>
+      <span class="story-rule" aria-hidden="true"></span>
+    </div>
+  </section>
+
+  <!-- ════════════ День свадьбы ════════════ -->
+  <section class="section section--alt" id="schedule" aria-labelledby="schedule-heading">
+    <div class="section__inner">
+      <h2 id="schedule-heading">День свадьбы</h2>
+    </div>
+    <div class="schedule-grid" role="list">
+
+      <article class="schedule-card" role="listitem" data-animate>
+        <p class="schedule-card__time">14:00</p>
+        <h3 class="schedule-card__event">Церемония</h3>
+        <p class="schedule-card__desc">Торжественная церемония на свежем воздухе</p>
+      </article>
+
+      <article class="schedule-card" role="listitem" data-animate>
+        <p class="schedule-card__time">16:00</p>
+        <h3 class="schedule-card__event">Банкет</h3>
+        <p class="schedule-card__desc">Праздничный ужин с кубанским колоритом</p>
+      </article>
+
+      <article class="schedule-card" role="listitem" data-animate>
+        <p class="schedule-card__time">20:00</p>
+        <h3 class="schedule-card__event">Гуляния</h3>
+        <p class="schedule-card__desc">Музыка, танцы и казачьи песни</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ════════════ Место ════════════ -->
+  <section class="section" id="venue" aria-labelledby="venue-heading">
+    <div class="section__inner">
+      <h2 id="venue-heading">Место</h2>
+      <div class="venue-grid">
+
+        <div class="venue-info">
+          <p class="venue-info__name">Хутор Светлинький</p>
+          <p class="venue-info__address">
+            Ростовская губерния,<br>
+            ул. Степная, д. 1
+          </p>
+          <a class="venue-info__link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Открыть расположение на карте">
+            Открыть на карте &rarr;
+          </a>
+        </div>
+
+        <div class="venue-map-placeholder" role="img" aria-label="Карта расположения места свадьбы">
+          <svg viewBox="0 0 400 300" fill="none" aria-hidden="true">
+            <!-- map outline -->
+            <rect x="1" y="1" width="398" height="298" rx="4" stroke="var(--accent-gold)" stroke-width="1.2"/>
+            <!-- roads -->
+            <line x1="0" y1="180" x2="400" y2="120" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="6 4"/>
+            <line x1="120" y1="0" x2="200" y2="300" stroke="var(--accent-gold)" stroke-width="0.8" stroke-dasharray="6 4"/>
+            <line x1="50" y1="60" x2="350" y2="240" stroke="var(--accent-gold)" stroke-width="0.6" stroke-dasharray="4 6"/>
+            <!-- river -->
+            <path d="M0 80 Q100 100, 160 70 Q220 40, 300 90 Q360 120, 400 100" stroke="var(--accent-gold)" stroke-width="1" fill="none" opacity="0.5"/>
+            <!-- pin -->
+            <g transform="translate(210, 130)">
+              <path d="M0 -20 C-11 -20, -18 -10, -18 -2 C-18 10, 0 24, 0 24 C0 24, 18 10, 18 -2 C18 -10, 11 -20, 0 -20Z" stroke="var(--accent-gold)" stroke-width="1.5" fill="none"/>
+              <circle cx="0" cy="-4" r="5" stroke="var(--accent-gold)" stroke-width="1.2" fill="none"/>
+            </g>
+            <!-- label -->
+            <text x="210" y="174" text-anchor="middle" font-family="Jost, sans-serif" font-size="10" fill="var(--accent-gold)" letter-spacing="0.1em">ХУТОР СВЕТЛИНЬКИЙ</text>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ RSVP ════════════ -->
+  <section class="section section--alt rsvp" id="rsvp" aria-labelledby="rsvp-heading">
+  <div class="section__inner">
+
+    <svg class="ornament-border" viewBox="0 0 960 12" preserveAspectRatio="none" aria-hidden="true">
+      <pattern id="diamond-cross-rsvp" x="0" y="0" width="48" height="12" patternUnits="userSpaceOnUse">
+        <line x1="24" y1="0" x2="36" y2="6" stroke="var(--rule)" stroke-width="1"/>
+        <line x1="36" y1="6" x2="24" y2="12" stroke="var(--rule)" stroke-width="1"/>
+        <line x1="24" y1="12" x2="12" y2="6" stroke="var(--rule)" stroke-width="1"/>
+        <line x1="12" y1="6" x2="24" y2="0" stroke="var(--rule)" stroke-width="1"/>
+        <line x1="0" y1="6" x2="12" y2="6" stroke="var(--rule)" stroke-width="1"/>
+        <line x1="36" y1="6" x2="48" y2="6" stroke="var(--rule)" stroke-width="1"/>
+        <line x1="24" y1="0" x2="24" y2="4" stroke="var(--rule)" stroke-width="0.8"/>
+        <line x1="24" y1="8" x2="24" y2="12" stroke="var(--rule)" stroke-width="0.8"/>
+      </pattern>
+      <rect width="960" height="12" fill="url(#diamond-cross-rsvp)"/>
+    </svg>
+
+    <h2 id="rsvp-heading">Подтверждение</h2>
+
+    <form class="rsvp-form" id="rsvpForm" novalidate aria-label="Форма подтверждения присутствия">
+
+      <!-- Name -->
+      <div class="form-group">
+        <label for="rsvp-name">Имя и фамилия</label>
+        <input type="text" id="rsvp-name" name="name" required autocomplete="name" aria-required="true" aria-describedby="rsvp-name-error">
+        <p class="form-error" id="rsvp-name-error" role="alert">Пожалуйста, укажите ваше имя</p>
+      </div>
+
+      <!-- Attendance -->
+      <div class="form-group">
+        <fieldset>
+          <legend>Присутствие</legend>
+          <div class="radio-group" role="radiogroup" aria-required="true">
+            <label class="radio-option">
+              <input type="radio" name="attendance" value="yes" aria-describedby="rsvp-attendance-error">
+              <span>Да, конечно</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="attendance" value="no">
+              <span>К сожалению, нет</span>
+            </label>
+          </div>
+          <p class="form-error" id="rsvp-attendance-error" role="alert">Пожалуйста, укажите, сможете ли вы присутствовать</p>
+        </fieldset>
+      </div>
+
+      <!-- Guest count (conditional) -->
+      <div class="form-group form-group--conditional" id="guestCountGroup">
+        <label for="rsvp-guests">Количество гостей</label>
+        <input type="number" id="rsvp-guests" name="guests" min="1" max="10" value="1" aria-label="Количество гостей, от 1 до 10">
+      </div>
+
+      <!-- Dietary -->
+      <div class="form-group">
+        <label for="rsvp-dietary">Предпочтения в еде</label>
+        <textarea id="rsvp-dietary" name="dietary" rows="2" placeholder="Аллергии, вегетарианство и т.д."></textarea>
+      </div>
+
+      <!-- Transfer -->
+      <div class="form-group">
+        <fieldset>
+          <legend>Нужен ли трансфер?</legend>
+          <div class="radio-group" role="radiogroup">
+            <label class="radio-option">
+              <input type="radio" name="transfer" value="yes">
+              <span>Да</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="transfer" value="no" checked>
+              <span>Нет</span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Hotel -->
+      <div class="form-group">
+        <fieldset>
+          <legend>Нужна ли гостиница?</legend>
+          <div class="radio-group" role="radiogroup">
+            <label class="radio-option">
+              <input type="radio" name="hotel" value="yes">
+              <span>Да</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="hotel" value="no" checked>
+              <span>Нет</span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Song -->
+      <div class="form-group">
+        <label for="rsvp-song">Какую песню вы хотите услышать?</label>
+        <input type="text" id="rsvp-song" name="song" placeholder="Название и исполнитель" autocomplete="off">
+      </div>
+
+      <!-- Message -->
+      <div class="form-group">
+        <label for="rsvp-message">Пожелание молодожёнам</label>
+        <textarea id="rsvp-message" name="message" rows="3" placeholder="Ваши тёплые слова"></textarea>
+      </div>
+
+      <div style="text-align:center">
+        <button type="submit" class="btn-submit">Отправить</button>
+      </div>
+
+    </form>
+
+    <div class="rsvp-success" id="rsvpSuccess" aria-live="polite">
+      <p class="rsvp-success__text">Спасибо, ждём вас!</p>
+    </div>
+
+  </div>
+  </section>
+
+  <!-- ════════════ Footer ════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__botanical" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M20 38 L20 16" stroke="var(--accent-gold)" stroke-width="1"/>
+        <path d="M20 28 C14 24, 8 22, 4 26" stroke="var(--accent-gold)" stroke-width="0.8" fill="none"/>
+        <path d="M20 24 C26 20, 32 18, 36 22" stroke="var(--accent-gold)" stroke-width="0.8" fill="none"/>
+        <path d="M20 16 C16 10, 14 4, 20 2 C26 4, 24 10, 20 16Z" stroke="var(--accent-gold)" stroke-width="0.8" fill="none"/>
+      </svg>
+    </div>
+    <p class="footer__contact">
+      По всем вопросам: <a href="tel:+70001234567">+7 (000) 123-45-67</a>
+    </p>
+    <p class="footer__contact" style="margin-top: 4px; font-size: 12px;">
+      Просим подтвердить присутствие до 15 марта 2006
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ── Lampas scroll progress ── */
+      var lampas = document.querySelector('.lampas');
+      function updateLampas() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var progress = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+        lampas.style.transform = 'scaleY(' + progress + ')';
+      }
+      window.addEventListener('scroll', updateLampas, { passive: true });
+
+      /* ── Hero name animations ── */
+      var name1 = document.getElementById('name1');
+      var name2 = document.getElementById('name2');
+      var sunflower = document.getElementById('sunflower');
+
+      requestAnimationFrame(function () {
+        name1.classList.add('hero__name--visible');
+        setTimeout(function () {
+          name2.classList.add('hero__name--visible');
+        }, 200);
+        sunflower.classList.add('hero__sunflower--animate');
+      });
+
+      /* ── Scroll CTA ── */
+      document.getElementById('scrollCta').addEventListener('click', function () {
+        var target = document.getElementById('story');
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      /* ── Schedule cards IntersectionObserver ── */
+      var cards = document.querySelectorAll('.schedule-card[data-animate]');
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var idx = Array.prototype.indexOf.call(cards, entry.target);
+              setTimeout(function () {
+                entry.target.classList.add('schedule-card--visible');
+              }, idx * 100);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        cards.forEach(function (card) { observer.observe(card); });
+      } else {
+        // Fallback: show all
+        cards.forEach(function (card) { card.classList.add('schedule-card--visible'); });
+      }
+
+      /* ── RSVP: conditional guest count ── */
+      var attendanceRadios = document.querySelectorAll('input[name="attendance"]');
+      var guestGroup = document.getElementById('guestCountGroup');
+
+      attendanceRadios.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+          if (this.value === 'yes') {
+            guestGroup.classList.add('form-group--open');
+          } else {
+            guestGroup.classList.remove('form-group--open');
+          }
+        });
+      });
+
+      /* ── RSVP: form validation & submit ── */
+      var form = document.getElementById('rsvpForm');
+      var successEl = document.getElementById('rsvpSuccess');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var nameInput = document.getElementById('rsvp-name');
+        var nameError = document.getElementById('rsvp-name-error');
+        var attendanceError = document.getElementById('rsvp-attendance-error');
+        var attendanceChecked = form.querySelector('input[name="attendance"]:checked');
+        var valid = true;
+
+        // Reset
+        nameError.classList.remove('form-error--visible');
+        attendanceError.classList.remove('form-error--visible');
+        nameInput.removeAttribute('aria-invalid');
+
+        // Name
+        if (!nameInput.value.trim()) {
+          nameError.classList.add('form-error--visible');
+          nameInput.setAttribute('aria-invalid', 'true');
+          nameInput.focus();
+          valid = false;
+        }
+
+        // Attendance
+        if (!attendanceChecked) {
+          attendanceError.classList.add('form-error--visible');
+          if (valid) {
+            form.querySelector('input[name="attendance"]').focus();
+          }
+          valid = false;
+        }
+
+        if (!valid) return;
+
+        // Success
+        form.classList.add('rsvp-form--hidden');
+        successEl.classList.add('rsvp-success--visible');
+
+        // Update success text depending on attendance
+        if (attendanceChecked && attendanceChecked.value === 'no') {
+          successEl.querySelector('.rsvp-success__text').textContent = 'Спасибо за ответ. Будем скучать!';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

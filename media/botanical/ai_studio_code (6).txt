@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.85;">
+  <path d="M230 480 Q250 350 245 220 L 250 170" />
+  <path d="M 243 300 Q 180 280 150 240 L 140 200" />
+
+  <!-- Main Pod -->
+  <path d="M 210 160 C 200 240, 300 240, 290 160 C 270 155, 230 155, 210 160 Z" />
+  <path d="M 210 160 L 200 145 L 220 155 L 235 135 L 250 155 L 265 135 L 280 155 L 300 145 L 290 160" />
+  
+  <!-- Secondary Pod -->
+  <path d="M 115 190 C 110 250, 170 250, 165 190 C 150 185, 130 185, 115 190 Z" />
+  <path d="M 115 190 L 105 180 L 120 185 L 130 175 L 140 185 L 150 175 L 160 185 L 175 180 L 165 190" />
+
+  <!-- Structural Ribs -->
+  <g stroke-opacity="0.4">
+    <path d="M 225 158 Q 220 200 250 230 M 238 156 Q 235 200 250 230 M 250 155 Q 250 200 250 230 M 262 156 Q 265 200 250 230 M 275 158 Q 280 200 250 230" />
+    <path d="M 125 188 Q 120 215 140 235 M 135 187 Q 135 215 140 235 M 145 187 Q 145 215 140 235 M 155 188 Q 160 215 140 235" />
+  </g>
+</svg>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Евгений и Анастасия — 8 августа 2026</title>
+  <title>Евстахий и Анахвакия — 8 апреля 2006</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
@@ -601,8 +601,8 @@
 
     <!--
       Botanical (11): improved hero sprig. Two flowers:
-        "She" (left) — Анастасия: wireframe ellipse petals, dried-flower style
-        "He" (right) — Евгений: radiating seed head, meadow / Levitan-field style
+        "She" (left) — Анахвакия: wireframe ellipse petals, dried-flower style
+        "He" (right) — Евстахий: radiating seed head, meadow / Levitan-field style
       Colors reference CSS vars directly (inline SVG supports var()).
     -->
     <svg class="hero-botanical" width="110" height="68" viewBox="-2 -4 114 72"
@@ -627,7 +627,7 @@
       <!-- Right leaf -->
       <path d="M48.5 24 C55 25 61 19 62 12 C57 16 52 20 48.5 24 Z" fill="var(--sage)" opacity="0.5"/>
 
-      <!-- "She" — Анастасия: three wireframe ellipse petals, pressed-flower -->
+      <!-- "She" — Анахвакия: three wireframe ellipse petals, pressed-flower -->
       <g opacity="0.9">
         <path d="M34 16 L36 16 L35 14 Z" fill="var(--sage)" opacity="0.7" stroke="none"/>
         <ellipse cx="35" cy="14" rx="4.5" ry="1.8" transform="rotate(-35 35 14)"
@@ -639,7 +639,7 @@
         <circle cx="35" cy="14" r="1.5" fill="var(--rose)" opacity="0.85" stroke="none"/>
       </g>
 
-      <!-- "He" — Евгений: radiating seed head (dried allium / Levitan meadow) -->
+      <!-- "He" — Евстахий: radiating seed head (dried allium / Levitan meadow) -->
       <g opacity="0.85">
         <path d="M67 8 L69 8 L68 6 Z" fill="var(--sage)" opacity="0.7" stroke="none"/>
         <path d="M68 6 L68 2"   stroke="var(--rose)" stroke-width="0.5"/>
@@ -659,14 +659,14 @@
     </svg>
 
     <h1 class="names">
-      <span class="name">Евгений</span>
+      <span class="name">Евстахий</span>
       <span class="conjunction">и</span>
-      <span class="name">Анастасия</span>
+      <span class="name">Анахвакия</span>
     </h1>
 
     <p class="hero-date">
       <span class="hero-rule"></span>
-      8 августа 2026
+      8 апреля 2006
       <span class="hero-rule"></span>
     </p>
 
@@ -679,16 +679,16 @@
   ═══════════════════════════════════ -->
   <section class="section reveal" style="animation-delay: 0.12s">
     <p class="invitation-text">
-    B Кубань? Ей-богу? Славные места!
+    В Кубань? Ей-богу? Славные места!
     Такой, братцы, край, что и во сне не увидишь, хоть три года спи!
     Приволье! Сказывают, птицы этой самой, дичи, зверья всякого
-    и — боже ты мой! Трава круглый год растет, народ — душа в душу,
+    и — боже ты мой! Трава круглый год растёт, народ — душа в душу,
     земли — девать некуда!
     </p>
 
     <div class="venue-block">
       <span class="venue-label">Место торжества</span>
-      <span class="venue-name">станица Коневская, Краснодарский край</span>
+      <span class="venue-name">хутор Светлинький, Ростовская губерния</span>
       <!-- TODO: replace href with actual Google Maps link -->
       <a class="venue-link" href="#" target="_blank" rel="noopener">
         Открыть на карте <span aria-hidden="true">→</span>
@@ -767,7 +767,7 @@
   ═══════════════════════════════════ -->
   <section class="section reveal" style="animation-delay: 0.3s">
     <div class="notice">
-      Просим подтвердить участие до <strong>15 июля 2026</strong> года.
+      Просим подтвердить участие до <strong>15 марта 2006</strong> года.
     </div>
   </section>
 
@@ -815,6 +815,7 @@
                placeholder="Имя и фамилия"
                autocomplete="name"
                required
+               aria-required="true"
                aria-describedby="err-name">
         <span class="field-error" id="err-name" role="alert">Пожалуйста, укажите ваше имя</span>
       </div>
@@ -822,7 +823,7 @@
       <!-- Придёте? -->
       <div class="field" id="field-attending">
         <span class="field-label" id="attending-label">Вы придёте?</span>
-        <div class="radio-row" role="radiogroup" aria-labelledby="attending-label" aria-describedby="err-attending">
+        <div class="radio-row" role="radiogroup" aria-labelledby="attending-label" aria-describedby="err-attending" aria-required="true">
           <label class="radio-opt">
             <input type="radio" name="entry.ATTENDING" value="Да" id="att-yes" required>
             <span class="radio-mark"></span>
@@ -925,7 +926,7 @@
     <!-- Сообщение после отправки -->
     <div class="form-success" id="form-success" role="alert" aria-live="polite">
       <div class="form-success-inner">
-        <p>Спасибо.<br>Ваш ответ получен.<br>До встречи в августе.</p>
+        <p>Спасибо.<br>Ваш ответ получен.<br>До встречи в апреле.</p>
       </div>
     </div>
 

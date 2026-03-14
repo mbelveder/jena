@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.85;">
+  <path d="M 250 480 Q 230 300 270 150" />
+  
+  <!-- Right Leaf -->
+  <path d="M 243 320 Q 260 300 290 290" />
+  <path d="M 290 290 Q 280 220 330 210 Q 350 205 365 225 Q 350 240 360 250 Q 375 250 370 280 Q 365 310 290 290 Z" />
+  <!-- Left Leaf -->
+  <path d="M 255 210 Q 220 190 180 180" />
+  <path d="M 180 180 Q 150 110 100 120 Q 80 130 85 150 Q 100 160 90 170 Q 75 180 100 210 Q 120 220 180 180 Z" />
+  
+  <!-- Quiet Leaf Veins -->
+  <g stroke-opacity="0.4">
+    <!-- Right Veins -->
+    <path d="M 290 290 L 305 235 M 290 290 L 320 230 M 290 290 L 335 235 M 290 290 L 345 250 M 290 290 L 350 270" />
+    <path d="M 345 235 L 290 290" />
+    <!-- Left Veins -->
+    <path d="M 180 180 L 130 125 M 180 180 L 105 135 M 180 180 L 95 155 M 180 180 L 100 180 M 180 180 L 115 200" />
+  </g>
+</svg>
