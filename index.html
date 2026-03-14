@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Евгений и Анастасия — 8 августа 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper:       #EDE3CC;
+      --paper-outer: #E0D4B8;
+      --ink:         #1A0F06;
+      --ink-mid:     #38220E;
+      --ink-light:   #6B4830;
+      --ink-faint:   #9E8165;
+      --sage:        #627053;
+      --sage-light:  #8FA07E;
+      --rose:        #A87268;
+      --gold:        #8A6F3A;
+      --line:        rgba(56, 34, 14, 0.14);
+    }
+
+    html {
+      background: var(--paper-outer);
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      background: var(--paper);
+      max-width: 420px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Paper grain overlay via SVG filter */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 1;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    /* Letter crease line at top — subtle visual metaphor */
+    body::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--line) 20%, var(--line) 80%, transparent);
+      margin: 0 3rem;
+      opacity: 0.6;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+    }
+
+    /* ─── FADE-UP ANIMATION ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    .reveal {
+      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { animation: none; }
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      text-align: center;
+      padding: 3rem 2.5rem 2rem;
+    }
+
+    .hero-botanical {
+      display: block;
+      margin: 0 auto 2rem;
+      opacity: 0.62;
+    }
+
+    .names {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .names .name {
+      display: block;
+      font-size: clamp(2.6rem, 12vw, 3.4rem);
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+
+    .names .conjunction {
+      display: block;
+      font-size: clamp(1rem, 4.5vw, 1.25rem);
+      color: var(--ink-light);
+      margin: 0.2em 0;
+      font-style: italic;
+    }
+
+    .hero-date {
+      margin-top: 1.4rem;
+      font-family: 'EB Garamond', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .hero-rule {
+      display: inline-block;
+      width: 1.4rem;
+      height: 1px;
+      background: var(--ink-faint);
+      vertical-align: middle;
+      margin: 0 0.6rem;
+      opacity: 0.45;
+    }
+
+    /* ─── BOTANICAL DIVIDERS ─── */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2.5rem;
+      margin: 2rem 0;
+      gap: 1rem;
+      opacity: 0.45;
+    }
+
+    .divider-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* ─── SECTIONS ─── */
+    .section {
+      padding: 0 2.5rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .section-label {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--ink-mid);
+      margin-bottom: 0.9rem;
+    }
+
+    /* ─── INVITATION ─── */
+    .invitation-text {
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--ink-mid);
+    }
+
+    .venue-block {
+      margin-top: 1.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .venue-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .venue-name {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .venue-link {
+      font-size: 0.85rem;
+      color: var(--sage);
+      text-decoration: none;
+      border-bottom: 1px solid var(--sage-light);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .venue-link:hover {
+      color: var(--ink-mid);
+      border-color: var(--ink-mid);
+    }
+
+    /* ─── SCHEDULE ─── */
+    .timeline {
+      position: relative;
+      padding-left: 1.6rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--line) 8%, var(--line) 92%, transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.9rem;
+      top: 0.55rem;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--rose);
+      opacity: 0.65;
+    }
+
+    .timeline-time {
+      font-size: 0.73rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.05rem;
+    }
+
+    .timeline-event {
+      font-size: 1rem;
+      color: var(--ink-mid);
+    }
+
+    .timeline-note {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--ink-faint);
+      margin-top: 0.1rem;
+    }
+
+    /* ─── DRESS CODE ─── */
+    .dresscode-text {
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--ink-mid);
+    }
+
+    .swatches {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1rem;
+      align-items: center;
+    }
+
+    .swatch {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      opacity: 0.75;
+      flex-shrink: 0;
+    }
+
+    .swatch-label {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--ink-faint);
+      margin-left: 0.4rem;
+    }
+
+    /* ─── RSVP NOTICE ─── */
+    .notice {
+      background: rgba(98, 112, 83, 0.07);
+      border-left: 2px solid var(--sage-light);
+      border-radius: 0 2px 2px 0;
+      padding: 0.9rem 1.2rem;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+    }
+
+    .notice strong {
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    /* ─── FORM ─── */
+    .form-section {
+      padding: 0 2.5rem 4rem;
+    }
+
+    .form-intro {
+      margin-bottom: 2rem;
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    .form-subtitle {
+      font-size: 0.83rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+    }
+
+    .field {
+      margin-bottom: 2rem;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.55rem;
+    }
+
+    .field-label .opt {
+      font-size: 0.7rem;
+      text-transform: none;
+      letter-spacing: 0;
+      font-style: italic;
+      opacity: 0.7;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      padding: 0.35rem 0 0.45rem;
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: var(--ink-mid);
+      outline: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+      transition: border-color 0.25s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    textarea:focus {
+      border-bottom-color: var(--sage);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 72px;
+      line-height: 1.65;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--ink-faint);
+      opacity: 0.5;
+      font-style: italic;
+    }
+
+    input[type="number"] {
+      width: 72px;
+    }
+
+    /* ─── RADIO BUTTONS ─── */
+    .radio-row {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .radio-opt {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .radio-opt input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .radio-mark {
+      width: 15px;
+      height: 15px;
+      border: 1px solid var(--ink-faint);
+      border-radius: 50%;
+      position: relative;
+      flex-shrink: 0;
+      transition: border-color 0.2s;
+    }
+
+    .radio-mark::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: var(--rose);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .radio-opt input:checked ~ .radio-mark {
+      border-color: var(--rose);
+    }
+
+    .radio-opt input:checked ~ .radio-mark::after {
+      opacity: 1;
+    }
+
+    .radio-opt:focus-within .radio-mark {
+      outline: 2px solid var(--sage-light);
+      outline-offset: 2px;
+    }
+
+    .radio-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: var(--ink-mid);
+    }
+
+    /* ─── GUEST COUNT (animated show/hide) ─── */
+    .guest-field-wrap {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .guest-field-wrap.open {
+      grid-template-rows: 1fr;
+    }
+
+    .guest-field-inner {
+      overflow: hidden;
+    }
+
+    .guest-field-inner .field {
+      padding-top: 2rem;
+    }
+
+    /* ─── SUBMIT SEAL ─── */
+    .submit-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    .seal {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      background: var(--ink-mid);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      position: relative;
+      transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), background 0.18s;
+      box-shadow: 0 3px 16px rgba(26, 15, 6, 0.18);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .seal:hover {
+      background: var(--ink);
+      transform: scale(1.04);
+    }
+
+    .seal:active {
+      transform: scale(0.96);
+    }
+
+    .seal-ring {
+      position: absolute;
+      inset: 7px;
+      border-radius: 50%;
+      border: 1px solid rgba(237, 227, 204, 0.18);
+      pointer-events: none;
+    }
+
+    .seal-monogram {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 1.45rem;
+      color: var(--paper);
+      opacity: 0.9;
+      line-height: 1;
+    }
+
+    .seal-caption {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--paper);
+      opacity: 0.45;
+    }
+
+    /* ─── SUCCESS STATE ─── */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .form-success.visible {
+      display: block;
+    }
+
+    .form-success p {
+      font-style: italic;
+      color: var(--ink-light);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 1rem 2.5rem 3rem;
+      border-top: 1px solid var(--line);
+      margin: 0 2.5rem;
+    }
+
+    .footer-contact {
+      font-size: 0.85rem;
+      color: var(--ink-faint);
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+    }
+
+    .footer-contact a {
+      color: var(--ink-faint);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      transition: color 0.2s;
+    }
+
+    .footer-contact a:hover {
+      color: var(--ink-mid);
+    }
+
+    .footer-botanical {
+      display: block;
+      margin: 0 auto;
+      opacity: 0.38;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════
+       HERO
+  ═══════════════════════════════════ -->
+  <header class="hero reveal" style="animation-delay: 0.05s">
+
+    <!-- Botanical: dried flower sprig, top -->
+    <svg class="hero-botanical" width="110" height="64" viewBox="0 0 110 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Main stem -->
+      <path d="M55 63 Q53 48 51 34 Q49 20 47 6" stroke="#6B4830" stroke-width="0.85" fill="none"/>
+      <!-- Left branch -->
+      <path d="M51 34 Q41 27 36 17" stroke="#6B4830" stroke-width="0.7" fill="none" opacity="0.8"/>
+      <!-- Right branch -->
+      <path d="M49 22 Q60 16 67 8" stroke="#6B4830" stroke-width="0.7" fill="none" opacity="0.8"/>
+      <!-- Leaf left of main -->
+      <path d="M52 40 Q44 36 42 28 Q51 33 52 40Z" fill="#627053" opacity="0.55"/>
+      <!-- Leaf right of main -->
+      <path d="M50 28 Q58 24 62 17 Q53 23 50 28Z" fill="#627053" opacity="0.5"/>
+      <!-- Left flower -->
+      <ellipse cx="35" cy="15" rx="5" ry="2.8" transform="rotate(-35 35 15)" fill="none" stroke="#A87268" stroke-width="0.65" opacity="0.8"/>
+      <ellipse cx="35" cy="15" rx="5" ry="2.8" transform="rotate(25 35 15)" fill="none" stroke="#A87268" stroke-width="0.65" opacity="0.8"/>
+      <ellipse cx="35" cy="15" rx="5" ry="2.8" transform="rotate(-5 35 15)" fill="none" stroke="#A87268" stroke-width="0.65" opacity="0.65"/>
+      <circle cx="35" cy="15" r="2.2" fill="#A87268" opacity="0.45"/>
+      <!-- Right flower -->
+      <ellipse cx="68" cy="7" rx="4.5" ry="2.5" transform="rotate(-25 68 7)" fill="none" stroke="#A87268" stroke-width="0.65" opacity="0.8"/>
+      <ellipse cx="68" cy="7" rx="4.5" ry="2.5" transform="rotate(35 68 7)" fill="none" stroke="#A87268" stroke-width="0.65" opacity="0.8"/>
+      <circle cx="68" cy="7" r="2" fill="#A87268" opacity="0.42"/>
+      <!-- Top bud -->
+      <path d="M47 6 Q47 1 50 3 Q47 6 47 6Z" fill="#A87268" opacity="0.55"/>
+      <path d="M47 6 Q44 2 47 3 Q47 6 47 6Z" fill="#A87268" opacity="0.45"/>
+      <!-- Small grass blade right -->
+      <path d="M78 64 Q80 50 84 38" stroke="#627053" stroke-width="0.6" fill="none" opacity="0.4"/>
+      <path d="M74 64 Q76 55 72 44" stroke="#627053" stroke-width="0.5" fill="none" opacity="0.35"/>
+      <!-- Small grass blade left -->
+      <path d="M28 64 Q26 52 22 42" stroke="#627053" stroke-width="0.6" fill="none" opacity="0.4"/>
+      <path d="M32 64 Q30 54 34 44" stroke="#627053" stroke-width="0.5" fill="none" opacity="0.35"/>
+    </svg>
+
+    <div class="names">
+      <span class="name">Евгений</span>
+      <span class="conjunction">и</span>
+      <span class="name">Анастасия</span>
+    </div>
+
+    <p class="hero-date">
+      <span class="hero-rule"></span>
+      8 августа 2026
+      <span class="hero-rule"></span>
+    </p>
+
+  </header>
+
+  <!-- ─── DIVIDER ─── -->
+  <div class="divider" aria-hidden="true">
+    <div class="divider-rule"></div>
+    <svg width="30" height="14" viewBox="0 0 30 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 8 Q11 3 7 5 Q11 4 15 8Z" fill="#627053"/>
+      <path d="M15 8 Q19 3 23 5 Q19 4 15 8Z" fill="#627053"/>
+      <circle cx="15" cy="8" r="1.4" fill="#A87268" opacity="0.8"/>
+    </svg>
+    <div class="divider-rule"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       INVITATION
+  ═══════════════════════════════════ -->
+  <section class="section reveal" style="animation-delay: 0.12s">
+    <p class="invitation-text">
+      Дорогой друг, в этот августовский день мы открываем наше сердце
+      и просим вас разделить с нами радость нашего союза.
+      Пусть вечер будет тёплым, как трава под ногами, и светлым,
+      как небо над Кубанью на закате.
+      Нам очень важно видеть вас рядом.
+    </p>
+
+    <div class="venue-block">
+      <span class="venue-label">Место торжества</span>
+      <span class="venue-name">станица Коневская, Краснодарский край</span>
+      <!-- TODO: replace href with actual Google Maps link -->
+      <a class="venue-link" href="#" target="_blank" rel="noopener">Открыть на карте →</a>
+    </div>
+  </section>
+
+  <!-- ─── DIVIDER ─── -->
+  <div class="divider" aria-hidden="true">
+    <div class="divider-rule"></div>
+    <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 5 Q5 1 2 3" stroke="#6B4830" stroke-width="0.7" fill="none"/>
+      <path d="M9 5 Q13 1 16 3" stroke="#6B4830" stroke-width="0.7" fill="none"/>
+      <circle cx="9" cy="5" r="1.1" fill="#6B4830" opacity="0.5"/>
+    </svg>
+    <div class="divider-rule"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SCHEDULE
+  ═══════════════════════════════════ -->
+  <section class="section reveal" style="animation-delay: 0.18s">
+    <span class="section-label">Программа дня</span>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">14:00</div>
+        <div class="timeline-event">Сбор гостей</div>
+        <div class="timeline-note">Встреча, прогулка, аперитив</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">15:00</div>
+        <div class="timeline-event">Церемония</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">16:30</div>
+        <div class="timeline-event">Торжественный ужин</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">До рассвета</div>
+        <div class="timeline-event">Танцы и разговоры</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── DIVIDER ─── -->
+  <div class="divider" aria-hidden="true">
+    <div class="divider-rule"></div>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="7" cy="7" r="1" fill="#9E8165" opacity="0.6"/>
+      <path d="M7 7 L7 1.5" stroke="#9E8165" stroke-width="0.55" opacity="0.5"/>
+      <path d="M7 7 L11.7 9.7" stroke="#9E8165" stroke-width="0.55" opacity="0.5"/>
+      <path d="M7 7 L2.3 9.7" stroke="#9E8165" stroke-width="0.55" opacity="0.5"/>
+    </svg>
+    <div class="divider-rule"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       DRESS CODE
+  ═══════════════════════════════════ -->
+  <section class="section reveal" style="animation-delay: 0.24s">
+    <span class="section-label">Дресс-код</span>
+    <!-- TODO: уточнить дресс-код у молодожёнов и заменить текст -->
+    <p class="dresscode-text">
+      Просим выбрать наряды в природных, тихих тонах —
+      цвет луговых трав, пыльной розы, слоновой кости,
+      выцветшего льна. Будьте собой, но немного праздничнее.
+    </p>
+    <div class="swatches" aria-label="Палитра дресс-кода">
+      <div class="swatch" style="background:#C9BC9F" title="Лён"></div>
+      <div class="swatch" style="background:#8FA07E" title="Луговой"></div>
+      <div class="swatch" style="background:#B89285" title="Пыльная роза"></div>
+      <div class="swatch" style="background:#CBBEA8" title="Тёплый беж"></div>
+      <div class="swatch" style="background:#8A9EA5" title="Пасмурное небо"></div>
+      <span class="swatch-label">без яркого</span>
+    </div>
+  </section>
+
+  <!-- ─── DIVIDER ─── -->
+  <div class="divider" aria-hidden="true">
+    <div class="divider-rule"></div>
+    <svg width="24" height="12" viewBox="0 0 24 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 9 Q8 4 4 6 Q8 5 12 9Z" fill="#627053" opacity="0.8"/>
+      <path d="M12 9 Q16 4 20 6 Q16 5 12 9Z" fill="#627053" opacity="0.8"/>
+      <line x1="12" y1="2" x2="12" y2="9" stroke="#6B4830" stroke-width="0.7" opacity="0.5"/>
+    </svg>
+    <div class="divider-rule"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       RSVP NOTICE
+  ═══════════════════════════════════ -->
+  <section class="section reveal" style="animation-delay: 0.3s">
+    <div class="notice">
+      Просим подтвердить участие до <strong>15 июля 2026</strong> года.
+    </div>
+  </section>
+
+  <!-- ─── DIVIDER ─── -->
+  <div class="divider" aria-hidden="true">
+    <div class="divider-rule"></div>
+    <svg width="30" height="14" viewBox="0 0 30 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 8 Q11 3 7 5 Q11 4 15 8Z" fill="#627053"/>
+      <path d="M15 8 Q19 3 23 5 Q19 4 15 8Z" fill="#627053"/>
+      <circle cx="15" cy="8" r="1.4" fill="#A87268" opacity="0.8"/>
+    </svg>
+    <div class="divider-rule"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       RSVP FORM
+  ═══════════════════════════════════ -->
+  <section class="form-section reveal" style="animation-delay: 0.36s" aria-label="Форма подтверждения">
+
+    <div class="form-intro">
+      <h2 class="form-title">Ваш ответ</h2>
+      <p class="form-subtitle">Заполните, пожалуйста, эту карточку</p>
+    </div>
+
+    <!--
+      TODO: Чтобы подключить Google Forms:
+      1. Создайте Google-форму с нужными полями
+      2. Скопируйте URL для отправки (action) из исходного кода формы
+      3. Замените action="#" ниже на этот URL
+      4. Замените значения name="" у каждого поля на entry.XXXXXXXX из Google Forms
+    -->
+    <form id="rsvp-form" action="#" method="POST" novalidate>
+
+      <!-- Имя -->
+      <div class="field">
+        <label class="field-label" for="f-name">Ваше имя</label>
+        <input type="text" id="f-name" name="entry.NAME" placeholder="Имя и фамилия" autocomplete="name" required>
+      </div>
+
+      <!-- Придёте? -->
+      <div class="field">
+        <span class="field-label" id="attending-label">Вы придёте?</span>
+        <div class="radio-row" role="radiogroup" aria-labelledby="attending-label">
+          <label class="radio-opt">
+            <input type="radio" name="entry.ATTENDING" value="Да" id="att-yes" required>
+            <span class="radio-mark"></span>
+            <span class="radio-text">Да, конечно</span>
+          </label>
+          <label class="radio-opt">
+            <input type="radio" name="entry.ATTENDING" value="Нет" id="att-no">
+            <span class="radio-mark"></span>
+            <span class="radio-text">К сожалению, нет</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Количество гостей (только если "Да") -->
+      <div class="guest-field-wrap" id="guest-wrap" aria-hidden="true">
+        <div class="guest-field-inner">
+          <div class="field">
+            <label class="field-label" for="f-guests">
+              Количество гостей <span class="opt">(включая вас)</span>
+            </label>
+            <input type="number" id="f-guests" name="entry.GUESTS" min="1" max="10" value="1">
+          </div>
+        </div>
+      </div>
+
+      <!-- Диетические предпочтения -->
+      <div class="field">
+        <label class="field-label" for="f-dietary">
+          Диетические предпочтения / аллергии <span class="opt">— необязательно</span>
+        </label>
+        <textarea id="f-dietary" name="entry.DIETARY" placeholder="Если есть что-то важное…"></textarea>
+      </div>
+
+      <!-- Трансфер -->
+      <div class="field">
+        <span class="field-label" id="transfer-label">Нужен ли трансфер?</span>
+        <div class="radio-row" role="radiogroup" aria-labelledby="transfer-label">
+          <label class="radio-opt">
+            <input type="radio" name="entry.TRANSFER" value="Да">
+            <span class="radio-mark"></span>
+            <span class="radio-text">Да</span>
+          </label>
+          <label class="radio-opt">
+            <input type="radio" name="entry.TRANSFER" value="Нет" checked>
+            <span class="radio-mark"></span>
+            <span class="radio-text">Нет</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Жильё -->
+      <div class="field">
+        <span class="field-label" id="hotel-label">Нужно ли жильё?</span>
+        <div class="radio-row" role="radiogroup" aria-labelledby="hotel-label">
+          <label class="radio-opt">
+            <input type="radio" name="entry.HOTEL" value="Да">
+            <span class="radio-mark"></span>
+            <span class="radio-text">Да</span>
+          </label>
+          <label class="radio-opt">
+            <input type="radio" name="entry.HOTEL" value="Нет" checked>
+            <span class="radio-mark"></span>
+            <span class="radio-text">Нет</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Пожелание песни -->
+      <div class="field">
+        <label class="field-label" for="f-song">
+          Пожелание песни <span class="opt">— необязательно</span>
+        </label>
+        <input type="text" id="f-song" name="entry.SONG" placeholder="Что хотели бы услышать?">
+      </div>
+
+      <!-- Слова молодожёнам -->
+      <div class="field">
+        <label class="field-label" for="f-message">
+          Слова молодожёнам <span class="opt">— необязательно</span>
+        </label>
+        <textarea id="f-message" name="entry.MESSAGE" placeholder="Ваши пожелания или слова…"></textarea>
+      </div>
+
+      <!-- Кнопка-печать -->
+      <div class="submit-wrap">
+        <button type="submit" class="seal" aria-label="Отправить ответ">
+          <span class="seal-ring" aria-hidden="true"></span>
+          <span class="seal-monogram" aria-hidden="true">Е & А</span>
+          <span class="seal-caption">отправить</span>
+        </button>
+      </div>
+
+    </form>
+
+    <!-- Сообщение после отправки -->
+    <div class="form-success" id="form-success" role="alert" aria-live="polite">
+      <p>Спасибо.<br>Ваш ответ получен.<br>До встречи в августе.</p>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════ -->
+  <footer class="reveal" style="animation-delay: 0.42s">
+
+    <p class="footer-contact">
+      По вопросам обращайтесь к организатору:<br>
+      <!-- TODO: replace with actual organizer name and contact -->
+      <a href="tel:+79000000000">+7 (900) 000-00-00</a>
+    </p>
+
+    <!-- Botanical: pressed grasses and flowers, footer -->
+    <svg class="footer-botanical" width="180" height="55" viewBox="0 0 180 55" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Left grasses -->
+      <path d="M22 55 Q20 40 17 26" stroke="#6B4830" stroke-width="0.75" fill="none"/>
+      <path d="M28 55 Q27 43 31 30" stroke="#6B4830" stroke-width="0.65" fill="none" opacity="0.8"/>
+      <path d="M16 55 Q14 46 10 36" stroke="#6B4830" stroke-width="0.6" fill="none" opacity="0.65"/>
+      <path d="M20 42 Q13 37 11 28 Q20 34 20 42Z" fill="#627053" opacity="0.5"/>
+      <path d="M27 38 Q34 33 36 24 Q27 30 27 38Z" fill="#627053" opacity="0.45"/>
+
+      <!-- Center stem and flowers -->
+      <path d="M90 55 Q90 36 89 18" stroke="#6B4830" stroke-width="0.85" fill="none"/>
+      <path d="M89 36 Q79 29 74 18" stroke="#6B4830" stroke-width="0.65" fill="none" opacity="0.85"/>
+      <path d="M89 26 Q99 20 105 11" stroke="#6B4830" stroke-width="0.65" fill="none" opacity="0.85"/>
+      <!-- Left flower -->
+      <ellipse cx="73" cy="16" rx="5.5" ry="3" transform="rotate(-30 73 16)" fill="none" stroke="#A87268" stroke-width="0.65"/>
+      <ellipse cx="73" cy="16" rx="5.5" ry="3" transform="rotate(30 73 16)" fill="none" stroke="#A87268" stroke-width="0.65"/>
+      <circle cx="73" cy="16" r="2.5" fill="#A87268" opacity="0.42"/>
+      <!-- Right flower -->
+      <ellipse cx="106" cy="10" rx="4.5" ry="2.5" transform="rotate(-25 106 10)" fill="none" stroke="#A87268" stroke-width="0.65"/>
+      <ellipse cx="106" cy="10" rx="4.5" ry="2.5" transform="rotate(35 106 10)" fill="none" stroke="#A87268" stroke-width="0.65"/>
+      <circle cx="106" cy="10" r="2" fill="#A87268" opacity="0.42"/>
+      <!-- Top bud -->
+      <path d="M89 18 Q89 13 92 15 Q89 19 89 18Z" fill="#A87268" opacity="0.55"/>
+      <path d="M89 18 Q86 14 89 15 Q89 19 89 18Z" fill="#A87268" opacity="0.45"/>
+      <!-- Center leaf -->
+      <path d="M89 44 Q82 39 80 30 Q89 36 89 44Z" fill="#627053" opacity="0.45"/>
+      <path d="M89 30 Q96 25 100 17 Q91 23 89 30Z" fill="#627053" opacity="0.4"/>
+
+      <!-- Right grasses -->
+      <path d="M158 55 Q160 40 163 27" stroke="#6B4830" stroke-width="0.75" fill="none"/>
+      <path d="M152 55 Q153 43 149 30" stroke="#6B4830" stroke-width="0.65" fill="none" opacity="0.8"/>
+      <path d="M164 55 Q166 46 170 36" stroke="#6B4830" stroke-width="0.6" fill="none" opacity="0.65"/>
+      <path d="M160 42 Q167 37 169 28 Q160 34 160 42Z" fill="#627053" opacity="0.5"/>
+      <path d="M153 38 Q146 33 144 24 Q153 30 153 38Z" fill="#627053" opacity="0.45"/>
+    </svg>
+
+  </footer>
+
+  <script>
+    // ── Guest count visibility ──
+    const attYes  = document.getElementById('att-yes');
+    const attNo   = document.getElementById('att-no');
+    const guestWrap = document.getElementById('guest-wrap');
+    const guestInput = document.getElementById('f-guests');
+
+    function updateGuests() {
+      const isYes = attYes.checked;
+      guestWrap.classList.toggle('open', isYes);
+      guestWrap.setAttribute('aria-hidden', String(!isYes));
+      guestInput.required = isYes;
+    }
+
+    attYes.addEventListener('change', updateGuests);
+    attNo.addEventListener('change', updateGuests);
+
+    // ── Form submit ──
+    // NOTE: If using Google Forms, replace form action URL and field name attributes
+    // (entry.XXXXX) above, then remove this JS submit handler and let the form
+    // POST naturally, OR use fetch() to submit in the background.
+    const form = document.getElementById('rsvp-form');
+    const success = document.getElementById('form-success');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Validate attendance selection
+      const attending = form.querySelector('input[name="entry.ATTENDING"]:checked');
+      if (!attending) {
+        form.querySelector('#att-yes').focus();
+        return;
+      }
+
+      // TODO: replace with actual fetch to Google Forms
+      // fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+      //   .then(() => { form.style.display = 'none'; success.classList.add('visible'); });
+
+      // Placeholder success behaviour:
+      form.style.display = 'none';
+      success.classList.add('visible');
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+
+</body>
+</html>
