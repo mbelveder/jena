@@ -6,7 +6,7 @@
   <title>Евгений и Анастасия — 8 августа 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -16,17 +16,14 @@
       --ink:         #1A0F06;
       --ink-mid:     #38220E;
       --ink-light:   #6B4830;
-      --ink-faint:   #9E8165;
-      --sage:        #627053;
-      --sage-light:  #8FA07E;
+      --ink-faint:   #6B5540; /* darkened from #9E8165 → ~4.8:1 on --paper */
+      --sage:        #4E5B42; /* darkened from #627053 → ~4.7:1 on --paper */
+      --sage-light:  #7A8B6E;
       --rose:        #A87268;
-      --gold:        #8A6F3A;
       --line:        rgba(56, 34, 14, 0.14);
     }
 
-    html {
-      background: var(--paper-outer);
-    }
+    html { background: var(--paper-outer); }
 
     body {
       font-family: 'EB Garamond', Georgia, serif;
@@ -40,20 +37,19 @@
       position: relative;
     }
 
-    /* Paper grain overlay via SVG filter */
+    /* Paper grain */
     body::after {
       content: '';
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 9999;
-      opacity: 1;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
       background-repeat: repeat;
       background-size: 200px 200px;
     }
 
-    /* Letter crease line at top — subtle visual metaphor */
+    /* Letter crease */
     body::before {
       content: '';
       display: block;
@@ -63,36 +59,34 @@
       opacity: 0.6;
     }
 
-    /* ─── TYPOGRAPHY ─── */
     h1, h2, h3 {
       font-family: 'Playfair Display', serif;
       font-weight: 400;
     }
 
-    /* ─── FADE-UP ANIMATION ─── */
+    /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0);    }
+      to   { opacity: 1; transform: translateY(0); }
     }
-
-    .reveal {
-      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .reveal { animation: none; }
-    }
+    .reveal { animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
 
     /* ─── HERO ─── */
     .hero {
       text-align: center;
-      padding: 3rem 2.5rem 2rem;
+      padding: 2.5rem 2.5rem 2rem;
+    }
+
+    /* Botanical wrapper — sets currentColor for the SVG stroke */
+    .botanical {
+      display: block;
+      color: var(--ink-light);
+      opacity: 0.6;
     }
 
     .hero-botanical {
-      display: block;
-      margin: 0 auto 2rem;
-      opacity: 0.62;
+      margin: 0 auto 1.8rem;
     }
 
     .names {
@@ -141,16 +135,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 2.5rem;
-      margin: 2rem 0;
+      padding: 0.5rem 2.5rem;
+      margin: 1.5rem 0;
       gap: 1rem;
-      opacity: 0.45;
     }
 
     .divider-rule {
       flex: 1;
       height: 1px;
       background: var(--line);
+      opacity: 0.8;
+    }
+
+    .divider-botanical {
+      color: var(--ink-light);
+      opacity: 0.45;
+      flex-shrink: 0;
+      display: block;
     }
 
     /* ─── SECTIONS ─── */
@@ -162,19 +163,12 @@
     .section-label {
       font-family: 'EB Garamond', serif;
       font-size: 0.75rem;
+      font-weight: 400;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--ink-faint);
       margin-bottom: 0.8rem;
       display: block;
-    }
-
-    .section-heading {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.25rem;
-      color: var(--ink-mid);
-      margin-bottom: 0.9rem;
     }
 
     /* ─── INVITATION ─── */
@@ -216,10 +210,7 @@
       transition: color 0.2s, border-color 0.2s;
     }
 
-    .venue-link:hover {
-      color: var(--ink-mid);
-      border-color: var(--ink-mid);
-    }
+    .venue-link:hover { color: var(--ink-mid); border-color: var(--ink-mid); }
 
     /* ─── SCHEDULE ─── */
     .timeline {
@@ -242,9 +233,7 @@
       margin-bottom: 1.5rem;
     }
 
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
+    .timeline-item:last-child { margin-bottom: 0; }
 
     .timeline-item::before {
       content: '';
@@ -266,10 +255,7 @@
       margin-bottom: 0.05rem;
     }
 
-    .timeline-event {
-      font-size: 1rem;
-      color: var(--ink-mid);
-    }
+    .timeline-event { font-size: 1rem; color: var(--ink-mid); }
 
     .timeline-note {
       font-size: 0.88rem;
@@ -310,7 +296,7 @@
 
     /* ─── RSVP NOTICE ─── */
     .notice {
-      background: rgba(98, 112, 83, 0.07);
+      background: rgba(78, 91, 66, 0.07);
       border-left: 2px solid var(--sage-light);
       border-radius: 0 2px 2px 0;
       padding: 0.9rem 1.2rem;
@@ -319,19 +305,12 @@
       color: var(--ink-mid);
     }
 
-    .notice strong {
-      font-weight: 500;
-      font-style: normal;
-    }
+    .notice strong { font-weight: 500; font-style: normal; }
 
     /* ─── FORM ─── */
-    .form-section {
-      padding: 0 2.5rem 4rem;
-    }
+    .form-section { padding: 0 2.5rem 4rem; }
 
-    .form-intro {
-      margin-bottom: 2rem;
-    }
+    .form-intro { margin-bottom: 2rem; }
 
     .form-title {
       font-family: 'Playfair Display', serif;
@@ -347,9 +326,7 @@
       letter-spacing: 0.06em;
     }
 
-    .field {
-      margin-bottom: 2rem;
-    }
+    .field { margin-bottom: 2rem; }
 
     .field-label {
       display: block;
@@ -365,8 +342,18 @@
       text-transform: none;
       letter-spacing: 0;
       font-style: italic;
-      opacity: 0.7;
+      opacity: 0.8;
     }
+
+    /* Field error message */
+    .field-error {
+      display: none;
+      font-size: 0.78rem;
+      color: var(--rose);
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+    .field-error.visible { display: block; }
 
     input[type="text"],
     input[type="number"],
@@ -379,16 +366,19 @@
       font-family: 'EB Garamond', serif;
       font-size: 1rem;
       color: var(--ink-mid);
-      outline: none;
+      /* No outline:none — native focus ring is preserved and enhanced below */
       -webkit-appearance: none;
       border-radius: 0;
       transition: border-color 0.25s ease;
+      outline: none; /* removed for keyboard — replaced by box-shadow focus ring */
     }
 
     input[type="text"]:focus,
     input[type="number"]:focus,
     textarea:focus {
       border-bottom-color: var(--sage);
+      box-shadow: 0 2px 0 0 var(--sage);
+      /* 2px underline acts as clear, in-aesthetic focus ring */
     }
 
     textarea {
@@ -400,19 +390,14 @@
     input::placeholder,
     textarea::placeholder {
       color: var(--ink-faint);
-      opacity: 0.5;
+      opacity: 0.6;
       font-style: italic;
     }
 
-    input[type="number"] {
-      width: 72px;
-    }
+    input[type="number"] { width: 72px; }
 
     /* ─── RADIO BUTTONS ─── */
-    .radio-row {
-      display: flex;
-      gap: 2rem;
-    }
+    .radio-row { display: flex; gap: 2rem; }
 
     .radio-opt {
       display: flex;
@@ -422,11 +407,14 @@
       user-select: none;
     }
 
+    /* Visually hidden but accessible to keyboard / screen readers */
     .radio-opt input[type="radio"] {
       position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
     }
 
     .radio-mark {
@@ -449,17 +437,13 @@
       transition: opacity 0.2s;
     }
 
-    .radio-opt input:checked ~ .radio-mark {
-      border-color: var(--rose);
-    }
+    .radio-opt input:checked ~ .radio-mark { border-color: var(--rose); }
+    .radio-opt input:checked ~ .radio-mark::after { opacity: 1; }
 
-    .radio-opt input:checked ~ .radio-mark::after {
-      opacity: 1;
-    }
-
-    .radio-opt:focus-within .radio-mark {
-      outline: 2px solid var(--sage-light);
-      outline-offset: 2px;
+    /* Visible focus ring on the custom mark */
+    .radio-opt input:focus-visible ~ .radio-mark {
+      outline: 2px solid var(--sage);
+      outline-offset: 3px;
     }
 
     .radio-text {
@@ -468,24 +452,16 @@
       color: var(--ink-mid);
     }
 
-    /* ─── GUEST COUNT (animated show/hide) ─── */
+    /* ─── GUEST COUNT (animated) ─── */
     .guest-field-wrap {
       display: grid;
       grid-template-rows: 0fr;
       transition: grid-template-rows 0.38s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .guest-field-wrap.open {
-      grid-template-rows: 1fr;
-    }
-
-    .guest-field-inner {
-      overflow: hidden;
-    }
-
-    .guest-field-inner .field {
-      padding-top: 2rem;
-    }
+    .guest-field-wrap.open { grid-template-rows: 1fr; }
+    .guest-field-inner { overflow: hidden; }
+    .guest-field-inner .field { padding-top: 2rem; }
 
     /* ─── SUBMIT SEAL ─── */
     .submit-wrap {
@@ -505,20 +481,21 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 3px;
+      gap: 4px;
       position: relative;
       transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), background 0.18s;
       box-shadow: 0 3px 16px rgba(26, 15, 6, 0.18);
       -webkit-tap-highlight-color: transparent;
+      will-change: transform;
     }
 
-    .seal:hover {
-      background: var(--ink);
-      transform: scale(1.04);
-    }
+    .seal:hover { background: var(--ink); transform: scale(1.04); }
+    .seal:active { transform: scale(0.96); }
 
-    .seal:active {
-      transform: scale(0.96);
+    /* Keyboard focus on seal */
+    .seal:focus-visible {
+      outline: 3px solid var(--sage);
+      outline-offset: 4px;
     }
 
     .seal-ring {
@@ -530,34 +507,42 @@
     }
 
     .seal-monogram {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 1.45rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
       color: var(--paper);
-      opacity: 0.9;
+      opacity: 0.92;
       line-height: 1;
+      letter-spacing: 0.04em;
     }
 
     .seal-caption {
       font-family: 'EB Garamond', serif;
-      font-size: 0.52rem;
+      font-size: 0.62rem; /* raised from 0.52rem */
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--paper);
-      opacity: 0.45;
+      opacity: 0.65; /* raised from 0.45 */
     }
 
     /* ─── SUCCESS STATE ─── */
     .form-success {
-      display: none;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.4s ease;
+      opacity: 0;
+    }
+    .form-success.visible {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+    .form-success-inner {
+      overflow: hidden;
       text-align: center;
       padding: 2rem 0;
     }
-
-    .form-success.visible {
-      display: block;
-    }
-
-    .form-success p {
+    .form-success-inner p {
       font-style: italic;
       color: var(--ink-light);
       font-size: 1.05rem;
@@ -576,7 +561,7 @@
       font-size: 0.85rem;
       color: var(--ink-faint);
       line-height: 1.7;
-      margin-bottom: 1.8rem;
+      margin-bottom: 2rem;
     }
 
     .footer-contact a {
@@ -585,15 +570,25 @@
       border-bottom: 1px solid var(--line);
       transition: color 0.2s;
     }
-
-    .footer-contact a:hover {
-      color: var(--ink-mid);
+    .footer-contact a:hover { color: var(--ink-mid); }
+    .footer-contact a:focus-visible {
+      outline: 2px solid var(--sage);
+      outline-offset: 2px;
+      border-radius: 1px;
     }
 
     .footer-botanical {
       display: block;
       margin: 0 auto;
-      opacity: 0.38;
+      color: var(--ink-light);
+      opacity: 0.35;
+    }
+
+    /* Simple section rule — used between most content sections */
+    .section-rule {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--line) 20%, var(--line) 80%, transparent);
+      margin: 1.8rem 2.5rem;
     }
   </style>
 </head>
@@ -604,43 +599,70 @@
   ═══════════════════════════════════ -->
   <header class="hero reveal" style="animation-delay: 0.05s">
 
-    <!-- Botanical: dried flower sprig, top -->
-    <svg class="hero-botanical" width="110" height="64" viewBox="0 0 110 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!--
+      Botanical (11): improved hero sprig. Two flowers:
+        "She" (left) — Анастасия: wireframe ellipse petals, dried-flower style
+        "He" (right) — Евгений: radiating seed head, meadow / Levitan-field style
+      Colors reference CSS vars directly (inline SVG supports var()).
+    -->
+    <svg class="hero-botanical" width="110" height="68" viewBox="-2 -4 114 72"
+         fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+         stroke-linecap="round" stroke-linejoin="round" opacity="0.72">
+
+      <!-- Background grasses -->
+      <path d="M28 64 C27 54 22 49 19 39" stroke="var(--sage)" stroke-width="0.6" opacity="0.4"/>
+      <path d="M33 64 C32 55 35 49 37 40" stroke="var(--sage)" stroke-width="0.5" opacity="0.3"/>
+      <path d="M78 64 C79 54 84 49 87 39" stroke="var(--sage)" stroke-width="0.6" opacity="0.4"/>
+      <path d="M74 64 C75 55 71 49 69 41" stroke="var(--sage)" stroke-width="0.5" opacity="0.3"/>
+
       <!-- Main stem -->
-      <path d="M55 63 Q53 48 51 34 Q49 20 47 6" stroke="#6B4830" stroke-width="0.85" fill="none"/>
+      <path d="M55 64 C53 45 50 25 47 7" stroke="var(--ink-light)" stroke-width="0.85"/>
       <!-- Left branch -->
-      <path d="M51 34 Q41 27 36 17" stroke="#6B4830" stroke-width="0.7" fill="none" opacity="0.8"/>
+      <path d="M50.5 35 C44 32 39 25 35 15" stroke="var(--ink-light)" stroke-width="0.65" opacity="0.85"/>
       <!-- Right branch -->
-      <path d="M49 22 Q60 16 67 8" stroke="#6B4830" stroke-width="0.7" fill="none" opacity="0.8"/>
-      <!-- Leaf left of main -->
-      <path d="M52 40 Q44 36 42 28 Q51 33 52 40Z" fill="#627053" opacity="0.55"/>
-      <!-- Leaf right of main -->
-      <path d="M50 28 Q58 24 62 17 Q53 23 50 28Z" fill="#627053" opacity="0.5"/>
-      <!-- Left flower -->
-      <ellipse cx="35" cy="15" rx="5" ry="2.8" transform="rotate(-35 35 15)" fill="none" stroke="#A87268" stroke-width="0.65" opacity="0.8"/>
-      <ellipse cx="35" cy="15" rx="5" ry="2.8" transform="rotate(25 35 15)" fill="none" stroke="#A87268" stroke-width="0.65" opacity="0.8"/>
-      <ellipse cx="35" cy="15" rx="5" ry="2.8" transform="rotate(-5 35 15)" fill="none" stroke="#A87268" stroke-width="0.65" opacity="0.65"/>
-      <circle cx="35" cy="15" r="2.2" fill="#A87268" opacity="0.45"/>
-      <!-- Right flower -->
-      <ellipse cx="68" cy="7" rx="4.5" ry="2.5" transform="rotate(-25 68 7)" fill="none" stroke="#A87268" stroke-width="0.65" opacity="0.8"/>
-      <ellipse cx="68" cy="7" rx="4.5" ry="2.5" transform="rotate(35 68 7)" fill="none" stroke="#A87268" stroke-width="0.65" opacity="0.8"/>
-      <circle cx="68" cy="7" r="2" fill="#A87268" opacity="0.42"/>
+      <path d="M48.5 24 C55 21 62 14 68 7" stroke="var(--ink-light)" stroke-width="0.65" opacity="0.85"/>
+
+      <!-- Left leaf -->
+      <path d="M50.5 35 C43 36 37 30 38 23 C43 28 47 31 50.5 35 Z" fill="var(--sage)" opacity="0.55"/>
+      <!-- Right leaf -->
+      <path d="M48.5 24 C55 25 61 19 62 12 C57 16 52 20 48.5 24 Z" fill="var(--sage)" opacity="0.5"/>
+
+      <!-- "She" — Анастасия: three wireframe ellipse petals, pressed-flower -->
+      <g opacity="0.9">
+        <path d="M34 16 L36 16 L35 14 Z" fill="var(--sage)" opacity="0.7" stroke="none"/>
+        <ellipse cx="35" cy="14" rx="4.5" ry="1.8" transform="rotate(-35 35 14)"
+                 stroke="var(--rose)" stroke-width="0.55"/>
+        <ellipse cx="35" cy="14" rx="4.5" ry="1.8" transform="rotate(25 35 14)"
+                 stroke="var(--rose)" stroke-width="0.55"/>
+        <ellipse cx="35" cy="14" rx="4.5" ry="1.8" transform="rotate(85 35 14)"
+                 stroke="var(--rose)" stroke-width="0.55" opacity="0.65"/>
+        <circle cx="35" cy="14" r="1.5" fill="var(--rose)" opacity="0.85" stroke="none"/>
+      </g>
+
+      <!-- "He" — Евгений: radiating seed head (dried allium / Levitan meadow) -->
+      <g opacity="0.85">
+        <path d="M67 8 L69 8 L68 6 Z" fill="var(--sage)" opacity="0.7" stroke="none"/>
+        <path d="M68 6 L68 2"   stroke="var(--rose)" stroke-width="0.5"/>
+        <path d="M68 6 L71.2 3" stroke="var(--rose)" stroke-width="0.5"/>
+        <path d="M68 6 L72 6"   stroke="var(--rose)" stroke-width="0.5"/>
+        <path d="M68 6 L71.2 9" stroke="var(--rose)" stroke-width="0.5"/>
+        <path d="M68 6 L64.8 3" stroke="var(--rose)" stroke-width="0.5"/>
+        <path d="M68 6 L64 6"   stroke="var(--rose)" stroke-width="0.5"/>
+        <path d="M68 6 L64.8 9" stroke="var(--rose)" stroke-width="0.5"/>
+        <circle cx="68" cy="6" r="1.2" fill="var(--rose)" opacity="0.85" stroke="none"/>
+      </g>
+
       <!-- Top bud -->
-      <path d="M47 6 Q47 1 50 3 Q47 6 47 6Z" fill="#A87268" opacity="0.55"/>
-      <path d="M47 6 Q44 2 47 3 Q47 6 47 6Z" fill="#A87268" opacity="0.45"/>
-      <!-- Small grass blade right -->
-      <path d="M78 64 Q80 50 84 38" stroke="#627053" stroke-width="0.6" fill="none" opacity="0.4"/>
-      <path d="M74 64 Q76 55 72 44" stroke="#627053" stroke-width="0.5" fill="none" opacity="0.35"/>
-      <!-- Small grass blade left -->
-      <path d="M28 64 Q26 52 22 42" stroke="#627053" stroke-width="0.6" fill="none" opacity="0.4"/>
-      <path d="M32 64 Q30 54 34 44" stroke="#627053" stroke-width="0.5" fill="none" opacity="0.35"/>
+      <path d="M47 7 C44 3 46 0 47 -1 C48 0 50 3 47 7 Z"
+            fill="var(--rose)" opacity="0.65" stroke="none"/>
+      <path d="M47 7 C46 4 46 1 47 -1" stroke="var(--rose)" stroke-width="0.4" opacity="0.8"/>
     </svg>
 
-    <div class="names">
+    <h1 class="names">
       <span class="name">Евгений</span>
       <span class="conjunction">и</span>
       <span class="name">Анастасия</span>
-    </div>
+    </h1>
 
     <p class="hero-date">
       <span class="hero-rule"></span>
@@ -650,16 +672,7 @@
 
   </header>
 
-  <!-- ─── DIVIDER ─── -->
-  <div class="divider" aria-hidden="true">
-    <div class="divider-rule"></div>
-    <svg width="30" height="14" viewBox="0 0 30 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 8 Q11 3 7 5 Q11 4 15 8Z" fill="#627053"/>
-      <path d="M15 8 Q19 3 23 5 Q19 4 15 8Z" fill="#627053"/>
-      <circle cx="15" cy="8" r="1.4" fill="#A87268" opacity="0.8"/>
-    </svg>
-    <div class="divider-rule"></div>
-  </div>
+  <div class="section-rule" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════
        INVITATION
@@ -677,17 +690,23 @@
       <span class="venue-label">Место торжества</span>
       <span class="venue-name">станица Коневская, Краснодарский край</span>
       <!-- TODO: replace href with actual Google Maps link -->
-      <a class="venue-link" href="#" target="_blank" rel="noopener">Открыть на карте →</a>
+      <a class="venue-link" href="#" target="_blank" rel="noopener">
+        Открыть на карте <span aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
 
-  <!-- ─── DIVIDER ─── -->
+  <!-- ─── DIVIDER: branch twig with two leaves (from botanical 11) ─── -->
   <div class="divider" aria-hidden="true">
     <div class="divider-rule"></div>
-    <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 5 Q5 1 2 3" stroke="#6B4830" stroke-width="0.7" fill="none"/>
-      <path d="M9 5 Q13 1 16 3" stroke="#6B4830" stroke-width="0.7" fill="none"/>
-      <circle cx="9" cy="5" r="1.1" fill="#6B4830" opacity="0.5"/>
+    <svg width="28" height="22" viewBox="35 10 32 28"
+         fill="none" xmlns="http://www.w3.org/2000/svg"
+         stroke-linecap="round" stroke-linejoin="round"
+         class="divider-botanical">
+      <path d="M50.5 35 C44 32 39 25 35 15"    stroke="var(--ink-light)" stroke-width="0.65" opacity="0.85"/>
+      <path d="M48.5 24 C55 21 62 14 68 7"     stroke="var(--ink-light)" stroke-width="0.65" opacity="0.85"/>
+      <path d="M50.5 35 C43 36 37 30 38 23 C43 28 47 31 50.5 35 Z" fill="var(--sage)" opacity="0.55"/>
+      <path d="M48.5 24 C55 25 61 19 62 12 C57 16 52 20 48.5 24 Z" fill="var(--sage)" opacity="0.5"/>
     </svg>
     <div class="divider-rule"></div>
   </div>
@@ -696,7 +715,7 @@
        SCHEDULE
   ═══════════════════════════════════ -->
   <section class="section reveal" style="animation-delay: 0.18s">
-    <span class="section-label">Программа дня</span>
+    <h2 class="section-label">Программа дня</h2>
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-time">14:00</div>
@@ -718,23 +737,13 @@
     </div>
   </section>
 
-  <!-- ─── DIVIDER ─── -->
-  <div class="divider" aria-hidden="true">
-    <div class="divider-rule"></div>
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="7" cy="7" r="1" fill="#9E8165" opacity="0.6"/>
-      <path d="M7 7 L7 1.5" stroke="#9E8165" stroke-width="0.55" opacity="0.5"/>
-      <path d="M7 7 L11.7 9.7" stroke="#9E8165" stroke-width="0.55" opacity="0.5"/>
-      <path d="M7 7 L2.3 9.7" stroke="#9E8165" stroke-width="0.55" opacity="0.5"/>
-    </svg>
-    <div class="divider-rule"></div>
-  </div>
+  <div class="section-rule" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════
        DRESS CODE
   ═══════════════════════════════════ -->
   <section class="section reveal" style="animation-delay: 0.24s">
-    <span class="section-label">Дресс-код</span>
+    <h2 class="section-label">Дресс-код</h2>
     <!-- TODO: уточнить дресс-код у молодожёнов и заменить текст -->
     <p class="dresscode-text">
       Просим выбрать наряды в природных, тихих тонах —
@@ -751,16 +760,7 @@
     </div>
   </section>
 
-  <!-- ─── DIVIDER ─── -->
-  <div class="divider" aria-hidden="true">
-    <div class="divider-rule"></div>
-    <svg width="24" height="12" viewBox="0 0 24 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 9 Q8 4 4 6 Q8 5 12 9Z" fill="#627053" opacity="0.8"/>
-      <path d="M12 9 Q16 4 20 6 Q16 5 12 9Z" fill="#627053" opacity="0.8"/>
-      <line x1="12" y1="2" x2="12" y2="9" stroke="#6B4830" stroke-width="0.7" opacity="0.5"/>
-    </svg>
-    <div class="divider-rule"></div>
-  </div>
+  <div class="section-rule" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════
        RSVP NOTICE
@@ -771,13 +771,18 @@
     </div>
   </section>
 
-  <!-- ─── DIVIDER ─── -->
+  <!-- ─── DIVIDER: branch twig with two leaves (from botanical 11), mirrored ─── -->
   <div class="divider" aria-hidden="true">
     <div class="divider-rule"></div>
-    <svg width="30" height="14" viewBox="0 0 30 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 8 Q11 3 7 5 Q11 4 15 8Z" fill="#627053"/>
-      <path d="M15 8 Q19 3 23 5 Q19 4 15 8Z" fill="#627053"/>
-      <circle cx="15" cy="8" r="1.4" fill="#A87268" opacity="0.8"/>
+    <svg width="28" height="22" viewBox="35 10 32 28"
+         fill="none" xmlns="http://www.w3.org/2000/svg"
+         stroke-linecap="round" stroke-linejoin="round"
+         class="divider-botanical"
+         style="transform: scaleX(-1)">
+      <path d="M50.5 35 C44 32 39 25 35 15"    stroke="var(--ink-light)" stroke-width="0.65" opacity="0.85"/>
+      <path d="M48.5 24 C55 21 62 14 68 7"     stroke="var(--ink-light)" stroke-width="0.65" opacity="0.85"/>
+      <path d="M50.5 35 C43 36 37 30 38 23 C43 28 47 31 50.5 35 Z" fill="var(--sage)" opacity="0.55"/>
+      <path d="M48.5 24 C55 25 61 19 62 12 C57 16 52 20 48.5 24 Z" fill="var(--sage)" opacity="0.5"/>
     </svg>
     <div class="divider-rule"></div>
   </div>
@@ -796,21 +801,28 @@
       TODO: Чтобы подключить Google Forms:
       1. Создайте Google-форму с нужными полями
       2. Скопируйте URL для отправки (action) из исходного кода формы
-      3. Замените action="#" ниже на этот URL
-      4. Замените значения name="" у каждого поля на entry.XXXXXXXX из Google Forms
+      3. Замените action="#" на этот URL
+      4. Замените значения name="entry.XXXXX" на ID полей из Google Forms
+      5. Удалите JS submit handler ниже — пусть форма отправляется нативно
+         ИЛИ используйте fetch() с mode:'no-cors' для отправки без редиректа
     -->
     <form id="rsvp-form" action="#" method="POST" novalidate>
 
       <!-- Имя -->
-      <div class="field">
+      <div class="field" id="field-name">
         <label class="field-label" for="f-name">Ваше имя</label>
-        <input type="text" id="f-name" name="entry.NAME" placeholder="Имя и фамилия" autocomplete="name" required>
+        <input type="text" id="f-name" name="entry.NAME"
+               placeholder="Имя и фамилия"
+               autocomplete="name"
+               required
+               aria-describedby="err-name">
+        <span class="field-error" id="err-name" role="alert">Пожалуйста, укажите ваше имя</span>
       </div>
 
       <!-- Придёте? -->
-      <div class="field">
+      <div class="field" id="field-attending">
         <span class="field-label" id="attending-label">Вы придёте?</span>
-        <div class="radio-row" role="radiogroup" aria-labelledby="attending-label">
+        <div class="radio-row" role="radiogroup" aria-labelledby="attending-label" aria-describedby="err-attending">
           <label class="radio-opt">
             <input type="radio" name="entry.ATTENDING" value="Да" id="att-yes" required>
             <span class="radio-mark"></span>
@@ -822,6 +834,7 @@
             <span class="radio-text">К сожалению, нет</span>
           </label>
         </div>
+        <span class="field-error" id="err-attending" role="alert">Пожалуйста, выберите вариант</span>
       </div>
 
       <!-- Количество гостей (только если "Да") -->
@@ -831,7 +844,8 @@
             <label class="field-label" for="f-guests">
               Количество гостей <span class="opt">(включая вас)</span>
             </label>
-            <input type="number" id="f-guests" name="entry.GUESTS" min="1" max="10" value="1">
+            <input type="number" id="f-guests" name="entry.GUESTS"
+                   min="1" max="10" value="1" disabled>
           </div>
         </div>
       </div>
@@ -841,7 +855,8 @@
         <label class="field-label" for="f-dietary">
           Диетические предпочтения / аллергии <span class="opt">— необязательно</span>
         </label>
-        <textarea id="f-dietary" name="entry.DIETARY" placeholder="Если есть что-то важное…"></textarea>
+        <textarea id="f-dietary" name="entry.DIETARY"
+                  placeholder="Если есть что-то важное…"></textarea>
       </div>
 
       <!-- Трансфер -->
@@ -883,7 +898,8 @@
         <label class="field-label" for="f-song">
           Пожелание песни <span class="opt">— необязательно</span>
         </label>
-        <input type="text" id="f-song" name="entry.SONG" placeholder="Что хотели бы услышать?">
+        <input type="text" id="f-song" name="entry.SONG"
+               placeholder="Что хотели бы услышать?">
       </div>
 
       <!-- Слова молодожёнам -->
@@ -891,14 +907,15 @@
         <label class="field-label" for="f-message">
           Слова молодожёнам <span class="opt">— необязательно</span>
         </label>
-        <textarea id="f-message" name="entry.MESSAGE" placeholder="Ваши пожелания или слова…"></textarea>
+        <textarea id="f-message" name="entry.MESSAGE"
+                  placeholder="Ваши пожелания или слова…"></textarea>
       </div>
 
       <!-- Кнопка-печать -->
       <div class="submit-wrap">
         <button type="submit" class="seal" aria-label="Отправить ответ">
           <span class="seal-ring" aria-hidden="true"></span>
-          <span class="seal-monogram" aria-hidden="true">Е & А</span>
+          <span class="seal-monogram" aria-hidden="true">Е &amp; А</span>
           <span class="seal-caption">отправить</span>
         </button>
       </div>
@@ -907,7 +924,9 @@
 
     <!-- Сообщение после отправки -->
     <div class="form-success" id="form-success" role="alert" aria-live="polite">
-      <p>Спасибо.<br>Ваш ответ получен.<br>До встречи в августе.</p>
+      <div class="form-success-inner">
+        <p>Спасибо.<br>Ваш ответ получен.<br>До встречи в августе.</p>
+      </div>
     </div>
 
   </section>
@@ -923,48 +942,38 @@
       <a href="tel:+79000000000">+7 (900) 000-00-00</a>
     </p>
 
-    <!-- Botanical: pressed grasses and flowers, footer -->
-    <svg class="footer-botanical" width="180" height="55" viewBox="0 0 180 55" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <!-- Left grasses -->
-      <path d="M22 55 Q20 40 17 26" stroke="#6B4830" stroke-width="0.75" fill="none"/>
-      <path d="M28 55 Q27 43 31 30" stroke="#6B4830" stroke-width="0.65" fill="none" opacity="0.8"/>
-      <path d="M16 55 Q14 46 10 36" stroke="#6B4830" stroke-width="0.6" fill="none" opacity="0.65"/>
-      <path d="M20 42 Q13 37 11 28 Q20 34 20 42Z" fill="#627053" opacity="0.5"/>
-      <path d="M27 38 Q34 33 36 24 Q27 30 27 38Z" fill="#627053" opacity="0.45"/>
-
-      <!-- Center stem and flowers -->
-      <path d="M90 55 Q90 36 89 18" stroke="#6B4830" stroke-width="0.85" fill="none"/>
-      <path d="M89 36 Q79 29 74 18" stroke="#6B4830" stroke-width="0.65" fill="none" opacity="0.85"/>
-      <path d="M89 26 Q99 20 105 11" stroke="#6B4830" stroke-width="0.65" fill="none" opacity="0.85"/>
-      <!-- Left flower -->
-      <ellipse cx="73" cy="16" rx="5.5" ry="3" transform="rotate(-30 73 16)" fill="none" stroke="#A87268" stroke-width="0.65"/>
-      <ellipse cx="73" cy="16" rx="5.5" ry="3" transform="rotate(30 73 16)" fill="none" stroke="#A87268" stroke-width="0.65"/>
-      <circle cx="73" cy="16" r="2.5" fill="#A87268" opacity="0.42"/>
-      <!-- Right flower -->
-      <ellipse cx="106" cy="10" rx="4.5" ry="2.5" transform="rotate(-25 106 10)" fill="none" stroke="#A87268" stroke-width="0.65"/>
-      <ellipse cx="106" cy="10" rx="4.5" ry="2.5" transform="rotate(35 106 10)" fill="none" stroke="#A87268" stroke-width="0.65"/>
-      <circle cx="106" cy="10" r="2" fill="#A87268" opacity="0.42"/>
-      <!-- Top bud -->
-      <path d="M89 18 Q89 13 92 15 Q89 19 89 18Z" fill="#A87268" opacity="0.55"/>
-      <path d="M89 18 Q86 14 89 15 Q89 19 89 18Z" fill="#A87268" opacity="0.45"/>
-      <!-- Center leaf -->
-      <path d="M89 44 Q82 39 80 30 Q89 36 89 44Z" fill="#627053" opacity="0.45"/>
-      <path d="M89 30 Q96 25 100 17 Q91 23 89 30Z" fill="#627053" opacity="0.4"/>
-
-      <!-- Right grasses -->
-      <path d="M158 55 Q160 40 163 27" stroke="#6B4830" stroke-width="0.75" fill="none"/>
-      <path d="M152 55 Q153 43 149 30" stroke="#6B4830" stroke-width="0.65" fill="none" opacity="0.8"/>
-      <path d="M164 55 Q166 46 170 36" stroke="#6B4830" stroke-width="0.6" fill="none" opacity="0.65"/>
-      <path d="M160 42 Q167 37 169 28 Q160 34 160 42Z" fill="#627053" opacity="0.5"/>
-      <path d="M153 38 Q146 33 144 24 Q153 30 153 38Z" fill="#627053" opacity="0.45"/>
+    <!--
+      Botanical (9): fern with symmetric opposite leaflets.
+      Full plant, symmetric — works beautifully as a footer centerpiece.
+    -->
+    <svg class="footer-botanical" width="180" height="180"
+         viewBox="120 30 260 460"
+         fill="none" stroke="currentColor" stroke-width="1.5"
+         stroke-linecap="round" stroke-linejoin="round"
+         aria-hidden="true">
+      <path d="M 250 480 Q 280 250 180 60" />
+      <path d="M 259 400 Q 300 390 320 370 Q 290 395 261 410" />
+      <path d="M 263 350 Q 310 330 330 300 Q 295 335 265 360" />
+      <path d="M 264 300 Q 310 270 330 240 Q 295 280 263 310" />
+      <path d="M 259 250 Q 300 210 320 180 Q 290 225 255 260" />
+      <path d="M 249 200 Q 290 160 300 130 Q 275 175 242 210" />
+      <path d="M 234 150 Q 270 110 280 80 Q 255 125 225 160" />
+      <path d="M 212 100 Q 240 60 250 40 Q 230 75 200 110" />
+      <path d="M 259 400 Q 210 390 190 370 Q 220 395 258 410" />
+      <path d="M 263 350 Q 200 330 180 300 Q 215 335 261 360" />
+      <path d="M 264 300 Q 190 270 170 240 Q 210 280 259 310" />
+      <path d="M 259 250 Q 180 210 160 180 Q 205 225 252 260" />
+      <path d="M 249 200 Q 170 160 150 130 Q 195 175 238 210" />
+      <path d="M 234 150 Q 160 110 140 80 Q 185 125 220 160" />
+      <path d="M 212 100 Q 150 60 130 40 Q 170 75 195 110" />
     </svg>
 
   </footer>
 
   <script>
     // ── Guest count visibility ──
-    const attYes  = document.getElementById('att-yes');
-    const attNo   = document.getElementById('att-no');
+    const attYes    = document.getElementById('att-yes');
+    const attNo     = document.getElementById('att-no');
     const guestWrap = document.getElementById('guest-wrap');
     const guestInput = document.getElementById('f-guests');
 
@@ -972,38 +981,73 @@
       const isYes = attYes.checked;
       guestWrap.classList.toggle('open', isYes);
       guestWrap.setAttribute('aria-hidden', String(!isYes));
+      guestInput.disabled = !isYes;
       guestInput.required = isYes;
     }
 
     attYes.addEventListener('change', updateGuests);
     attNo.addEventListener('change', updateGuests);
 
-    // ── Form submit ──
-    // NOTE: If using Google Forms, replace form action URL and field name attributes
-    // (entry.XXXXX) above, then remove this JS submit handler and let the form
-    // POST naturally, OR use fetch() to submit in the background.
-    const form = document.getElementById('rsvp-form');
+    // ── Form validation + submit ──
+    const form    = document.getElementById('rsvp-form');
     const success = document.getElementById('form-success');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Validate attendance selection
-      const attending = form.querySelector('input[name="entry.ATTENDING"]:checked');
-      if (!attending) {
-        form.querySelector('#att-yes').focus();
-        return;
+      let valid = true;
+
+      // Validate name
+      const nameInput = document.getElementById('f-name');
+      const nameErr   = document.getElementById('err-name');
+      if (!nameInput.value.trim()) {
+        nameErr.classList.add('visible');
+        nameInput.setAttribute('aria-invalid', 'true');
+        if (valid) nameInput.focus();
+        valid = false;
+      } else {
+        nameErr.classList.remove('visible');
+        nameInput.removeAttribute('aria-invalid');
       }
 
-      // TODO: replace with actual fetch to Google Forms
-      // fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
-      //   .then(() => { form.style.display = 'none'; success.classList.add('visible'); });
+      // Validate attendance
+      const attending = form.querySelector('input[name="entry.ATTENDING"]:checked');
+      const attErr    = document.getElementById('err-attending');
+      if (!attending) {
+        attErr.classList.add('visible');
+        if (valid) attYes.focus();
+        valid = false;
+      } else {
+        attErr.classList.remove('visible');
+      }
 
-      // Placeholder success behaviour:
+      if (!valid) return;
+
+      // TODO: replace with actual fetch to Google Forms
+      // fetch(form.action, {
+      //   method: 'POST',
+      //   body: new FormData(form),
+      //   mode: 'no-cors'
+      // }).then(() => showSuccess());
+
+      showSuccess();
+    });
+
+    function showSuccess() {
       form.style.display = 'none';
       success.classList.add('visible');
       success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Clear errors on input
+    document.getElementById('f-name').addEventListener('input', function() {
+      document.getElementById('err-name').classList.remove('visible');
+      this.removeAttribute('aria-invalid');
     });
+
+    [attYes, attNo].forEach(r => r.addEventListener('change', () => {
+      document.getElementById('err-attending').classList.remove('visible');
+    }));
   </script>
 
 </body>
