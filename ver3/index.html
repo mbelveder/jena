@@ -110,18 +110,24 @@
       transition-delay: 0.3s;
     }
 
+    .hero-content h1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
     .cossack-star {
-      display: block;
-      width: 32px;
-      height: 32px;
-      margin: 0.5rem auto;
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
       opacity: 0;
       transition: opacity 1s ease;
-      animation: spin 50s linear infinite;
+      animation: spin 120s linear infinite;
     }
 
     .cossack-star.revealed {
-      opacity: 1;
+      opacity: 0.9;
     }
 
     @keyframes spin {
@@ -140,7 +146,7 @@
       display: inline-block;
       border: 1px solid var(--gold);
       padding: 12px 36px;
-      background: transparent;
+      background: rgba(201, 168, 76, 0.08);
       color: var(--gold);
       font-family: var(--font-body);
       font-weight: 600;
@@ -385,7 +391,12 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 1.75rem;
+    }
+
+    /* Spacing under always-visible form items */
+    .rsvp-form > .form-group,
+    .rsvp-form > fieldset {
+      margin-bottom: 1.75rem;
     }
 
     .form-group {
@@ -540,6 +551,22 @@
       opacity: 1;
     }
 
+    /* ── Staggered field reveal (ver3 cascade) ── */
+    .field-step {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      margin-bottom: 0;
+      transition: max-height 0.55s ease-out, opacity 0.4s ease, margin-bottom 0.25s ease;
+    }
+
+    .field-step.in {
+      max-height: 500px;
+      opacity: 1;
+      margin-bottom: 1.75rem;
+    }
+
+
     .form-submit {
       align-self: center;
       border: 1px solid var(--gold);
@@ -658,12 +685,56 @@
       <h1>
         <span class="hero-name hero-name--first" id="name1">Евстахий</span>
 
-        <!-- Cossack Star SVG: double octagram -->
-        <svg class="cossack-star" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <polygon points="24,2 28,18 44,14 32,24 44,34 28,30 24,46 20,30 4,34 16,24 4,14 20,18"
-                   stroke="var(--gold)" stroke-width="0.75" fill="none" opacity="0.7"/>
-          <polygon points="24,6 27,19 40,16 30,24 40,32 27,29 24,42 21,29 8,32 18,24 8,16 21,19"
-                   stroke="var(--gold-dim)" stroke-width="0.5" fill="none" opacity="0.5"/>
+        <!-- Sunflower SVG -->
+        <svg class="cossack-star" viewBox="0 0 300 300"
+             fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <g transform="translate(150, 150)" opacity="0.9">
+            <defs>
+              <path id="petal-A" d="M -5 -44 C -28 -75 -12 -105 0 -130 C 12 -105 28 -75 5 -44" />
+              <path id="petal-B" d="M -6 -43 C -18 -70 -25 -100 -5 -125 C 10 -105 25 -75 6 -43" />
+              <path id="petal-C" d="M -4 -45 C -30 -75 -8 -110 5 -125 C 22 -100 25 -75 4 -45" />
+              <path id="petal-D" d="M -5 -44 C -22 -80 -10 -115 0 -135 C 10 -115 22 -80 5 -44" />
+            </defs>
+            <g stroke-width="1.2" opacity="0.65" stroke="var(--gold-dim)">
+              <use href="#petal-A" transform="rotate(22.5) scale(0.92)" />
+              <use href="#petal-B" transform="rotate(67.5) scale(0.92)" />
+              <use href="#petal-C" transform="rotate(112.5) scale(0.92)" />
+              <use href="#petal-D" transform="rotate(157.5) scale(0.92)" />
+              <use href="#petal-A" transform="rotate(202.5) scale(0.92)" />
+              <use href="#petal-B" transform="rotate(247.5) scale(0.92)" />
+              <use href="#petal-C" transform="rotate(292.5) scale(0.92)" />
+              <use href="#petal-D" transform="rotate(337.5) scale(0.92)" />
+            </g>
+            <g stroke-width="1.5" stroke="var(--gold)">
+              <use href="#petal-C" transform="rotate(0)" />
+              <use href="#petal-D" transform="rotate(45)" />
+              <use href="#petal-A" transform="rotate(90)" />
+              <use href="#petal-B" transform="rotate(135)" />
+              <use href="#petal-C" transform="rotate(180)" />
+              <use href="#petal-D" transform="rotate(225)" />
+              <use href="#petal-A" transform="rotate(270)" />
+              <use href="#petal-B" transform="rotate(315)" />
+            </g>
+            <g stroke-width="1.5" stroke="var(--gold)">
+              <path d="M 0 -45 C 25 -47 48 -20 45 5 C 42 30 20 48 0 45 C -25 42 -48 20 -45 -5 C -42 -30 -20 -48 0 -45 Z" />
+              <path d="M -2 -43 C 22 -48 46 -22 43 2 C 40 28 18 45 -2 43 C -28 40 -46 18 -43 -7 C -40 -32 -22 -46 -2 -43 Z" opacity="0.6" />
+            </g>
+            <g fill="var(--gold)" stroke="none" opacity="0.85">
+              <circle cx="0" cy="0" r="1.5" />
+              <circle cx="15" cy="-10" r="1.2" />
+              <circle cx="-12" cy="18" r="1.8" />
+              <circle cx="22" cy="12" r="1.5" />
+              <circle cx="-20" cy="-15" r="1.5" />
+              <circle cx="5" cy="25" r="1.2" />
+              <circle cx="-5" cy="-28" r="1.8" />
+              <circle cx="28" cy="-5" r="1.5" />
+              <circle cx="-25" cy="5" r="1.2" />
+              <circle cx="10" cy="-22" r="1.5" />
+              <circle cx="-15" cy="30" r="1.2" />
+              <circle cx="30" cy="20" r="1.5" />
+            </g>
+          </g>
         </svg>
 
         <span class="hero-name hero-name--second" id="name2">Анахвакия</span>
@@ -815,69 +886,95 @@
           <p class="form-error" id="error-attendance" role="alert" aria-live="polite"></p>
         </fieldset>
 
-        <!-- Guest count (conditional) -->
-        <div class="form-conditional" id="guests-wrapper" aria-hidden="true">
-          <div class="form-conditional-inner">
-            <div class="form-group">
-              <label class="form-label" for="rsvp-guests">Количество гостей</label>
-              <input class="form-input" type="number" id="rsvp-guests" name="guests" min="1" max="10" value="1" placeholder="1">
+        <!-- Fields revealed one-by-one after "yes"; hidden until then -->
+
+        <!-- Guest count (step 1) -->
+        <div class="field-step" id="guests-wrapper">
+          <div class="form-group">
+            <label class="form-label" for="rsvp-guests">Количество гостей</label>
+            <input class="form-input" type="number" id="rsvp-guests" name="guests" min="1" max="10" value="1" placeholder="1" disabled>
+          </div>
+        </div>
+
+        <!-- Dietary (step 2) -->
+        <div class="field-step" id="step-dietary">
+          <div class="form-group">
+            <label class="form-label" for="rsvp-dietary">Пожелания по питанию</label>
+            <textarea class="form-textarea" id="rsvp-dietary" name="dietary" rows="2" placeholder="Аллергии, предпочтения..."></textarea>
+          </div>
+        </div>
+
+        <!-- Transfer (step 3) -->
+        <div class="field-step" id="step-transfer">
+          <fieldset class="form-group" style="border:none;">
+            <legend class="form-label">Нужен трансфер?</legend>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="transfer" value="yes">
+                <span class="radio-mark" aria-hidden="true"></span>
+                Да
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="transfer" value="no" checked>
+                <span class="radio-mark" aria-hidden="true"></span>
+                Нет
+              </label>
             </div>
+          </fieldset>
+        </div>
+
+        <!-- Hotel (step 4) -->
+        <div class="field-step" id="step-hotel">
+          <fieldset class="form-group" style="border:none;">
+            <legend class="form-label">Нужна гостиница?</legend>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="hotel" value="yes">
+                <span class="radio-mark" aria-hidden="true"></span>
+                Да
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="hotel" value="no" checked>
+                <span class="radio-mark" aria-hidden="true"></span>
+                Нет
+              </label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Song (step 5) -->
+        <div class="field-step" id="step-song">
+          <div class="form-group">
+            <label class="form-label" for="rsvp-song">Песня для праздника</label>
+            <input class="form-input" type="text" id="rsvp-song" name="song" placeholder="Ваша любимая песня">
           </div>
         </div>
 
-        <!-- Dietary -->
-        <div class="form-group">
-          <label class="form-label" for="rsvp-dietary">Пожелания по питанию</label>
-          <textarea class="form-textarea" id="rsvp-dietary" name="dietary" rows="2" placeholder="Аллергии, предпочтения..."></textarea>
-        </div>
-
-        <!-- Transfer -->
-        <fieldset class="form-group" style="border:none;">
-          <legend class="form-label">Нужен трансфер?</legend>
-          <div class="radio-group">
-            <label class="radio-label">
-              <input type="radio" name="transfer" value="yes">
-              <span class="radio-mark" aria-hidden="true"></span>
-              Да
-            </label>
-            <label class="radio-label">
-              <input type="radio" name="transfer" value="no" checked>
-              <span class="radio-mark" aria-hidden="true"></span>
-              Нет
-            </label>
+        <!-- Message (step 6) -->
+        <div class="field-step" id="step-message">
+          <div class="form-group">
+            <label class="form-label" for="rsvp-message">Пожелание молодожёнам</label>
+            <textarea class="form-textarea" id="rsvp-message" name="message" rows="3" placeholder="Напишите что-нибудь тёплое..."></textarea>
           </div>
-        </fieldset>
+        </div>
 
-        <!-- Hotel -->
-        <fieldset class="form-group" style="border:none;">
-          <legend class="form-label">Нужна гостиница?</legend>
-          <div class="radio-group">
-            <label class="radio-label">
-              <input type="radio" name="hotel" value="yes">
-              <span class="radio-mark" aria-hidden="true"></span>
-              Да
-            </label>
-            <label class="radio-label">
-              <input type="radio" name="hotel" value="no" checked>
-              <span class="radio-mark" aria-hidden="true"></span>
-              Нет
-            </label>
+        <!-- Submit (step 7) -->
+        <div class="field-step" id="step-submit">
+          <button type="submit" class="form-submit">Подтвердить</button>
+        </div>
+
+        <!-- Decline path: only shown when "no" is selected -->
+        <div class="field-step" id="decline-note">
+          <div class="form-group">
+            <label class="form-label" for="rsvp-decline-msg">Напишите нам пару слов, если хочется</label>
+            <textarea class="form-textarea" id="rsvp-decline-msg" name="decline_message" rows="2" placeholder="Ваши пожелания..."></textarea>
           </div>
-        </fieldset>
-
-        <!-- Song request -->
-        <div class="form-group">
-          <label class="form-label" for="rsvp-song">Песня для праздника</label>
-          <input class="form-input" type="text" id="rsvp-song" name="song" placeholder="Ваша любимая песня">
         </div>
 
-        <!-- Message -->
-        <div class="form-group">
-          <label class="form-label" for="rsvp-message">Пожелание молодожёнам</label>
-          <textarea class="form-textarea" id="rsvp-message" name="message" rows="3" placeholder="Напишите что-нибудь тёплое..."></textarea>
+        <!-- Submit for decline path -->
+        <div class="field-step" id="step-submit-no">
+          <button type="submit" class="form-submit">Подтвердить</button>
         </div>
-
-        <button type="submit" class="form-submit">Подтвердить</button>
       </form>
 
       <div class="rsvp-success" id="rsvp-success" role="status" aria-live="polite">
@@ -963,18 +1060,62 @@
         }, 1100);
       }, 600);
 
-      /* ========== RSVP: CONDITIONAL GUEST COUNT ========== */
+      /* ========== RSVP: CASCADE REVEAL AFTER ATTENDANCE ANSWER ========== */
       var attendanceRadios = document.querySelectorAll('input[name="attendance"]');
-      var guestsWrapper = document.getElementById('guests-wrapper');
+
+      // "yes" cascade: guests → dietary → transfer → hotel → song → message → submit
+      var yesSteps = [
+        'guests-wrapper',
+        'step-dietary',
+        'step-transfer',
+        'step-hotel',
+        'step-song',
+        'step-message',
+        'step-submit'
+      ];
+
+      var cascadeTimers = [];
+
+      var noSteps = ['decline-note', 'step-submit-no'];
+      var allSteps = yesSteps.concat(noSteps);
+
+      function clearCascade() {
+        cascadeTimers.forEach(function(t) { clearTimeout(t); });
+        cascadeTimers = [];
+        allSteps.forEach(function(id) {
+          document.getElementById(id).classList.remove('in');
+        });
+        document.getElementById('rsvp-guests').disabled = true;
+      }
+
+      function runYesCascade() {
+        yesSteps.forEach(function(id, i) {
+          var t = setTimeout(function() {
+            document.getElementById(id).classList.add('in');
+            if (id === 'guests-wrapper') {
+              document.getElementById('rsvp-guests').disabled = false;
+            }
+          }, i * 90);
+          cascadeTimers.push(t);
+        });
+      }
+
+      function runNoCascade() {
+        noSteps.forEach(function(id, i) {
+          var t = setTimeout(function() {
+            document.getElementById(id).classList.add('in');
+          }, i * 150);
+          cascadeTimers.push(t);
+        });
+      }
 
       attendanceRadios.forEach(function(radio) {
         radio.addEventListener('change', function() {
+          clearCascade();
           if (this.value === 'yes') {
-            guestsWrapper.classList.add('open');
-            guestsWrapper.setAttribute('aria-hidden', 'false');
+            runYesCascade();
           } else {
-            guestsWrapper.classList.remove('open');
-            guestsWrapper.setAttribute('aria-hidden', 'true');
+            runNoCascade();
           }
         });
       });

@@ -72,6 +72,70 @@
     .reveal { animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
     @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
 
+    /* ─── SCROLL REVEAL ─── */
+    /* Elements waiting to enter the viewport */
+    .sr {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 550ms cubic-bezier(0.25, 1, 0.5, 1),
+                  transform 550ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .sr.sr-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── SECTION DIVIDER scale-in ─── */
+    /* The two .divider blocks and .section-rule elements */
+    .sr-divider {
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: opacity 500ms cubic-bezier(0.25, 1, 0.5, 1),
+                  transform 500ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .sr-divider.sr-visible {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    /* ─── SUCCESS MESSAGE scale-in ─── */
+    .form-success-inner {
+      transform: scale(0.97);
+      transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .form-success.visible .form-success-inner {
+      transform: scale(1);
+    }
+
+    /* ─── SEAL CLICK ─── */
+    .seal.pressing {
+      transform: scale(0.94) !important;
+      transition: transform 0.08s ease-out !important;
+    }
+
+    /* ─── REDUCED MOTION: disable all custom transitions/animations ─── */
+    @media (prefers-reduced-motion: reduce) {
+      .sr {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .sr-divider {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .form-success-inner {
+        transform: none;
+        transition: none;
+      }
+      .seal.pressing {
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
     /* ─── HERO ─── */
     .hero {
       text-align: center;
@@ -462,6 +526,23 @@
       color: var(--ink-mid);
     }
 
+    /* ─── EXTRA FIELDS ─── */
+    #extra-fields {
+      overflow: hidden;
+      max-height: 2000px;
+      opacity: 0.32;
+      pointer-events: none;
+      transition: max-height 0.45s ease, opacity 0.3s ease;
+    }
+    #extra-fields.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #extra-fields.hidden {
+      max-height: 0;
+      opacity: 0;
+    }
+
     /* ─── GUEST COUNT (animated) ─── */
     .guest-field-wrap {
       display: grid;
@@ -478,6 +559,14 @@
       display: flex;
       justify-content: center;
       margin-top: 2.5rem;
+      padding: 20px 30px 30px;
+      clip-path: inset(0 0 100% 0);
+      opacity: 0;
+      transition: clip-path 0.4s ease, opacity 0.35s ease;
+    }
+    .submit-wrap.visible {
+      clip-path: inset(0);
+      opacity: 1;
     }
 
     .seal {
@@ -617,55 +706,55 @@
     -->
     <svg class="hero-botanical" width="110" height="68" viewBox="-2 -4 114 72"
          fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-         stroke-linecap="round" stroke-linejoin="round" opacity="0.72">
+         stroke-linecap="round" stroke-linejoin="round" opacity="0.45">
 
       <!-- Background grasses -->
-      <path d="M28 64 C27 54 22 49 19 39" stroke="var(--sage)" stroke-width="0.6" opacity="0.4"/>
-      <path d="M33 64 C32 55 35 49 37 40" stroke="var(--sage)" stroke-width="0.5" opacity="0.3"/>
-      <path d="M78 64 C79 54 84 49 87 39" stroke="var(--sage)" stroke-width="0.6" opacity="0.4"/>
-      <path d="M74 64 C75 55 71 49 69 41" stroke="var(--sage)" stroke-width="0.5" opacity="0.3"/>
+      <path id="bg1" d="M28 64 C27 54 22 49 19 39" stroke="var(--sage)" stroke-width="0.6" opacity="0.4"/>
+      <path id="bg2" d="M33 64 C32 55 35 49 37 40" stroke="var(--sage)" stroke-width="0.5" opacity="0.3"/>
+      <path id="bg3" d="M78 64 C79 54 84 49 87 39" stroke="var(--sage)" stroke-width="0.6" opacity="0.4"/>
+      <path id="bg4" d="M74 64 C75 55 71 49 69 41" stroke="var(--sage)" stroke-width="0.5" opacity="0.3"/>
 
       <!-- Main stem -->
-      <path d="M55 64 C53 45 50 25 47 7" stroke="var(--ink-light)" stroke-width="0.85"/>
+      <path id="bot-stem" d="M55 64 C53 45 50 25 47 7" stroke="var(--ink-light)" stroke-width="0.85"/>
       <!-- Left branch -->
-      <path d="M50.5 35 C44 32 39 25 35 15" stroke="var(--ink-light)" stroke-width="0.65" opacity="0.85"/>
+      <path id="bot-branch-l" d="M50.5 35 C44 32 39 25 35 15" stroke="var(--ink-light)" stroke-width="0.65" opacity="0.85"/>
       <!-- Right branch -->
-      <path d="M48.5 24 C55 21 62 14 68 7" stroke="var(--ink-light)" stroke-width="0.65" opacity="0.85"/>
+      <path id="bot-branch-r" d="M48.5 24 C55 21 62 14 68 7" stroke="var(--ink-light)" stroke-width="0.65" opacity="0.85"/>
 
       <!-- Left leaf -->
-      <path d="M50.5 35 C43 36 37 30 38 23 C43 28 47 31 50.5 35 Z" fill="var(--sage)" opacity="0.55"/>
+      <path id="lf-l" d="M50.5 35 C43 36 37 30 38 23 C43 28 47 31 50.5 35 Z" fill="var(--sage)" opacity="0.55"/>
       <!-- Right leaf -->
-      <path d="M48.5 24 C55 25 61 19 62 12 C57 16 52 20 48.5 24 Z" fill="var(--sage)" opacity="0.5"/>
+      <path id="lf-r" d="M48.5 24 C55 25 61 19 62 12 C57 16 52 20 48.5 24 Z" fill="var(--sage)" opacity="0.5"/>
 
       <!-- "She" — Анахвакия: three wireframe ellipse petals, pressed-flower -->
       <g opacity="0.9">
-        <path d="M34 16 L36 16 L35 14 Z" fill="var(--sage)" opacity="0.7" stroke="none"/>
-        <ellipse cx="35" cy="14" rx="4.5" ry="1.8" transform="rotate(-35 35 14)"
+        <path id="she-tri" d="M34 16 L36 16 L35 14 Z" fill="var(--sage)" opacity="0.7" stroke="none"/>
+        <ellipse id="she-el1" cx="35" cy="14" rx="4.5" ry="1.8" transform="rotate(-35 35 14)"
                  stroke="var(--rose)" stroke-width="0.55"/>
-        <ellipse cx="35" cy="14" rx="4.5" ry="1.8" transform="rotate(25 35 14)"
+        <ellipse id="she-el2" cx="35" cy="14" rx="4.5" ry="1.8" transform="rotate(25 35 14)"
                  stroke="var(--rose)" stroke-width="0.55"/>
-        <ellipse cx="35" cy="14" rx="4.5" ry="1.8" transform="rotate(85 35 14)"
+        <ellipse id="she-el3" cx="35" cy="14" rx="4.5" ry="1.8" transform="rotate(85 35 14)"
                  stroke="var(--rose)" stroke-width="0.55" opacity="0.65"/>
-        <circle cx="35" cy="14" r="1.5" fill="var(--rose)" opacity="0.85" stroke="none"/>
+        <circle id="she-dot" cx="35" cy="14" r="1.5" fill="var(--rose)" opacity="0.85" stroke="none"/>
       </g>
 
       <!-- "He" — Евстахий: radiating seed head (dried allium / Levitan meadow) -->
       <g opacity="0.85">
-        <path d="M67 8 L69 8 L68 6 Z" fill="var(--sage)" opacity="0.7" stroke="none"/>
-        <path d="M68 6 L68 2"   stroke="var(--rose)" stroke-width="0.5"/>
-        <path d="M68 6 L71.2 3" stroke="var(--rose)" stroke-width="0.5"/>
-        <path d="M68 6 L72 6"   stroke="var(--rose)" stroke-width="0.5"/>
-        <path d="M68 6 L71.2 9" stroke="var(--rose)" stroke-width="0.5"/>
-        <path d="M68 6 L64.8 3" stroke="var(--rose)" stroke-width="0.5"/>
-        <path d="M68 6 L64 6"   stroke="var(--rose)" stroke-width="0.5"/>
-        <path d="M68 6 L64.8 9" stroke="var(--rose)" stroke-width="0.5"/>
-        <circle cx="68" cy="6" r="1.2" fill="var(--rose)" opacity="0.85" stroke="none"/>
+        <path id="he-tri" d="M67 8 L69 8 L68 6 Z" fill="var(--sage)" opacity="0.7" stroke="none"/>
+        <path id="he-s1" d="M68 6 L68 2"   stroke="var(--rose)" stroke-width="0.5"/>
+        <path id="he-s2" d="M68 6 L71.2 3" stroke="var(--rose)" stroke-width="0.5"/>
+        <path id="he-s3" d="M68 6 L72 6"   stroke="var(--rose)" stroke-width="0.5"/>
+        <path id="he-s4" d="M68 6 L71.2 9" stroke="var(--rose)" stroke-width="0.5"/>
+        <path id="he-s5" d="M68 6 L64.8 3" stroke="var(--rose)" stroke-width="0.5"/>
+        <path id="he-s6" d="M68 6 L64 6"   stroke="var(--rose)" stroke-width="0.5"/>
+        <path id="he-s7" d="M68 6 L64.8 9" stroke="var(--rose)" stroke-width="0.5"/>
+        <circle id="he-dot" cx="68" cy="6" r="1.2" fill="var(--rose)" opacity="0.85" stroke="none"/>
       </g>
 
       <!-- Top bud -->
-      <path d="M47 7 C44 3 46 0 47 -1 C48 0 50 3 47 7 Z"
+      <path id="bud-fill" d="M47 7 C44 3 46 0 47 -1 C48 0 50 3 47 7 Z"
             fill="var(--rose)" opacity="0.65" stroke="none"/>
-      <path d="M47 7 C46 4 46 1 47 -1" stroke="var(--rose)" stroke-width="0.4" opacity="0.8"/>
+      <path id="bud-line" d="M47 7 C46 4 46 1 47 -1" stroke="var(--rose)" stroke-width="0.4" opacity="0.8"/>
     </svg>
 
     <p class="hero-subtitle">Приглашение на свадьбу</p>
@@ -684,12 +773,12 @@
 
   </header>
 
-  <div class="section-rule" aria-hidden="true"></div>
+  <div class="section-rule sr-divider" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════
        INVITATION
   ═══════════════════════════════════ -->
-  <section class="section reveal" style="animation-delay: 0.12s">
+  <section class="section sr">
     <p class="invitation-text">
     В Кубань? Ей-богу? Славные места!
     Такой, братцы, край, что и во сне не увидишь, хоть три года спи!
@@ -709,7 +798,7 @@
   </section>
 
   <!-- ─── DIVIDER: branch twig with two leaves (from botanical 11) ─── -->
-  <div class="divider" aria-hidden="true">
+  <div class="divider sr-divider" aria-hidden="true">
     <div class="divider-rule"></div>
     <svg width="28" height="22" viewBox="35 10 32 28"
          fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -726,35 +815,35 @@
   <!-- ═══════════════════════════════════
        SCHEDULE
   ═══════════════════════════════════ -->
-  <section class="section reveal" style="animation-delay: 0.18s">
+  <section class="section sr">
     <h2 class="section-label">Программа дня</h2>
     <div class="timeline">
-      <div class="timeline-item">
+      <div class="timeline-item sr">
         <div class="timeline-time">14:00</div>
         <div class="timeline-event">Сбор гостей</div>
         <div class="timeline-note">Встреча, прогулка, аперитив</div>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item sr">
         <div class="timeline-time">15:00</div>
         <div class="timeline-event">Церемония</div>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item sr">
         <div class="timeline-time">16:30</div>
         <div class="timeline-event">Торжественный ужин</div>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item sr">
         <div class="timeline-time">До рассвета</div>
         <div class="timeline-event">Танцы и разговоры</div>
       </div>
     </div>
   </section>
 
-  <div class="section-rule" aria-hidden="true"></div>
+  <div class="section-rule sr-divider" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════
        DRESS CODE
   ═══════════════════════════════════ -->
-  <section class="section reveal" style="animation-delay: 0.24s">
+  <section class="section sr">
     <h2 class="section-label">Дресс-код</h2>
     <!-- TODO: уточнить дресс-код у молодожёнов и заменить текст -->
     <p class="dresscode-text">
@@ -772,19 +861,19 @@
     </div>
   </section>
 
-  <div class="section-rule" aria-hidden="true"></div>
+  <div class="section-rule sr-divider" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════
        RSVP NOTICE
   ═══════════════════════════════════ -->
-  <section class="section reveal" style="animation-delay: 0.3s">
+  <section class="section sr">
     <div class="notice">
       Просим подтвердить участие до <strong>15 марта 2006</strong> года.
     </div>
   </section>
 
   <!-- ─── DIVIDER: branch twig with two leaves (from botanical 11), mirrored ─── -->
-  <div class="divider" aria-hidden="true">
+  <div class="divider sr-divider" aria-hidden="true">
     <div class="divider-rule"></div>
     <svg width="28" height="22" viewBox="35 10 32 28"
          fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -802,7 +891,7 @@
   <!-- ═══════════════════════════════════
        RSVP FORM
   ═══════════════════════════════════ -->
-  <section class="form-section reveal" style="animation-delay: 0.36s" aria-label="Форма подтверждения">
+  <section class="form-section sr" aria-label="Форма подтверждения">
 
     <div class="form-intro">
       <h2 class="form-title">Ваш ответ</h2>
@@ -850,82 +939,83 @@
         <span class="field-error" id="err-attending" role="alert">Пожалуйста, выберите вариант</span>
       </div>
 
-      <!-- Количество гостей (только если "Да") -->
-      <div class="guest-field-wrap" id="guest-wrap" aria-hidden="true">
-        <div class="guest-field-inner">
-          <div class="field">
-            <label class="field-label" for="f-guests">
-              Количество гостей <span class="opt">(включая вас)</span>
+      <!-- Extra fields: shaded until "yes" is confirmed -->
+      <div id="extra-fields" aria-disabled="true">
+
+        <!-- Количество гостей -->
+        <div class="field">
+          <label class="field-label" for="f-guests">
+            Количество гостей <span class="opt">(включая вас)</span>
+          </label>
+          <input type="number" id="f-guests" name="entry.GUESTS"
+                 min="1" max="10" value="1" disabled>
+        </div>
+
+        <!-- Диетические предпочтения -->
+        <div class="field">
+          <label class="field-label" for="f-dietary">
+            Диетические предпочтения / аллергии <span class="opt">— необязательно</span>
+          </label>
+          <textarea id="f-dietary" name="entry.DIETARY"
+                    placeholder="Если есть что-то важное…"></textarea>
+        </div>
+
+        <!-- Трансфер -->
+        <div class="field">
+          <span class="field-label" id="transfer-label">Нужен ли трансфер?</span>
+          <div class="radio-row" role="radiogroup" aria-labelledby="transfer-label">
+            <label class="radio-opt">
+              <input type="radio" name="entry.TRANSFER" value="Да">
+              <span class="radio-mark"></span>
+              <span class="radio-text">Да</span>
             </label>
-            <input type="number" id="f-guests" name="entry.GUESTS"
-                   min="1" max="10" value="1" disabled>
+            <label class="radio-opt">
+              <input type="radio" name="entry.TRANSFER" value="Нет" checked>
+              <span class="radio-mark"></span>
+              <span class="radio-text">Нет</span>
+            </label>
           </div>
         </div>
-      </div>
 
-      <!-- Диетические предпочтения -->
-      <div class="field">
-        <label class="field-label" for="f-dietary">
-          Диетические предпочтения / аллергии <span class="opt">— необязательно</span>
-        </label>
-        <textarea id="f-dietary" name="entry.DIETARY"
-                  placeholder="Если есть что-то важное…"></textarea>
-      </div>
-
-      <!-- Трансфер -->
-      <div class="field">
-        <span class="field-label" id="transfer-label">Нужен ли трансфер?</span>
-        <div class="radio-row" role="radiogroup" aria-labelledby="transfer-label">
-          <label class="radio-opt">
-            <input type="radio" name="entry.TRANSFER" value="Да">
-            <span class="radio-mark"></span>
-            <span class="radio-text">Да</span>
-          </label>
-          <label class="radio-opt">
-            <input type="radio" name="entry.TRANSFER" value="Нет" checked>
-            <span class="radio-mark"></span>
-            <span class="radio-text">Нет</span>
-          </label>
+        <!-- Жильё -->
+        <div class="field">
+          <span class="field-label" id="hotel-label">Нужно ли жильё?</span>
+          <div class="radio-row" role="radiogroup" aria-labelledby="hotel-label">
+            <label class="radio-opt">
+              <input type="radio" name="entry.HOTEL" value="Да">
+              <span class="radio-mark"></span>
+              <span class="radio-text">Да</span>
+            </label>
+            <label class="radio-opt">
+              <input type="radio" name="entry.HOTEL" value="Нет" checked>
+              <span class="radio-mark"></span>
+              <span class="radio-text">Нет</span>
+            </label>
+          </div>
         </div>
-      </div>
 
-      <!-- Жильё -->
-      <div class="field">
-        <span class="field-label" id="hotel-label">Нужно ли жильё?</span>
-        <div class="radio-row" role="radiogroup" aria-labelledby="hotel-label">
-          <label class="radio-opt">
-            <input type="radio" name="entry.HOTEL" value="Да">
-            <span class="radio-mark"></span>
-            <span class="radio-text">Да</span>
+        <!-- Пожелание песни -->
+        <div class="field">
+          <label class="field-label" for="f-song">
+            Пожелание песни <span class="opt">— необязательно</span>
           </label>
-          <label class="radio-opt">
-            <input type="radio" name="entry.HOTEL" value="Нет" checked>
-            <span class="radio-mark"></span>
-            <span class="radio-text">Нет</span>
-          </label>
+          <input type="text" id="f-song" name="entry.SONG"
+                 placeholder="Что хотели бы услышать?">
         </div>
-      </div>
 
-      <!-- Пожелание песни -->
-      <div class="field">
-        <label class="field-label" for="f-song">
-          Пожелание песни <span class="opt">— необязательно</span>
-        </label>
-        <input type="text" id="f-song" name="entry.SONG"
-               placeholder="Что хотели бы услышать?">
-      </div>
+        <!-- Слова молодожёнам -->
+        <div class="field">
+          <label class="field-label" for="f-message">
+            Слова молодожёнам <span class="opt">— необязательно</span>
+          </label>
+          <textarea id="f-message" name="entry.MESSAGE"
+                    placeholder="Ваши пожелания или слова…"></textarea>
+        </div>
 
-      <!-- Слова молодожёнам -->
-      <div class="field">
-        <label class="field-label" for="f-message">
-          Слова молодожёнам <span class="opt">— необязательно</span>
-        </label>
-        <textarea id="f-message" name="entry.MESSAGE"
-                  placeholder="Ваши пожелания или слова…"></textarea>
-      </div>
+      </div><!-- /#extra-fields -->
 
       <!-- Кнопка-печать -->
-      <div class="submit-wrap">
+      <div class="submit-wrap" id="submit-wrap">
         <button type="submit" class="seal" aria-label="Отправить ответ">
           <span class="seal-ring" aria-hidden="true"></span>
           <span class="seal-monogram" aria-hidden="true">Е &amp; А</span>
@@ -947,7 +1037,7 @@
   <!-- ═══════════════════════════════════
        FOOTER
   ═══════════════════════════════════ -->
-  <footer class="reveal" style="animation-delay: 0.42s">
+  <footer class="sr">
 
     <p class="footer-contact">
       По вопросам обращайтесь к организатору:<br>
@@ -955,57 +1045,57 @@
       <a href="tel:+79000000000">+7 (900) 000-00-00</a>
     </p>
 
-    <svg class="footer-botanical" width="55" height="105"
-         viewBox="0 0 200 400"
-         fill="none" stroke="currentColor" stroke-width="1.1"
+    <svg class="footer-botanical" width="32" height="90"
+         viewBox="0 0 32 90"
+         fill="none" stroke="currentColor" stroke-width="0.9"
          stroke-linecap="round" stroke-linejoin="round"
          aria-hidden="true">
       <!-- Stem -->
-      <path d="M 100 375 L 100 30"/>
-      <!-- Pair 1 y=338 -->
-      <path d="M 100 338 C 116 317 137 300 141 298 C 135 309 111 326 100 338 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <path d="M 100 338 C  84 317  63 300  59 298 C  65 309  89 326 100 338 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <!-- Pair 2 y=292 -->
-      <path d="M 100 292 C 114 272 133 256 137 254 C 131 264 108 280 100 292 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <path d="M 100 292 C  86 272  67 256  63 254 C  69 264  92 280 100 292 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <!-- Pair 3 y=248 -->
-      <path d="M 100 248 C 112 229 128 214 132 212 C 126 221 107 235 100 248 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <path d="M 100 248 C  88 229  72 214  68 212 C  74 221  93 235 100 248 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <!-- Pair 4 y=206 -->
-      <path d="M 100 206 C 110 189 123 175 126 173 C 121 181 107 196 100 206 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <path d="M 100 206 C  90 189  77 175  74 173 C  79 181  93 196 100 206 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <!-- Pair 5 y=166 -->
-      <path d="M 100 166 C 108 151 119 139 122 138 C 117 145 105 157 100 166 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <path d="M 100 166 C  92 151  81 139  78 138 C  83 145  95 157 100 166 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <!-- Pair 6 y=128 -->
-      <path d="M 100 128 C 106 115 115 106 118 105 C 113 111 103 121 100 128 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <path d="M 100 128 C  94 115  85 106  82 105 C  87 111  97 121 100 128 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <!-- Pair 7 y=93 -->
-      <path d="M 100  93 C 104  83 111  76 113  75 C 110  80 103  88 100  93 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <path d="M 100  93 C  96  83  89  76  87  75 C  90  80  97  88 100  93 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
-      <!-- Terminal frond -->
-      <path d="M 100 62 Q 105 47 100 36 Q 95 47 100 62 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <path d="M16 88 C16 70 16 30 16 6"/>
+      <!-- Terminal bud -->
+      <circle cx="16" cy="6" r="2" fill="var(--sage)" fill-opacity="0.55" stroke-width="0.7"/>
+      <!-- Leaf right y=72 -->
+      <path d="M16 72 Q27 63 23 54 Q16 63 16 72Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.7"/>
+      <!-- Leaf left y=57 -->
+      <path d="M16 57 Q5 48 9 39 Q16 48 16 57Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.7"/>
+      <!-- Leaf right y=42 -->
+      <path d="M16 42 Q27 33 23 24 Q16 33 16 42Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.7"/>
+      <!-- Leaf left y=28 -->
+      <path d="M16 28 Q5 19 9 10 Q16 19 16 28Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.7"/>
     </svg>
 
   </footer>
 
   <script>
-    // ── Guest count visibility ──
-    const attYes    = document.getElementById('att-yes');
-    const attNo     = document.getElementById('att-no');
-    const guestWrap = document.getElementById('guest-wrap');
-    const guestInput = document.getElementById('f-guests');
+  (function () {
+    'use strict';
 
-    function updateGuests() {
+    // ── Attendance + extra fields logic ──
+    const attYes      = document.getElementById('att-yes');
+    const attNo       = document.getElementById('att-no');
+    const extraFields = document.getElementById('extra-fields');
+    const submitWrap  = document.getElementById('submit-wrap');
+
+    function updateAttendance() {
       const isYes = attYes.checked;
-      guestWrap.classList.toggle('open', isYes);
-      guestWrap.setAttribute('aria-hidden', String(!isYes));
-      guestInput.disabled = !isYes;
-      guestInput.required = isYes;
+      const isNo  = attNo.checked;
+
+      extraFields.classList.toggle('active',  isYes);
+      extraFields.classList.toggle('hidden',  isNo);
+      extraFields.setAttribute('aria-disabled', String(!isYes));
+      extraFields.querySelectorAll('input, textarea').forEach(function(el) {
+        el.disabled = !isYes;
+      });
+
+      submitWrap.classList.toggle('visible', isYes || isNo);
     }
 
-    attYes.addEventListener('change', updateGuests);
-    attNo.addEventListener('change', updateGuests);
+    attYes.addEventListener('change', updateAttendance);
+    attNo.addEventListener('change', updateAttendance);
+
+    extraFields.querySelectorAll('input, textarea').forEach(function(el) {
+      el.disabled = true;
+    });
 
     // ── Form validation + submit ──
     const form    = document.getElementById('rsvp-form');
@@ -1016,7 +1106,6 @@
 
       let valid = true;
 
-      // Validate name
       const nameInput = document.getElementById('f-name');
       const nameErr   = document.getElementById('err-name');
       if (!nameInput.value.trim()) {
@@ -1029,7 +1118,6 @@
         nameInput.removeAttribute('aria-invalid');
       }
 
-      // Validate attendance
       const attending = form.querySelector('input[name="entry.ATTENDING"]:checked');
       const attErr    = document.getElementById('err-attending');
       if (!attending) {
@@ -1043,30 +1131,157 @@
       if (!valid) return;
 
       // TODO: replace with actual fetch to Google Forms
-      // fetch(form.action, {
-      //   method: 'POST',
-      //   body: new FormData(form),
-      //   mode: 'no-cors'
-      // }).then(() => showSuccess());
-
       showSuccess();
     });
 
     function showSuccess() {
       form.style.display = 'none';
+      var subtitle = document.querySelector('.form-subtitle');
+      if (subtitle) subtitle.style.display = 'none';
+      var formTitle = document.querySelector('.form-title');
+      if (formTitle) formTitle.style.display = 'none';
       success.classList.add('visible');
       success.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    // Clear errors on input
     document.getElementById('f-name').addEventListener('input', function() {
       document.getElementById('err-name').classList.remove('visible');
       this.removeAttribute('aria-invalid');
     });
 
-    [attYes, attNo].forEach(r => r.addEventListener('change', () => {
-      document.getElementById('err-attending').classList.remove('visible');
-    }));
+    [attYes, attNo].forEach(function(r) {
+      r.addEventListener('change', function() {
+        document.getElementById('err-attending').classList.remove('visible');
+      });
+    });
+
+    // ── Seal click micro-interaction ──
+    var seal = document.querySelector('.seal');
+    seal.addEventListener('mousedown', function() {
+      seal.classList.add('pressing');
+    });
+    ['mouseup', 'mouseleave'].forEach(function(evt) {
+      seal.addEventListener(evt, function() {
+        seal.classList.remove('pressing');
+      });
+    });
+    // Touch support
+    seal.addEventListener('touchstart', function() {
+      seal.classList.add('pressing');
+    }, { passive: true });
+    seal.addEventListener('touchend', function() {
+      seal.classList.remove('pressing');
+    });
+
+    // ── Scroll-reveal (IntersectionObserver) ──
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReduced && 'IntersectionObserver' in window) {
+      // Stagger delay for list items within the same parent
+      var srObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          srObserver.unobserve(el);
+
+          // Timeline items get staggered within their parent
+          if (el.classList.contains('timeline-item')) {
+            var siblings = Array.from(el.parentElement.querySelectorAll('.timeline-item.sr'));
+            var idx = siblings.indexOf(el);
+            el.style.transitionDelay = (idx * 80) + 'ms';
+          }
+
+          // Small rAF to ensure the delay is applied before class flip
+          requestAnimationFrame(function() {
+            el.classList.add('sr-visible');
+          });
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -32px 0px'
+      });
+
+      document.querySelectorAll('.sr, .sr-divider').forEach(function(el) {
+        srObserver.observe(el);
+      });
+    } else {
+      // No observer support or reduced motion: reveal everything immediately
+      document.querySelectorAll('.sr, .sr-divider').forEach(function(el) {
+        el.classList.add('sr-visible');
+      });
+    }
+
+    // ── Botanical hero draw-on ──
+    (function() {
+      if (prefersReduced) return;
+
+      // drawing order: grasses → stem → branches → leaves → flowers → bud
+      // type 'draw' = stroke-dashoffset, type 'fade' = opacity
+      var seq = [
+        { id: 'bg1',        type: 'draw', delay:   0, dur: 170 },
+        { id: 'bg3',        type: 'draw', delay:  10, dur: 170 },
+        { id: 'bg2',        type: 'draw', delay:  20, dur: 150 },
+        { id: 'bg4',        type: 'draw', delay:  30, dur: 150 },
+        { id: 'bot-stem',   type: 'draw', delay:  55, dur: 310 },
+        { id: 'bot-branch-l', type: 'draw', delay: 270, dur: 200 },
+        { id: 'bot-branch-r', type: 'draw', delay: 340, dur: 200 },
+        { id: 'lf-l',       type: 'fade', delay: 360, dur: 180 },
+        { id: 'lf-r',       type: 'fade', delay: 420, dur: 180 },
+        { id: 'she-tri',    type: 'fade', delay: 460, dur: 100 },
+        { id: 'she-el1',    type: 'draw', delay: 470, dur: 160 },
+        { id: 'she-el2',    type: 'draw', delay: 500, dur: 160 },
+        { id: 'she-el3',    type: 'draw', delay: 530, dur: 140 },
+        { id: 'she-dot',    type: 'fade', delay: 560, dur: 130 },
+        { id: 'he-tri',     type: 'fade', delay: 460, dur: 100 },
+        { id: 'he-s1',      type: 'draw', delay: 470, dur: 110 },
+        { id: 'he-s2',      type: 'draw', delay: 488, dur: 110 },
+        { id: 'he-s3',      type: 'draw', delay: 506, dur: 110 },
+        { id: 'he-s4',      type: 'draw', delay: 524, dur: 110 },
+        { id: 'he-s5',      type: 'draw', delay: 542, dur: 110 },
+        { id: 'he-s6',      type: 'draw', delay: 560, dur: 110 },
+        { id: 'he-s7',      type: 'draw', delay: 578, dur: 110 },
+        { id: 'he-dot',     type: 'fade', delay: 610, dur: 130 },
+        { id: 'bud-line',   type: 'draw', delay: 600, dur: 160 },
+        { id: 'bud-fill',   type: 'fade', delay: 620, dur: 180 }
+      ];
+
+      var easing = 'cubic-bezier(0.25, 1, 0.5, 1)';
+
+      var ghostOpacity = 0.18;
+
+      // Prepare everything before first paint to prevent flash
+      seq.forEach(function(s) {
+        var el = document.getElementById(s.id);
+        if (!el) return;
+        s._target = el.getAttribute('opacity') || '1';
+        el.style.opacity = ghostOpacity;
+        if (s.type === 'draw') {
+          var len = el.getTotalLength ? el.getTotalLength() : 20;
+          el.style.strokeDasharray  = len;
+          el.style.strokeDashoffset = len;
+        }
+        el.style.transition = 'none';
+      });
+
+      setTimeout(function() {
+        document.getElementById('bg1') && document.getElementById('bg1').getBoundingClientRect();
+
+        seq.forEach(function(s) {
+          var el = document.getElementById(s.id);
+          if (!el) return;
+          var opacityT = 'opacity ' + s.dur + 'ms ' + easing + ' ' + s.delay + 'ms';
+          if (s.type === 'draw') {
+            el.style.transition = opacityT + ', stroke-dashoffset ' + s.dur + 'ms ' + easing + ' ' + s.delay + 'ms';
+            el.style.strokeDashoffset = '0';
+          } else {
+            el.style.transition = opacityT;
+          }
+          el.style.opacity = s._target;
+        });
+      }, 80);
+    }());
+
+  }());
   </script>
 
 </body>

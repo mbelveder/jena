@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Translate to center so we can easily rotate petals around (0,0) -->
+  <g transform="translate(150, 150)" opacity="0.9">
+    
+    <defs>
+      <!-- 4 Hand-drawn petal variations (interiors are now completely clean) -->
+      <path id="petal-A" d="M -5 -44 C -28 -75 -12 -105 0 -130 C 12 -105 28 -75 5 -44" />
+      <path id="petal-B" d="M -6 -43 C -18 -70 -25 -100 -5 -125 C 10 -105 25 -75 6 -43" />
+      <path id="petal-C" d="M -4 -45 C -30 -75 -8 -110 5 -125 C 22 -100 25 -75 4 -45" />
+      <path id="petal-D" d="M -5 -44 C -22 -80 -10 -115 0 -135 C 10 -115 22 -80 5 -44" />
+    </defs>
+
+    <!-- BACK LAYER OF PETALS (Scaled down slightly for depth) -->
+    <g stroke-width="1.2" opacity="0.65">
+      <use href="#petal-A" transform="rotate(22.5) scale(0.92)" />
+      <use href="#petal-B" transform="rotate(67.5) scale(0.92)" />
+      <use href="#petal-C" transform="rotate(112.5) scale(0.92)" />
+      <use href="#petal-D" transform="rotate(157.5) scale(0.92)" />
+      <use href="#petal-A" transform="rotate(202.5) scale(0.92)" />
+      <use href="#petal-B" transform="rotate(247.5) scale(0.92)" />
+      <use href="#petal-C" transform="rotate(292.5) scale(0.92)" />
+      <use href="#petal-D" transform="rotate(337.5) scale(0.92)" />
+    </g>
+
+    <!-- FRONT LAYER OF PETALS -->
+    <g stroke-width="1.5">
+      <use href="#petal-C" transform="rotate(0)" />
+      <use href="#petal-D" transform="rotate(45)" />
+      <use href="#petal-A" transform="rotate(90)" />
+      <use href="#petal-B" transform="rotate(135)" />
+      <use href="#petal-C" transform="rotate(180)" />
+      <use href="#petal-D" transform="rotate(225)" />
+      <use href="#petal-A" transform="rotate(270)" />
+      <use href="#petal-B" transform="rotate(315)" />
+    </g>
+
+    <!-- CENTER FLOWER FACE -->
+    <g stroke-width="1.5">
+      <!-- Two wobbly, imperfect circles for that charming ink-pen slip look -->
+      <path d="M 0 -45 C 25 -47 48 -20 45 5 C 42 30 20 48 0 45 C -25 42 -48 20 -45 -5 C -42 -30 -20 -48 0 -45 Z" />
+      <path d="M -2 -43 C 22 -48 46 -22 43 2 C 40 28 18 45 -2 43 C -28 40 -46 18 -43 -7 C -40 -32 -22 -46 -2 -43 Z" opacity="0.6" />
+    </g>
+
+    <!-- CUTE, SPARSE SEED DETAILS -->
+    <g fill="currentColor" stroke="none" opacity="0.85">
+      <circle cx="0" cy="0" r="1.5" />
+      <circle cx="15" cy="-10" r="1.2" />
+      <circle cx="-12" cy="18" r="1.8" />
+      <circle cx="22" cy="12" r="1.5" />
+      <circle cx="-20" cy="-15" r="1.5" />
+      <circle cx="5" cy="25" r="1.2" />
+      <circle cx="-5" cy="-28" r="1.8" />
+      <circle cx="28" cy="-5" r="1.5" />
+      <circle cx="-25" cy="5" r="1.2" />
+      <circle cx="10" cy="-22" r="1.5" />
+      <circle cx="-15" cy="30" r="1.2" />
+      <circle cx="30" cy="20" r="1.5" />
+    </g>
+
+  </g>
+</svg>
