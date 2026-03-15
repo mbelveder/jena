@@ -103,12 +103,22 @@
       letter-spacing: 0.01em;
     }
 
+    .hero-subtitle {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1.4rem;
+    }
+
     .names .conjunction {
       display: block;
       font-size: clamp(1rem, 4.5vw, 1.25rem);
       color: var(--ink-light);
-      margin: 0.2em 0;
+      margin: 0.6em 0 0.1em;
       font-style: italic;
+      line-height: 1;
     }
 
     .hero-date {
@@ -658,6 +668,8 @@
       <path d="M47 7 C46 4 46 1 47 -1" stroke="var(--rose)" stroke-width="0.4" opacity="0.8"/>
     </svg>
 
+    <p class="hero-subtitle">Приглашение на свадьбу</p>
+
     <h1 class="names">
       <span class="name">Евстахий</span>
       <span class="conjunction">и</span>
@@ -688,7 +700,7 @@
 
     <div class="venue-block">
       <span class="venue-label">Место торжества</span>
-      <span class="venue-name">хутор Светлинький, Ростовская губерния</span>
+      <span class="venue-name">хутор Светленький, Ростовская губерния</span>
       <!-- TODO: replace href with actual Google Maps link -->
       <a class="venue-link" href="#" target="_blank" rel="noopener">
         Открыть на карте <span aria-hidden="true">→</span>
@@ -943,30 +955,36 @@
       <a href="tel:+79000000000">+7 (900) 000-00-00</a>
     </p>
 
-    <!--
-      Botanical (9): fern with symmetric opposite leaflets.
-      Full plant, symmetric — works beautifully as a footer centerpiece.
-    -->
-    <svg class="footer-botanical" width="180" height="180"
-         viewBox="120 30 260 460"
-         fill="none" stroke="currentColor" stroke-width="1.5"
+    <svg class="footer-botanical" width="55" height="105"
+         viewBox="0 0 200 400"
+         fill="none" stroke="currentColor" stroke-width="1.1"
          stroke-linecap="round" stroke-linejoin="round"
          aria-hidden="true">
-      <path d="M 250 480 Q 280 250 180 60" />
-      <path d="M 259 400 Q 300 390 320 370 Q 290 395 261 410" />
-      <path d="M 263 350 Q 310 330 330 300 Q 295 335 265 360" />
-      <path d="M 264 300 Q 310 270 330 240 Q 295 280 263 310" />
-      <path d="M 259 250 Q 300 210 320 180 Q 290 225 255 260" />
-      <path d="M 249 200 Q 290 160 300 130 Q 275 175 242 210" />
-      <path d="M 234 150 Q 270 110 280 80 Q 255 125 225 160" />
-      <path d="M 212 100 Q 240 60 250 40 Q 230 75 200 110" />
-      <path d="M 259 400 Q 210 390 190 370 Q 220 395 258 410" />
-      <path d="M 263 350 Q 200 330 180 300 Q 215 335 261 360" />
-      <path d="M 264 300 Q 190 270 170 240 Q 210 280 259 310" />
-      <path d="M 259 250 Q 180 210 160 180 Q 205 225 252 260" />
-      <path d="M 249 200 Q 170 160 150 130 Q 195 175 238 210" />
-      <path d="M 234 150 Q 160 110 140 80 Q 185 125 220 160" />
-      <path d="M 212 100 Q 150 60 130 40 Q 170 75 195 110" />
+      <!-- Stem -->
+      <path d="M 100 375 L 100 30"/>
+      <!-- Pair 1 y=338 -->
+      <path d="M 100 338 C 116 317 137 300 141 298 C 135 309 111 326 100 338 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <path d="M 100 338 C  84 317  63 300  59 298 C  65 309  89 326 100 338 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <!-- Pair 2 y=292 -->
+      <path d="M 100 292 C 114 272 133 256 137 254 C 131 264 108 280 100 292 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <path d="M 100 292 C  86 272  67 256  63 254 C  69 264  92 280 100 292 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <!-- Pair 3 y=248 -->
+      <path d="M 100 248 C 112 229 128 214 132 212 C 126 221 107 235 100 248 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <path d="M 100 248 C  88 229  72 214  68 212 C  74 221  93 235 100 248 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <!-- Pair 4 y=206 -->
+      <path d="M 100 206 C 110 189 123 175 126 173 C 121 181 107 196 100 206 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <path d="M 100 206 C  90 189  77 175  74 173 C  79 181  93 196 100 206 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <!-- Pair 5 y=166 -->
+      <path d="M 100 166 C 108 151 119 139 122 138 C 117 145 105 157 100 166 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <path d="M 100 166 C  92 151  81 139  78 138 C  83 145  95 157 100 166 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <!-- Pair 6 y=128 -->
+      <path d="M 100 128 C 106 115 115 106 118 105 C 113 111 103 121 100 128 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <path d="M 100 128 C  94 115  85 106  82 105 C  87 111  97 121 100 128 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <!-- Pair 7 y=93 -->
+      <path d="M 100  93 C 104  83 111  76 113  75 C 110  80 103  88 100  93 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <path d="M 100  93 C  96  83  89  76  87  75 C  90  80  97  88 100  93 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
+      <!-- Terminal frond -->
+      <path d="M 100 62 Q 105 47 100 36 Q 95 47 100 62 Z" fill="var(--sage)" fill-opacity="0.5" stroke-width="0.75"/>
     </svg>
 
   </footer>
