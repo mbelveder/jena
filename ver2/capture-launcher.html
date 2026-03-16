@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body style="font-family:sans-serif;padding:40px;background:#F7F2E8">
+<p id="status">Opening capture window...</p>
+<script>
+  var p = new URLSearchParams(location.search);
+  var vw = parseInt(p.get('vw') || '1440', 10);
+  var id = p.get('id');
+  var ep = 'https://mcp.figma.com/mcp/capture/' + id + '/submit';
+  var url = '/ver2/index.html?capture=1#figmacapture=' + id
+    + '&figmaendpoint=' + encodeURIComponent(ep)
+    + '&figmadelay=3000';
+  var w = window.open(url, '_blank',
+    'width=' + vw + ',height=900,scrollbars=yes,resizable=yes');
+  if (!w) {
+    document.getElementById('status').textContent =
+      'Popup blocked! Please allow popups for localhost and reload.';
+  } else {
+    document.getElementById('status').textContent =
+      'Capture window opened at ' + vw + 'px width. You can close this tab.';
+  }
+</script>
+</body>
+</html>
