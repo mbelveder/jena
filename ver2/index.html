@@ -15,7 +15,8 @@
         '.hero__sunflower{opacity:0.72!important}' +
         '.letter-body{max-height:none!important;opacity:1!important}' +
         '[data-animate]{opacity:1!important;transform:none!important}' +
-        '.schedule-card{opacity:1!important;transform:none!important}';
+        '.schedule-card{opacity:1!important;transform:none!important}' +
+        '.timeline-item{opacity:1!important;transform:none!important}';
       document.head.appendChild(s);
 
       /* Expand SVG <use> and <pattern> elements for Figma capture */
@@ -353,6 +354,27 @@
       opacity: 1;
     }
 
+    .letter-fade {
+      position: relative;
+      pointer-events: none;
+    }
+
+    .letter-fade::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -28px;
+      height: 150px;
+      background: linear-gradient(to bottom, transparent, var(--bg-alt));
+      opacity: 1;
+      transition: opacity 0.4s ease-out;
+    }
+
+    .letter-fade--hidden::after {
+      opacity: 0;
+    }
+
     .letter-body p {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
@@ -489,25 +511,94 @@
       min-height: 400px;
     }
 
-    /* ── Schedule ── */
+    /* ── Schedule (timeline) ── */
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--rule) 3%, var(--rule) 92%, transparent);
+      opacity: 0;
+      transition: opacity 0.8s ease-out;
+    }
+
+    .timeline--visible::before {
+      opacity: 1;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-item--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 5.5px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      opacity: 0.7;
+    }
+
+    .timeline-time {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.05rem;
+    }
+
+    .timeline-event {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 22px;
+      color: var(--ink);
+    }
+
+    .timeline-desc {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-top: 0.15rem;
+    }
+
+    /* ── Directions cards (reused schedule-card) ── */
     .schedule-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 2px;
       width: 100%;
       margin-top: 0;
     }
 
     @media (max-width: 768px) {
-      .schedule-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .schedule-grid {
-        grid-template-columns: 1fr;
-      }
+      .schedule-grid { grid-template-columns: 1fr; }
     }
 
     .schedule-card {
@@ -568,9 +659,7 @@
     }
 
     @media (max-width: 600px) {
-      .schedule-card {
-        padding: 32px 24px;
-      }
+      .schedule-card { padding: 32px 24px; }
     }
 
     /* ── Directions ── */
@@ -1024,11 +1113,13 @@
         <span class="letter-rule" aria-hidden="true"></span>
         <div class="letter-content">
           <h2>Наши дорогие гости!</h2>
+          <div class="letter-fade" id="letterFade">
           <p class="letter-first">
             Вы — самые важные люди в нашей жизни, и мы не представляем этот день без вас.
             Нам хочется, чтобы это торжество стало не просто красивым событием, но и тёплой
             встречей близких людей, которую мы все будем помнить долго.
           </p>
+          </div>
           <div class="letter-body" id="letterBody">
             <p>
               Свадьба пройдёт на природе, в уютном месте вдали от городской суеты.
@@ -1162,32 +1253,29 @@
   <section class="section section--alt" id="schedule" aria-labelledby="schedule-heading">
     <div class="section__inner">
       <h2 id="schedule-heading">Регламент</h2>
-    </div>
-    <div class="schedule-grid" role="list">
 
-      <article class="schedule-card" role="listitem" data-animate>
-        <p class="schedule-card__time">7–8 августа</p>
-        <h3 class="schedule-card__event">Заезд</h3>
-        <p class="schedule-card__desc">Прибытие и размещение на базе. База в нашем распоряжении с 7 по 10 августа включительно.</p>
-      </article>
-
-      <article class="schedule-card" role="listitem" data-animate>
-        <p class="schedule-card__time">8 августа</p>
-        <h3 class="schedule-card__event">Торжество</h3>
-        <p class="schedule-card__desc">Торжественная церемония и свадебный банкет.</p>
-      </article>
-
-      <article class="schedule-card" role="listitem" data-animate>
-        <p class="schedule-card__time">9 августа</p>
-        <h3 class="schedule-card__event">Разгуляй</h3>
-        <p class="schedule-card__desc">Свадебный разгуляй. Бассейн, баня, чан для купания, речка рядом — не забудьте купальники!</p>
-      </article>
-
-      <article class="schedule-card" role="listitem" data-animate>
-        <p class="schedule-card__time">10 августа</p>
-        <h3 class="schedule-card__event">Отъезд</h3>
-        <p class="schedule-card__desc">Сборы и отъезд. Можно задержаться, если душа просит ещё немного.</p>
-      </article>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">7–8 августа</div>
+          <div class="timeline-event">Заезд</div>
+          <div class="timeline-desc">Прибытие и размещение на базе. База в нашем распоряжении с 7 по 10 августа включительно.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">8 августа</div>
+          <div class="timeline-event">Торжество</div>
+          <div class="timeline-desc">Торжественная церемония и свадебный банкет.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">9 августа</div>
+          <div class="timeline-event">Разгуляй</div>
+          <div class="timeline-desc">Свадебный разгуляй. Бассейн, баня, чан для купания, речка рядом — не забудьте купальники!</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">10 августа</div>
+          <div class="timeline-event">Отъезд</div>
+          <div class="timeline-desc">Сборы и отъезд. Можно задержаться, если душа просит ещё немного.</div>
+        </div>
+      </div>
 
     </div>
   </section>
@@ -1413,31 +1501,66 @@
       /* ── Letter expand/collapse ── */
       var letterBody   = document.getElementById('letterBody');
       var letterToggle = document.getElementById('letterToggle');
+      var letterFade   = document.getElementById('letterFade');
       var letterOpen   = false;
 
       letterToggle.addEventListener('click', function () {
         letterOpen = !letterOpen;
         letterBody.classList.toggle('open', letterOpen);
+        if (letterFade) letterFade.classList.toggle('letter-fade--hidden', letterOpen);
         letterToggle.textContent = letterOpen ? 'Скрыть ↑' : 'Читать далее ↓';
         letterToggle.setAttribute('aria-expanded', String(letterOpen));
       });
 
-      /* ── Schedule + Directions cards IntersectionObserver ── */
+      /* ── Timeline + Directions cards IntersectionObserver ── */
+      var timelineEl = document.querySelector('.timeline');
+      var timelineItems = document.querySelectorAll('.timeline-item');
+      if ('IntersectionObserver' in window) {
+        /* Fade in the line when timeline enters view */
+        var lineObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('timeline--visible');
+              lineObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05 });
+        if (timelineEl) lineObserver.observe(timelineEl);
+
+        var tlObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var siblings = Array.from(entry.target.parentElement.querySelectorAll('.timeline-item'));
+              var idx = siblings.indexOf(entry.target);
+              setTimeout(function () {
+                entry.target.classList.add('timeline-item--visible');
+              }, idx * 80);
+              tlObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        timelineItems.forEach(function (item) { tlObserver.observe(item); });
+      } else {
+        timelineItems.forEach(function (item) { item.classList.add('timeline-item--visible'); });
+      }
+
+      /* Directions cards */
       var cards = document.querySelectorAll('.schedule-card[data-animate]');
       if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function (entries) {
+        var cardObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
               var idx = Array.prototype.indexOf.call(cards, entry.target);
               setTimeout(function () {
                 entry.target.classList.add('schedule-card--visible');
               }, idx * 80);
-              observer.unobserve(entry.target);
+              cardObserver.unobserve(entry.target);
             }
           });
         }, { threshold: 0.15 });
 
-        cards.forEach(function (card) { observer.observe(card); });
+        cards.forEach(function (card) { cardObserver.observe(card); });
       } else {
         cards.forEach(function (card) { card.classList.add('schedule-card--visible'); });
       }
