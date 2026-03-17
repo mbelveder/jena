@@ -108,13 +108,14 @@
     }
 
     :root {
-      --bg:           #F3F1EB;  /* песочный белый        */
-      --bg-alt:       #E7EDE4;  /* бледный шалфей        */
-      --ink:          #242920;  /* тёмный лесной зелёный */
-      --accent-red:   #5F7EC2;  /* васильковый           */
-      --accent-gold:  #6A9B6D;  /* луговой шалфей        */
-      --rule:         #BEC8B8;  /* серо-зелёный          */
-      --muted:        #78887A;  /* приглушённый шалфей   */
+      --bg:           #F1F4EF;  /* светлый шалфейный белый  */
+      --bg-alt:       #E4EAE1;  /* мягкий шалфей            */
+      --bg-deep:      #D6DFD2;  /* насыщенный шалфей (футер)*/
+      --ink:          #242920;  /* тёмный лесной зелёный    */
+      --accent-blue:   #5F7EC2;  /* васильковый              */
+      --accent-green:  #6A9B6D;  /* луговой шалфей           */
+      --rule:         #BEC8B8;  /* серо-зелёный             */
+      --muted:        #78887A;  /* приглушённый шалфей      */
     }
 
     html {
@@ -133,7 +134,7 @@
 
     /* ── Focus styles ── */
     :focus-visible {
-      outline: 2px solid var(--accent-gold);
+      outline: 2px solid var(--accent-green);
       outline-offset: 3px;
     }
 
@@ -144,7 +145,7 @@
       top: 0;
       width: 3px;
       height: 100vh;
-      background-color: var(--accent-red);
+      background-color: var(--accent-blue);
       transform: scaleY(0);
       transform-origin: top;
       z-index: 100;
@@ -193,7 +194,7 @@
       padding: 64px 48px 0;
       text-align: center;
       position: relative;
-      background-color: var(--bg);
+      background-color: var(--bg-deep);
     }
 
     .hero__date {
@@ -202,7 +203,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.35em;
-      color: var(--accent-red);
+      color: var(--accent-blue);
       margin-bottom: 40px;
       border: 1px solid var(--rule);
       padding: 8px 24px;
@@ -233,7 +234,7 @@
       width: 64px;
       height: 64px;
       margin: 20px auto;
-      color: var(--accent-gold);
+      color: var(--accent-green);
       opacity: 0;
       transition: none;
     }
@@ -330,6 +331,7 @@
     .letter-content h2 {
       text-align: center;
       margin-bottom: 32px;
+      color: var(--ink);
     }
 
     .letter-first {
@@ -436,7 +438,7 @@
       content: '—';
       position: absolute;
       left: 0;
-      color: var(--accent-gold);
+      color: var(--accent-green);
     }
 
     .concept-divider {
@@ -449,6 +451,7 @@
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      justify-content: center;
       margin-top: 28px;
     }
 
@@ -525,7 +528,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      color: var(--accent-red);
+      color: var(--accent-blue);
       text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: border-color 0.2s;
@@ -533,7 +536,7 @@
 
     .venue-info__link:hover,
     .venue-info__link:focus-visible {
-      border-bottom-color: var(--accent-red);
+      border-bottom-color: var(--accent-blue);
     }
 
     .venue-map {
@@ -588,7 +591,7 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--accent-gold);
+      background: var(--accent-green);
       opacity: 0.7;
     }
 
@@ -792,7 +795,7 @@
     .form-group input[type="text"]:focus,
     .form-group textarea:focus {
       outline: none;
-      border-bottom-color: var(--accent-gold);
+      border-bottom-color: var(--accent-green);
     }
 
     .form-group textarea {
@@ -854,19 +857,19 @@
     }
 
     .radio-option input[type="radio"]:checked {
-      border-color: var(--accent-gold);
+      border-color: var(--accent-green);
     }
 
     .radio-option input[type="radio"]:checked::after {
       content: '';
       position: absolute;
       inset: 3px;
-      background-color: var(--accent-gold);
+      background-color: var(--accent-green);
       border-radius: 50%;
     }
 
     .radio-option input[type="radio"]:focus-visible {
-      outline: 2px solid var(--accent-gold);
+      outline: 2px solid var(--accent-green);
       outline-offset: 2px;
     }
 
@@ -906,8 +909,8 @@
     }
 
     .checkbox-option input[type="checkbox"]:checked {
-      border-color: var(--accent-gold);
-      background-color: var(--accent-gold);
+      border-color: var(--accent-green);
+      background-color: var(--accent-green);
     }
 
     .checkbox-option input[type="checkbox"]:disabled {
@@ -920,7 +923,7 @@
     }
 
     .checkbox-option input[type="checkbox"]:focus-visible {
-      outline: 2px solid var(--accent-gold);
+      outline: 2px solid var(--accent-green);
       outline-offset: 2px;
     }
 
@@ -936,7 +939,7 @@
       font-family: 'Jost', sans-serif;
       font-weight: 400;
       font-size: 13px;
-      color: var(--accent-red);
+      color: var(--accent-blue);
       margin-top: 6px;
       display: none;
     }
@@ -953,7 +956,7 @@
       font-size: 18px;
       color: var(--ink);
       background: transparent;
-      border: 1.5px solid var(--accent-gold);
+      border: 1.5px solid var(--accent-green);
       padding: 14px 48px;
       cursor: pointer;
       letter-spacing: 0.05em;
@@ -962,7 +965,7 @@
 
     .btn-submit:hover,
     .btn-submit:focus-visible {
-      background-color: var(--accent-gold);
+      background-color: var(--accent-green);
       color: var(--ink);
     }
 
@@ -970,6 +973,7 @@
     .footer {
       text-align: center;
       padding: 48px 48px 64px;
+      background-color: var(--bg-deep);
       border-top: 1px solid var(--rule);
     }
 
@@ -1198,7 +1202,7 @@
 
       <div class="palette" aria-label="Цветовая палитра дресс-кода">
         <div class="palette__item">
-          <div class="palette__swatch" style="background:#F3F1EB;"></div>
+          <div class="palette__swatch" style="background:#F2F4F0;"></div>
           <span class="palette__label">белый</span>
         </div>
         <div class="palette__item">
