@@ -1753,6 +1753,17 @@
           body: JSON.stringify(payload)
         }).catch(function() {});
 
+        // Email backup via FormSubmit.co (fire-and-forget)
+        var emailPayload = Object.assign({}, payload, {
+          _subject: 'Новый RSVP: ' + payload.surname + ' ' + payload.firstname,
+          'Таблица ответов': 'https://script.google.com/macros/s/AKfycbzgm-f2wHiF23kw49RMn6s6BSHGHdsBhhmC7Om76q2xFOokM0whriXVsZFEhyNz-mQA/exec'
+        });
+        fetch('https://formsubmit.co/ajax/fvevgeny@gmail.com,mike.belveder@gmai.com,mr.mbel@yandex.ru', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(emailPayload)
+        }).catch(function() {});
+
         // Show success immediately (don't wait for network)
         document.getElementById('rsvp-heading').classList.add('rsvp-form--hidden');
         form.classList.add('rsvp-form--hidden');
