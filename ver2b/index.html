@@ -47,11 +47,11 @@
           label.style.cssText = 'display:block;position:relative;padding-left:26px;cursor:pointer;min-height:18px;';
           /* Create absolute-positioned radio circle */
           var s = document.createElement('span');
-          s.style.cssText = 'position:absolute;left:0;top:3px;display:block;width:18px;height:18px;border:1.5px solid #BEC8B8;border-radius:50%;box-sizing:border-box;';
+          s.style.cssText = 'position:absolute;left:0;top:3px;display:block;width:18px;height:18px;border:1.5px solid #C8BDA8;border-radius:50%;box-sizing:border-box;';
           if(checked){
-            s.style.borderColor = '#6A9B6D';
+            s.style.borderColor = '#7A5E3E';
             var dot = document.createElement('span');
-            dot.style.cssText = 'position:absolute;top:3px;left:3px;right:3px;bottom:3px;background:#6A9B6D;border-radius:50%;';
+            dot.style.cssText = 'position:absolute;top:3px;left:3px;right:3px;bottom:3px;background:#7A5E3E;border-radius:50%;';
             s.appendChild(dot);
           }
           input.parentNode.replaceChild(s, input);
@@ -64,10 +64,10 @@
           var checked = input.checked;
           label.style.cssText = 'display:block;position:relative;padding-left:28px;cursor:pointer;min-height:18px;';
           var s = document.createElement('span');
-          s.style.cssText = 'position:absolute;left:0;top:3px;display:block;width:18px;height:18px;border:1.5px solid #BEC8B8;border-radius:2px;box-sizing:border-box;';
+          s.style.cssText = 'position:absolute;left:0;top:3px;display:block;width:18px;height:18px;border:1.5px solid #C8BDA8;border-radius:2px;box-sizing:border-box;';
           if(checked){
-            s.style.borderColor = '#6A9B6D';
-            s.style.backgroundColor = '#6A9B6D';
+            s.style.borderColor = '#7A5E3E';
+            s.style.backgroundColor = '#7A5E3E';
           }
           input.parentNode.replaceChild(s, input);
         });
@@ -115,15 +115,29 @@
       box-sizing: border-box;
     }
 
+    /* ── Scheme A: шалфейная (commented out) ──
     :root {
-      --bg:           #F1F4EF;  /* светлый шалфейный белый  */
-      --bg-alt:       #E4EAE1;  /* мягкий шалфей            */
-      --bg-deep:      #D6DFD2;  /* насыщенный шалфей (футер)*/
-      --ink:          #242920;  /* тёмный лесной зелёный    */
-      --accent-blue:   #5F7EC2;  /* васильковый              */
-      --accent-green:  #6A9B6D;  /* луговой шалфей           */
-      --rule:         #BEC8B8;  /* серо-зелёный             */
-      --muted:        #78887A;  /* приглушённый шалфей      */
+      --bg:           #F1F4EF;
+      --bg-alt:       #E4EAE1;
+      --bg-deep:      #D6DFD2;
+      --ink:          #242920;
+      --accent-blue:  #5F7EC2;
+      --accent-green: #6A9B6D;
+      --rule:         #BEC8B8;
+      --muted:        #78887A;
+    }
+    */
+
+    /* ── Scheme B: песочно-коричневая с голубым акцентом ── */
+    :root {
+      --bg:           #F5F0E8;  /* тёплый песочно-кремовый    */
+      --bg-alt:       #EBE3D4;  /* пшеничный                  */
+      --bg-deep:      #DDD2BF;  /* глубокий песок (футер)     */
+      --ink:          #2C2418;  /* тёмный тёплый коричневый   */
+      --accent-blue:  #3D7690;  /* голубой (~4.6:1 на песке)  */
+      --accent-green: #7A5E3E;  /* тёплый коричневый (~5.8:1) */
+      --rule:         #C8BDA8;  /* песочная граница            */
+      --muted:        #7A6D5B;  /* тёплый серо-коричневый     */
     }
 
     html {
@@ -788,7 +802,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      color: #3D5040;
+      color: #4A3D2E;
       margin-bottom: 8px;
     }
 
@@ -1149,14 +1163,14 @@
     <div class="hero__border" aria-hidden="true">
       <svg class="ornament-border" viewBox="0 0 960 12" preserveAspectRatio="none">
         <pattern id="diamond-cross-hero" x="0" y="0" width="48" height="12" patternUnits="userSpaceOnUse">
-          <line x1="24" y1="0" x2="36" y2="6" stroke="#BEC8B8" stroke-width="1"/>
-          <line x1="36" y1="6" x2="24" y2="12" stroke="#BEC8B8" stroke-width="1"/>
-          <line x1="24" y1="12" x2="12" y2="6" stroke="#BEC8B8" stroke-width="1"/>
-          <line x1="12" y1="6" x2="24" y2="0" stroke="#BEC8B8" stroke-width="1"/>
-          <line x1="0" y1="6" x2="12" y2="6" stroke="#BEC8B8" stroke-width="1"/>
-          <line x1="36" y1="6" x2="48" y2="6" stroke="#BEC8B8" stroke-width="1"/>
-          <line x1="24" y1="0" x2="24" y2="4" stroke="#BEC8B8" stroke-width="0.8"/>
-          <line x1="24" y1="8" x2="24" y2="12" stroke="#BEC8B8" stroke-width="0.8"/>
+          <line x1="24" y1="0" x2="36" y2="6" stroke="#C8BDA8" stroke-width="1"/>
+          <line x1="36" y1="6" x2="24" y2="12" stroke="#C8BDA8" stroke-width="1"/>
+          <line x1="24" y1="12" x2="12" y2="6" stroke="#C8BDA8" stroke-width="1"/>
+          <line x1="12" y1="6" x2="24" y2="0" stroke="#C8BDA8" stroke-width="1"/>
+          <line x1="0" y1="6" x2="12" y2="6" stroke="#C8BDA8" stroke-width="1"/>
+          <line x1="36" y1="6" x2="48" y2="6" stroke="#C8BDA8" stroke-width="1"/>
+          <line x1="24" y1="0" x2="24" y2="4" stroke="#C8BDA8" stroke-width="0.8"/>
+          <line x1="24" y1="8" x2="24" y2="12" stroke="#C8BDA8" stroke-width="0.8"/>
         </pattern>
         <rect width="960" height="12" fill="url(#diamond-cross-hero)"/>
       </svg>
@@ -1261,7 +1275,7 @@
       </div>
 
       <div class="concept-divider" aria-hidden="true">
-        <svg width="100%" height="24" fill="none" stroke="#BEC8B8" stroke-width="1" stroke-linecap="round">
+        <svg width="100%" height="24" fill="none" stroke="#C8BDA8" stroke-width="1" stroke-linecap="round">
           <defs>
             <pattern id="braid-concept" x="0" y="0" width="60" height="24" patternUnits="userSpaceOnUse">
               <path d="M0,12 Q15,2 30,12 Q45,22 60,12"/>
@@ -1380,14 +1394,14 @@
 
     <svg class="ornament-border" viewBox="0 0 960 12" preserveAspectRatio="none" aria-hidden="true">
       <pattern id="diamond-cross-rsvp" x="0" y="0" width="48" height="12" patternUnits="userSpaceOnUse">
-        <line x1="24" y1="0" x2="36" y2="6" stroke="#BEC8B8" stroke-width="1"/>
-        <line x1="36" y1="6" x2="24" y2="12" stroke="#BEC8B8" stroke-width="1"/>
-        <line x1="24" y1="12" x2="12" y2="6" stroke="#BEC8B8" stroke-width="1"/>
-        <line x1="12" y1="6" x2="24" y2="0" stroke="#BEC8B8" stroke-width="1"/>
-        <line x1="0" y1="6" x2="12" y2="6" stroke="#BEC8B8" stroke-width="1"/>
-        <line x1="36" y1="6" x2="48" y2="6" stroke="#BEC8B8" stroke-width="1"/>
-        <line x1="24" y1="0" x2="24" y2="4" stroke="#BEC8B8" stroke-width="0.8"/>
-        <line x1="24" y1="8" x2="24" y2="12" stroke="#BEC8B8" stroke-width="0.8"/>
+        <line x1="24" y1="0" x2="36" y2="6" stroke="#C8BDA8" stroke-width="1"/>
+        <line x1="36" y1="6" x2="24" y2="12" stroke="#C8BDA8" stroke-width="1"/>
+        <line x1="24" y1="12" x2="12" y2="6" stroke="#C8BDA8" stroke-width="1"/>
+        <line x1="12" y1="6" x2="24" y2="0" stroke="#C8BDA8" stroke-width="1"/>
+        <line x1="0" y1="6" x2="12" y2="6" stroke="#C8BDA8" stroke-width="1"/>
+        <line x1="36" y1="6" x2="48" y2="6" stroke="#C8BDA8" stroke-width="1"/>
+        <line x1="24" y1="0" x2="24" y2="4" stroke="#C8BDA8" stroke-width="0.8"/>
+        <line x1="24" y1="8" x2="24" y2="12" stroke="#C8BDA8" stroke-width="0.8"/>
       </pattern>
       <rect width="960" height="12" fill="url(#diamond-cross-rsvp)"/>
     </svg>
@@ -1535,7 +1549,7 @@
     <div class="footer__botanical" aria-hidden="true">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="185 85 130 210"
            width="100%" height="100%" fill="none"
-           stroke="#6A9B6D" stroke-width="1.5"
+           stroke="#7A5E3E" stroke-width="1.5"
            stroke-linecap="round" stroke-linejoin="round" style="opacity:0.85;">
         <path d="M250 480 Q260 350 240 120" />
         <path d="M240 120 C235 110 230 100 240 95 C250 100 245 110 240 120" />
