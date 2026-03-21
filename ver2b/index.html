@@ -1709,7 +1709,32 @@
 
         if (!valid) return;
 
-        // Success
+        // Collect form data
+        var drinks = [];
+        form.querySelectorAll('input[name="drink"]:checked').forEach(function(cb) {
+          drinks.push(cb.value);
+        });
+
+        var payload = {
+          surname: form.querySelector('[name="surname"]').value.trim(),
+          firstname: form.querySelector('[name="firstname"]').value.trim(),
+          patronymic: form.querySelector('[name="patronymic"]').value.trim(),
+          attendance: attendanceChecked.value,
+          early: (form.querySelector('input[name="early"]:checked') || {}).value || '',
+          from: form.querySelector('[name="from"]').value.trim(),
+          transport: (form.querySelector('input[name="transport"]:checked') || {}).value || '',
+          drinks: drinks.join(', '),
+          songs: form.querySelector('[name="songs"]').value.trim()
+        };
+
+        // Send to Google Sheets (fire-and-forget)
+        var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzgm-f2wHiF23kw49RMn6s6BSHGHdsBhhmC7Om76q2xFOokM0whriXVsZFEhyNz-mQA/exec';
+        fetch(SHEET_URL, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        }).catch(function() {});
+
+        // Show success immediately (don't wait for network)
         document.getElementById('rsvp-heading').classList.add('rsvp-form--hidden');
         form.classList.add('rsvp-form--hidden');
         successEl.classList.add('rsvp-success--visible');
