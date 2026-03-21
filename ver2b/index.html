@@ -16,7 +16,8 @@
         '.letter-body{max-height:none!important;opacity:1!important}' +
         '[data-animate]{opacity:1!important;transform:none!important}' +
         '.schedule-card{opacity:1!important;transform:none!important}' +
-        '.timeline-item{opacity:1!important;transform:none!important}';
+        '.timeline-item{opacity:1!important;transform:none!important}' +
+        '.timeline::before{opacity:1!important}';
       document.head.appendChild(s);
 
       /* Expand SVG <use> and <pattern> elements for Figma capture */
@@ -69,6 +70,13 @@
             s.style.backgroundColor = '#6A9B6D';
           }
           input.parentNode.replaceChild(s, input);
+        });
+
+        /* Resolve currentColor on SVG elements so Figma can read actual hex values */
+        document.querySelectorAll('[stroke="currentColor"],[fill="currentColor"]').forEach(function(el){
+          var color = getComputedStyle(el).color;
+          if(el.getAttribute('stroke')==='currentColor') el.setAttribute('stroke', color);
+          if(el.getAttribute('fill')==='currentColor') el.setAttribute('fill', color);
         });
 
         document.querySelectorAll('rect[fill^="url(#"]').forEach(function(rect){
@@ -449,11 +457,20 @@
     /* ── Dress-code palette ── */
     .palette {
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
       justify-content: center;
+      column-gap: 24px;
+      row-gap: 16px;
+      flex-wrap: wrap;
       margin-top: 28px;
-      padding-inline: 48px;
+      padding-inline: 24px;
+      max-width: 480px;       /* fits 7 items; when it wraps, jumps to 4+3 — never 6+1 or 5+1+1 */
+      margin-inline: auto;
+    }
+
+    @media (max-width: 500px) {
+      .palette {
+        max-width: 280px;   /* only fits 4 items per row → 4+3, no orphan */
+      }
     }
 
     .palette__item {
@@ -461,6 +478,7 @@
       flex-direction: column;
       align-items: center;
       gap: 6px;
+      width: 40px;          /* match swatch — labels overflow visually but don't affect spacing */
     }
 
     .palette__swatch {
@@ -476,6 +494,7 @@
       letter-spacing: 0.08em;
       color: var(--muted);
       text-align: center;
+      white-space: nowrap;
     }
 
 
@@ -1150,20 +1169,24 @@
           <h2>Наши дорогие гости!</h2>
           <div class="letter-fade" id="letterFade">
           <p class="letter-first">
-            Вы — самые важные люди в нашей жизни, и мы не представляем этот день без вас.
-            Нам хочется, чтобы это торжество стало не просто красивым событием, но и тёплой
-            встречей близких людей, которую мы все будем помнить долго.
+            В Кубань? Ей-богу? (Приподнимается.) Славные места! Такой, братцы,
+            край, что и во сне не увидишь, хоть три года спи! Приволье! Сказывают
+            птицы этой самой, дичи, зверья всякого и — боже ты мой! Трава
+            круглый год растёт, народ — душа в душу, земли — девать некуда!
           </p>
           </div>
           <div class="letter-body" id="letterBody">
             <p>
-              Свадьба пройдёт на природе, в уютном месте вдали от городской суеты.
-              Мы постарались сделать всё, чтобы вам было удобно и радостно —
-              и надеемся, что вы приедете с лёгким сердцем и хорошим настроением.
+              В Кубань? Ей-богу? (Приподнимается.) Славные места! Такой, братцы,
+              край, что и во сне не увидишь, хоть три года спи! Приволье! Сказывают
+              птицы этой самой, дичи, зверья всякого и — боже ты мой! Трава
+              круглый год растёт, народ — душа в душу, земли — девать некуда!
             </p>
             <p>
-              Заранее благодарим за то, что вы разделите с нами этот день.
-              Именно с вашим участием он станет по-настоящему особенным.
+              В Кубань? Ей-богу? (Приподнимается.) Славные места! Такой, братцы,
+              край, что и во сне не увидишь, хоть три года спи! Приволье! Сказывают
+              птицы этой самой, дичи, зверья всякого и — боже ты мой! Трава
+              круглый год растёт, народ — душа в душу, земли — девать некуда!
             </p>
           </div>
           <button class="letter-toggle" id="letterToggle" type="button"

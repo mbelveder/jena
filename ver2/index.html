@@ -16,7 +16,8 @@
         '.letter-body{max-height:none!important;opacity:1!important}' +
         '[data-animate]{opacity:1!important;transform:none!important}' +
         '.schedule-card{opacity:1!important;transform:none!important}' +
-        '.timeline-item{opacity:1!important;transform:none!important}';
+        '.timeline-item{opacity:1!important;transform:none!important}' +
+        '.timeline::before{opacity:1!important}';
       document.head.appendChild(s);
 
       /* Expand SVG <use> and <pattern> elements for Figma capture */
@@ -69,6 +70,13 @@
             s.style.backgroundColor = '#B8860B';
           }
           input.parentNode.replaceChild(s, input);
+        });
+
+        /* Resolve currentColor on SVG elements so Figma can read actual hex values */
+        document.querySelectorAll('[stroke="currentColor"],[fill="currentColor"]').forEach(function(el){
+          var color = getComputedStyle(el).color;
+          if(el.getAttribute('stroke')==='currentColor') el.setAttribute('stroke', color);
+          if(el.getAttribute('fill')==='currentColor') el.setAttribute('fill', color);
         });
 
         document.querySelectorAll('rect[fill^="url(#"]').forEach(function(rect){
