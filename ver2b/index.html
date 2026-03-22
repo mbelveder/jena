@@ -1729,21 +1729,31 @@
         if (!valid) return;
 
         // Collect form data
+        var drinkLabels = {
+          'samogon': 'Самогон', 'cognac': 'Коньяк',
+          'wine-white': 'Вино белое', 'wine-red': 'Вино красное',
+          'none': 'Без алкоголя'
+        };
         var drinks = [];
         form.querySelectorAll('input[name="drink"]:checked').forEach(function(cb) {
-          drinks.push(cb.value);
+          drinks.push(drinkLabels[cb.value] || cb.value);
         });
 
+        var attendanceLabels = { 'main': 'Только 8 августа', 'both': 'Оба дня (8–9 августа)' };
+        var transportLabels = { 'car': 'На машине', 'public': 'Общественный транспорт', 'transfer': 'Нужен трансфер' };
+        var earlyVal = (form.querySelector('input[name="early"]:checked') || {}).value || '';
+        var transportVal = (form.querySelector('input[name="transport"]:checked') || {}).value || '';
+
         var payload = {
-          surname: form.querySelector('[name="surname"]').value.trim(),
-          firstname: form.querySelector('[name="firstname"]').value.trim(),
-          patronymic: form.querySelector('[name="patronymic"]').value.trim(),
-          attendance: attendanceChecked.value,
-          early: (form.querySelector('input[name="early"]:checked') || {}).value || '',
-          from: form.querySelector('[name="from"]').value.trim(),
-          transport: (form.querySelector('input[name="transport"]:checked') || {}).value || '',
-          drinks: drinks.join(', '),
-          songs: form.querySelector('[name="songs"]').value.trim()
+          'Фамилия': form.querySelector('[name="surname"]').value.trim(),
+          'Имя': form.querySelector('[name="firstname"]').value.trim(),
+          'Отчество': form.querySelector('[name="patronymic"]').value.trim(),
+          'Присутствие': attendanceLabels[attendanceChecked.value] || attendanceChecked.value,
+          'Ранний приезд': earlyVal === 'yes' ? 'Да' : 'Нет',
+          'Откуда': form.querySelector('[name="from"]').value.trim(),
+          'Транспорт': transportLabels[transportVal] || '',
+          'Напитки': drinks.join(', '),
+          'Песни': form.querySelector('[name="songs"]').value.trim()
         };
 
         // Send to Google Sheets (fire-and-forget)
@@ -1755,7 +1765,7 @@
 
         // Email backup via FormSubmit.co (fire-and-forget)
         var emailPayload = Object.assign({}, payload, {
-          _subject: 'Новый RSVP: ' + payload.surname + ' ' + payload.firstname,
+          _subject: 'Новый RSVP: ' + payload['Фамилия'] + ' ' + payload['Имя'],
           'Таблица ответов': 'https://docs.google.com/spreadsheets/d/1XxIZjD5McQabYZ2XHMD8o-VM7wWbM62r7HKIExaxURE/edit?usp=sharing'
         });
         ['mike.belveder@gmail.com', 'mr.mbel@yandex.ru'].forEach(function(email) {
