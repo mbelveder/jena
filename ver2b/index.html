@@ -101,11 +101,20 @@
       });
     })();
   </script>
-  <title>Анахвакия и Евстахий — Свадьба 8 апреля 2006</title>
-  <meta name="description" content="Приглашение на свадьбу Анахвакии и Евстахия. 8 августа, база отдыха Надежда, станица Ахметовская.">
+  <title>Анастасия и Евгений — Свадьба 8 августа 2026</title>
+  <meta name="description" content="Приглашение на свадьбу Анастасии и Евгения. 8 августа 2026, база отдыха Надежда, станица Ахметовская.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Corinthia';
+      src: url('corinthia.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
   <style>
     *,
     *::before,
@@ -177,9 +186,9 @@
     }
 
     .section h2 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Corinthia', serif;
       font-weight: 400;
-      font-size: clamp(28px, 5vw, 40px);
+      font-size: clamp(36px, 6vw, 64px);
       text-align: center;
       margin-bottom: 48px;
       color: var(--ink);
@@ -213,18 +222,15 @@
       letter-spacing: 0.35em;
       color: var(--accent-blue);
       margin-bottom: 40px;
-      border: 1px solid var(--rule);
-      padding: 8px 24px;
       display: inline-block;
     }
 
     .hero__name {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-style: italic;
+      font-family: 'Corinthia', serif;
+      font-weight: 400;
       font-size: clamp(64px, 14vw, 130px);
-      color: var(--ink);
-      line-height: 0.85;
+      color: rgb(97 105 37 / 75%);;
+      line-height: 0.9;
       letter-spacing: -0.01em;
       opacity: 0;
       transform: translateY(20px);
@@ -239,10 +245,9 @@
 
     .hero__sunflower {
       display: block;
-      width: 64px;
-      height: 64px;
+      width: 80px;
+      height: auto;
       margin: 28px auto 20px;
-      color: var(--accent-green);
       opacity: 0;
       transition: none;
     }
@@ -317,19 +322,18 @@
 
     /* ── Letter section ── */
     .letter-inner {
-      max-width: 680px;
+      max-width: 860px;
       margin: 0 auto;
       display: flex;
       align-items: flex-start;
-      gap: 24px;
+      gap: 12px;
     }
 
     .letter-rule {
-      flex: 1;
+      flex: 0 0 24px;
       height: 1px;
       background: var(--rule);
       margin-top: 0.75em;
-      flex-shrink: 0;
     }
 
     .letter-content {
@@ -343,13 +347,14 @@
     }
 
     .letter-first {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Jost', sans-serif;
       font-weight: 300;
-      font-style: italic;
-      font-size: clamp(18px, 2.4vw, 22px);
+      font-size: 20px;
       color: var(--ink);
-      line-height: 1.85;
-      text-align: center;
+      line-height: 1.55;
+      text-align: justify;
+      text-indent: 2em;
+      margin-bottom: 24px;
     }
 
     .letter-body {
@@ -360,7 +365,7 @@
     }
 
     .letter-body.open {
-      max-height: 600px;
+      max-height: 2400px;
       opacity: 1;
     }
 
@@ -386,14 +391,15 @@
     }
 
     .letter-body p {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Jost', sans-serif;
       font-weight: 300;
-      font-style: italic;
-      font-size: clamp(18px, 2.4vw, 22px);
+      font-size: 20px;
       color: var(--ink);
-      line-height: 1.85;
-      text-align: center;
-      margin-top: 24px;
+      line-height: 1.55;
+      text-align: justify;
+      text-indent: 2em;
+      margin-bottom: 24px;
+      margin-top: 32px;
     }
 
     .letter-toggle {
@@ -420,9 +426,9 @@
     .concept-text {
       font-family: 'Jost', sans-serif;
       font-weight: 300;
-      font-size: 15px;
+      font-size: 20px;
       color: var(--ink);
-      line-height: 1.85;
+      line-height: 1.39;
       margin-bottom: 16px;
     }
 
@@ -434,9 +440,9 @@
     .concept-list li {
       font-family: 'Jost', sans-serif;
       font-weight: 300;
-      font-size: 15px;
+      font-size: 20px;
       color: var(--ink);
-      line-height: 1.75;
+      line-height: 1.39;
       padding-left: 1.6em;
       position: relative;
       margin-bottom: 10px;
@@ -499,9 +505,9 @@
 
 
     .concept-subtitle {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Corinthia', serif;
       font-weight: 400;
-      font-size: clamp(20px, 3vw, 26px);
+      font-size: clamp(32px, 4vw, 40px);
       text-align: center;
       margin-bottom: 24px;
       color: var(--ink);
@@ -525,10 +531,9 @@
     }
 
     .venue-info__name {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-style: italic;
-      font-size: 28px;
+      font-family: 'Corinthia', serif;
+      font-weight: 400;
+      font-size: 32px;
       color: var(--ink);
       margin-bottom: 12px;
     }
@@ -627,8 +632,8 @@
 
     .timeline-event {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 22px;
+      font-weight: 800;
+      font-size: 36px;
       color: var(--ink);
     }
 
@@ -769,9 +774,8 @@
     }
 
     .rsvp-success__text {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-style: italic;
+      font-family: 'Corinthia', serif;
+      font-weight: 400;
       font-size: clamp(28px, 5vw, 40px);
       color: var(--ink);
     }
@@ -976,9 +980,9 @@
     /* ── Submit button ── */
     .btn-submit {
       display: inline-block;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Corinthia', serif;
       font-weight: 400;
-      font-size: 18px;
+      font-size: 22px;
       color: var(--ink);
       background: transparent;
       border: 1.5px solid var(--accent-green);
@@ -1003,14 +1007,14 @@
     }
 
     .footer__botanical {
-      width: 26px;
-      height: 44px;
+      width: 120px;
       margin: 0 auto 20px;
     }
 
-    .footer__botanical svg {
+    .footer__botanical img {
       width: 100%;
-      height: 100%;
+      height: auto;
+      display: block;
     }
 
     .footer__contact {
@@ -1080,64 +1084,14 @@
 
   <!-- ════════════ Hero ════════════ -->
   <header class="hero" role="banner">
-    <p class="hero__date" aria-label="Дата свадьбы: 8 апреля 2006">8 апреля 2006</p>
+    <p class="hero__date" aria-label="Дата свадьбы: 8 августа 2026">8 августа 2026</p>
 
     <h1>
-      <span class="hero__name" id="name1">Евстахий</span>
+      <span class="hero__name" id="name1">Евгений</span>
 
-      <!-- SVG sunflower -->
-      <svg class="hero__sunflower" id="sunflower" viewBox="0 0 300 300"
-           fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-           aria-hidden="true">
-        <g transform="translate(150, 150)" opacity="0.9">
-          <defs>
-            <path id="petal-A" d="M -5 -44 C -28 -75 -12 -105 0 -130 C 12 -105 28 -75 5 -44" />
-            <path id="petal-B" d="M -6 -43 C -18 -70 -25 -100 -5 -125 C 10 -105 25 -75 6 -43" />
-            <path id="petal-C" d="M -4 -45 C -30 -75 -8 -110 5 -125 C 22 -100 25 -75 4 -45" />
-            <path id="petal-D" d="M -5 -44 C -22 -80 -10 -115 0 -135 C 10 -115 22 -80 5 -44" />
-          </defs>
-          <g stroke-width="1.2" opacity="0.65">
-            <use href="#petal-A" transform="rotate(22.5) scale(0.92)" />
-            <use href="#petal-B" transform="rotate(67.5) scale(0.92)" />
-            <use href="#petal-C" transform="rotate(112.5) scale(0.92)" />
-            <use href="#petal-D" transform="rotate(157.5) scale(0.92)" />
-            <use href="#petal-A" transform="rotate(202.5) scale(0.92)" />
-            <use href="#petal-B" transform="rotate(247.5) scale(0.92)" />
-            <use href="#petal-C" transform="rotate(292.5) scale(0.92)" />
-            <use href="#petal-D" transform="rotate(337.5) scale(0.92)" />
-          </g>
-          <g stroke-width="1.5">
-            <use href="#petal-C" transform="rotate(0)" />
-            <use href="#petal-D" transform="rotate(45)" />
-            <use href="#petal-A" transform="rotate(90)" />
-            <use href="#petal-B" transform="rotate(135)" />
-            <use href="#petal-C" transform="rotate(180)" />
-            <use href="#petal-D" transform="rotate(225)" />
-            <use href="#petal-A" transform="rotate(270)" />
-            <use href="#petal-B" transform="rotate(315)" />
-          </g>
-          <g stroke-width="1.5">
-            <path d="M 0 -45 C 25 -47 48 -20 45 5 C 42 30 20 48 0 45 C -25 42 -48 20 -45 -5 C -42 -30 -20 -48 0 -45 Z" />
-            <path d="M -2 -43 C 22 -48 46 -22 43 2 C 40 28 18 45 -2 43 C -28 40 -46 18 -43 -7 C -40 -32 -22 -46 -2 -43 Z" opacity="0.6" />
-          </g>
-          <g fill="currentColor" stroke="none" opacity="0.85">
-            <circle cx="0" cy="0" r="1.5" />
-            <circle cx="15" cy="-10" r="1.2" />
-            <circle cx="-12" cy="18" r="1.8" />
-            <circle cx="22" cy="12" r="1.5" />
-            <circle cx="-20" cy="-15" r="1.5" />
-            <circle cx="5" cy="25" r="1.2" />
-            <circle cx="-5" cy="-28" r="1.8" />
-            <circle cx="28" cy="-5" r="1.5" />
-            <circle cx="-25" cy="5" r="1.2" />
-            <circle cx="10" cy="-22" r="1.5" />
-            <circle cx="-15" cy="30" r="1.2" />
-            <circle cx="30" cy="20" r="1.5" />
-          </g>
-        </g>
-      </svg>
+      <img class="hero__sunflower" id="sunflower" src="svg/intro_flower.svg" alt="" aria-hidden="true">
 
-      <span class="hero__name" id="name2">Анахвакия</span>
+      <span class="hero__name" id="name2">Анастасия</span>
     </h1>
 
     <p class="hero__tagline">Приглашение на свадьбу</p>
@@ -1174,24 +1128,43 @@
           <h2>Наши дорогие гости!</h2>
           <div class="letter-fade" id="letterFade">
           <p class="letter-first">
-            В Кубань? Ей-богу? (Приподнимается.) Славные места! Такой, братцы,
-            край, что и во сне не увидишь, хоть три года спи! Приволье! Сказывают
-            птицы этой самой, дичи, зверья всякого и — боже ты мой! Трава
-            круглый год растёт, народ — душа в душу, земли — девать некуда!
+            Свадьба всегда сплачивает семьи, создает условия для более глубокого
+            знакомства родных и задел для будущего семьи через «чувство плеча»
+            близкого человека. Именно поэтому мы решили провести этот праздник
+            так, как мы его проведем: тепло, разнообразно формам общения и активности,
+            с познанием возможностей нашего сплочения и кооперации. Ведь кто как
+            ни твой близкий (родственник, близкий друг семьи) встанет за тебя
+            горой в трудные времена, даст опереться, подскажет, поможет, направит,
+            услышит, а может и вовсе отойдет в сторону, чтобы ты смог научиться
+            решать задачи сам. Давайте себя испытаем и просто хорошо проведем время вместе!
           </p>
           </div>
           <div class="letter-body" id="letterBody">
             <p>
-              В Кубань? Ей-богу? (Приподнимается.) Славные места! Такой, братцы,
-              край, что и во сне не увидишь, хоть три года спи! Приволье! Сказывают
-              птицы этой самой, дичи, зверья всякого и — боже ты мой! Трава
-              круглый год растёт, народ — душа в душу, земли — девать некуда!
+              Мы намеренно решили отказаться от множества условно «чужих» людей
+              на свадьбе, не знающих, а потому, как нам кажется, и не особо
+              чувствующих нас и нашу семью: организаторов, видеографов и фотографов,
+              ведущих, декораторов и прочих специалистов, на кого нынче принято
+              перекладывать эти задачи, чтобы освободить себя от тех или иных
+              хлопот. Не рассматривайте это, пожалуйста, исключительно как
+              желание отличиться, сделать «не как все» или сэкономить (такой
+              аспект, безусловно, присутствует в виду ограниченности нашего
+              бюджета, но он далеко не первичен). Просто нам интересно попробовать
+              организовать праздник по-старинке, своими руками и личными стараниями
+              (своими и наших близких), чтобы свадьба обрела тот самый душевный
+              и домашний образ, который нам по душе и который оставит много
+              ценных воспоминаний на оставшиеся годы. В конце концов, домашней
+              еде мы прощаем её несовершенную форму, особенно ценя в ней именно
+              вкус и вложенные старания любимого кулинара (бабушки, дедушки,
+              папы, мамы, сына, внука).
             </p>
             <p>
-              В Кубань? Ей-богу? (Приподнимается.) Славные места! Такой, братцы,
-              край, что и во сне не увидишь, хоть три года спи! Приволье! Сказывают
-              птицы этой самой, дичи, зверья всякого и — боже ты мой! Трава
-              круглый год растёт, народ — душа в душу, земли — девать некуда!
+              Концепция и локация свадьбы поэтому подобрана именно так: для
+              нас важна та часть детства и взросления, которая связана с просторами
+              и пейзажами южных земель, полями, запахами садов, трав, горных рек,
+              душевными и уютными, при этом тесными застольями («в тесноте, да
+              не в обиде», как гласит народная мудрость), совместными гуляниями,
+              чаепитиями.
             </p>
           </div>
           <button class="letter-toggle" id="letterToggle" type="button"
@@ -1365,7 +1338,7 @@
           <div class="timeline-desc">Свадебный разгуляй. Бассейн, баня, чан для купания, речка рядом — не забудьте купальники!</div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">10 августа</div>
+          <div class="timeline-time">9–10 августа</div>
           <div class="timeline-event">Отъезд</div>
           <div class="timeline-desc">Сборы и отъезд. Можно задержаться, если душа просит ещё немного.</div>
         </div>
@@ -1392,7 +1365,7 @@
       <rect width="960" height="12" fill="url(#diamond-cross-rsvp)"/>
     </svg>
 
-    <h2 id="rsvp-heading" class="rsvp-form">Опросник</h2>
+    <h2 id="rsvp-heading" class="rsvp-form">Пожалуйста, заполните анкету</h2>
 
     <form class="rsvp-form" id="rsvpForm" novalidate aria-label="Форма для гостей">
 
@@ -1433,23 +1406,6 @@
         </fieldset>
       </div>
 
-      <!-- Early arrival -->
-      <div class="form-group">
-        <fieldset>
-          <legend>Смогу приехать 8 августа и помочь с приготовлениями</legend>
-          <div class="radio-group" role="radiogroup">
-            <label class="radio-option">
-              <input type="radio" name="early" value="yes">
-              <span>Да</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="early" value="no" checked>
-              <span>Нет</span>
-            </label>
-          </div>
-        </fieldset>
-      </div>
-
       <!-- Where from -->
       <div class="form-group">
         <label for="rsvp-from">Откуда будете ехать?</label>
@@ -1459,7 +1415,7 @@
       <!-- Transport -->
       <div class="form-group">
         <fieldset>
-          <legend>Как добираться?</legend>
+          <legend>Как сможете добраться?</legend>
           <div class="radio-group" role="radiogroup">
             <label class="radio-option">
               <input type="radio" name="transport" value="car">
@@ -1533,29 +1489,13 @@
   <!-- ════════════ Footer ════════════ -->
   <footer class="footer" role="contentinfo">
     <div class="footer__botanical" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="185 85 130 210"
-           width="100%" height="100%" fill="none"
-           stroke="#B8860B" stroke-width="1.5"
-           stroke-linecap="round" stroke-linejoin="round" style="opacity:0.85;">
-        <path d="M250 480 Q260 350 240 120" />
-        <path d="M240 120 C235 110 230 100 240 95 C250 100 245 110 240 120" />
-        <path d="M241 135 C230 125 220 120 225 110 C235 115 240 125 241 135" />
-        <path d="M241 140 C255 130 265 130 260 120 C250 125 245 130 241 140" />
-        <path d="M242 165 C230 155 220 145 225 135 C235 145 240 155 242 165" />
-        <path d="M243 170 C255 160 265 155 260 145 C250 155 245 160 243 170" />
-        <path d="M244 195 C230 185 220 175 225 165 C235 175 240 185 244 195" />
-        <path d="M245 200 C255 190 265 185 260 175 C250 185 245 190 245 200" />
-        <path d="M246 225 C230 215 220 205 225 195 C235 205 240 215 246 225" />
-        <path d="M247 230 C255 220 265 215 260 205 C250 215 245 220 247 230" />
-        <path d="M248 260 C230 250 220 240 225 230 C235 240 240 250 248 260" />
-        <path d="M249 265 C255 255 265 250 260 240 C250 250 245 255 249 265" />
-      </svg>
+      <img src="svg/outro_flower.svg" alt="">
     </div>
     <p class="footer__contact">
       По всем вопросам: <a href="tel:+70001234567">+7 (000) 123-45-67</a>
     </p>
     <p class="footer__contact" style="margin-top: 4px; font-size: 12px;">
-      Просим подтвердить присутствие до 15 марта 2006
+      Просим подтвердить присутствие до 15 июня 2026
     </p>
   </footer>
 
@@ -1727,7 +1667,6 @@
 
         var attendanceLabels = { 'main': 'Только 8 августа', 'both': 'Оба дня (8–9 августа)' };
         var transportLabels = { 'car': 'На машине', 'public': 'Общественный транспорт', 'transfer': 'Нужен трансфер' };
-        var earlyVal = (form.querySelector('input[name="early"]:checked') || {}).value || '';
         var transportVal = (form.querySelector('input[name="transport"]:checked') || {}).value || '';
 
         var payload = {
@@ -1735,7 +1674,6 @@
           'Имя': form.querySelector('[name="firstname"]').value.trim(),
           'Отчество': form.querySelector('[name="patronymic"]').value.trim(),
           'Присутствие': attendanceLabels[attendanceChecked.value] || attendanceChecked.value,
-          'Ранний приезд': earlyVal === 'yes' ? 'Да' : 'Нет',
           'Откуда': form.querySelector('[name="from"]').value.trim(),
           'Транспорт': transportLabels[transportVal] || '',
           'Напитки': drinks.join(', '),
