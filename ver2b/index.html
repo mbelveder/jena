@@ -190,6 +190,7 @@
       font-weight: 400;
       font-size: clamp(36px, 6vw, 64px);
       text-align: center;
+      text-wrap: balance;
       margin-bottom: 48px;
       color: var(--ink);
     }
@@ -368,7 +369,7 @@
     }
 
     .letter-body.open {
-      max-height: var(--letter-body-height, 2400px);
+      max-height: 2400px;
       opacity: 1;
     }
 
@@ -1543,6 +1544,7 @@
 
       letterToggle.addEventListener('click', function () {
         letterOpen = !letterOpen;
+        letterBody.style.maxHeight = letterOpen ? letterBody.scrollHeight + 'px' : '0';
         letterBody.classList.toggle('open', letterOpen);
         if (letterFade) letterFade.classList.toggle('letter-fade--hidden', letterOpen);
         letterToggle.textContent = letterOpen ? 'Скрыть ↑' : 'Читать далее ↓';
@@ -1713,194 +1715,5 @@
     })();
   </script>
 
-  <script type="module">
-    import { prepareWithSegments, measureLineStats } from './pretext/layout.js';
-
-    /* ── Balanced headings ─────────────────────────────────────────
-       Binary-search the tightest max-width that still wraps into the
-       same number of lines → each heading balances its own line lengths.
-    ─────────────────────────────────────────────────────────────── */
-    function balanceH2(h2) {
-      h2.style.maxWidth = '';
-      const cs = getComputedStyle(h2);
-      const font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-      const text = h2.textContent.trim();
-      const containerWidth = h2.offsetWidth;
-      if (!text || containerWidth <= 0) return;
-
-      const prepared = prepareWithSegments(text, font);
-      const { lineCount } = measureLineStats(prepared, containerWidth);
-      if (lineCount <= 1) return;
-
-      let lo = containerWidth * 0.3, hi = containerWidth;
-      for (let i = 0; i < 18; i++) {
-        const mid = (lo + hi) / 2;
-        if (measureLineStats(prepared, mid).lineCount <= lineCount) hi = mid;
-        else lo = mid;
-      }
-      h2.style.maxWidth = Math.ceil(hi) + 'px';
-      h2.style.marginInline = 'auto';
-    }
-
-    function balanceAll() {
-      document.querySelectorAll('.section h2').forEach(balanceH2);
-    }
-
-    /* ── Knuth-Plass justified letter paragraphs ───────────────────
-       Globally-optimal line breaking (DP) + per-line word-spacing so
-       space gaps are even across all lines in a paragraph, not just
-       greedy-packed. Preserves the first-line text-indent.
-    ─────────────────────────────────────────────────────────────── */
-    const _HUGE = 1e8;
-
-    function _sp(text) { return /^\s+$/.test(text); } // is space segment?
-
-    function _stats(segs, ws, cands, fi, ti, sp) {
-      let from = cands[fi], to = cands[ti];
-      while (to > from && _sp(segs[to - 1])) to--;
-      let ww = 0, sc = 0;
-      for (let i = from; i < to; i++) { if (_sp(segs[i])) sc++; else ww += ws[i]; }
-      return { ww, sc, nw: ww + sc * sp };
-    }
-
-    function _bad(s, mw, sp, last) {
-      if (last) return s.ww > mw ? _HUGE : 0;
-      if (s.sc <= 0) { const sl = mw - s.ww; return sl < 0 ? _HUGE : sl * sl * 10; }
-      const sw = (mw - s.ww) / s.sc;
-      if (sw < 0 || sw < sp * 0.4) return _HUGE;
-      const r = (sw - sp) / sp;
-      const b = Math.abs(r) ** 3 * 1000;
-      const re = sw / sp - 1.5; const rp = re > 0 ? 5000 + re * re * 1e4 : 0;
-      const te = sp * 0.65 - sw; const tp = te > 0 ? 3000 + te * te * 1e4 : 0;
-      return b + rp + tp;
-    }
-
-    function _kp(prepared, maxWidth, indent, sp) {
-      const { segments: segs, widths: ws } = prepared;
-      const n = segs.length;
-      if (!n) return [];
-
-      // Break candidates: segment indices where a line may start
-      const cands = [0];
-      for (let i = 0; i < n; i++) {
-        if (_sp(segs[i]) && i + 1 < n) cands.push(i + 1);
-      }
-      cands.push(n);
-
-      const m = cands.length;
-      const dp = new Float64Array(m).fill(Infinity);
-      const prev = new Int32Array(m).fill(-1);
-      dp[0] = 0;
-
-      for (let to = 1; to < m; to++) {
-        const last = to === m - 1;
-        for (let from = to - 1; from >= 0; from--) {
-          if (dp[from] === Infinity) continue;
-          const mw = from === 0 ? maxWidth - indent : maxWidth;
-          const st = _stats(segs, ws, cands, from, to, sp);
-          if (st.nw > mw * 2) break;
-          const c = dp[from] + _bad(st, mw, sp, last);
-          if (c < dp[to]) { dp[to] = c; prev[to] = from; }
-        }
-      }
-
-      // Traceback
-      const bps = [];
-      for (let cur = m - 1; cur > 0;) {
-        bps.push(cur);
-        const p = prev[cur];
-        cur = p < 0 ? 0 : p;
-      }
-      bps.reverse();
-
-      // Build line descriptors
-      const lines = [];
-      let fi = 0;
-      for (const ti of bps) {
-        const from = cands[fi];
-        let to = cands[ti];
-        while (to > from && _sp(segs[to - 1])) to--;
-        const isLast = ti === m - 1;
-        const mw = fi === 0 ? maxWidth - indent : maxWidth;
-        let ww = 0, sc = 0, text = '';
-        for (let i = from; i < to; i++) {
-          if (_sp(segs[i])) { sc++; text += ' '; }
-          else { ww += ws[i]; text += segs[i]; }
-        }
-        const sw = isLast || sc === 0 ? sp : (mw - ww) / sc;
-        lines.push({ text: text.trim(), sw, sc, isLast, ind: fi === 0 ? indent : 0 });
-        fi = ti;
-      }
-      return lines;
-    }
-
-    function justifyLetterParagraphs() {
-      const paras = [
-        document.querySelector('.letter-first'),
-        ...document.querySelectorAll('.letter-body p'),
-      ].filter(Boolean);
-      if (!paras.length) return;
-
-      const cs = getComputedStyle(paras[0]);
-      const font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-      const indent = parseFloat(cs.textIndent) || 0;
-
-      // Measure normal space width via canvas (same engine pretext uses)
-      const cvs = document.createElement('canvas');
-      const ctx = cvs.getContext('2d');
-      ctx.font = font;
-      const normalSpace = ctx.measureText(' ').width;
-
-      paras.forEach(p => {
-        const cw = p.offsetWidth;
-        if (cw <= 0) return;
-
-        // Store original text on first run so resize can re-process
-        if (!p.dataset.jkText) {
-          p.dataset.jkText = p.textContent.replace(/\s+/g, ' ').trim();
-        }
-
-        const prepared = prepareWithSegments(p.dataset.jkText, font);
-        const lines = _kp(prepared, cw, indent, normalSpace);
-
-        p.innerHTML = '';
-        p.style.textAlign = 'left';
-        p.style.textIndent = '0';
-
-        lines.forEach(line => {
-          const span = document.createElement('span');
-          span.style.display = 'block';
-          span.textContent = line.text;
-          if (line.ind > 0) span.style.paddingLeft = line.ind + 'px';
-          if (!line.isLast && line.sc > 0) {
-            span.style.wordSpacing = (line.sw - normalSpace) + 'px';
-          }
-          p.appendChild(span);
-        });
-      });
-
-      // Update accordion max-height from actual scrollHeight now that DOM is built
-      const letterBody = document.getElementById('letterBody');
-      if (letterBody) {
-        document.documentElement.style.setProperty(
-          '--letter-body-height', (letterBody.scrollHeight + 20) + 'px'
-        );
-      }
-    }
-
-    document.fonts.ready.then(() => {
-      balanceAll();
-      justifyLetterParagraphs();
-    });
-
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        balanceAll();
-        justifyLetterParagraphs();
-      }, 150);
-    }, { passive: true });
-  </script>
 </body>
 </html>
