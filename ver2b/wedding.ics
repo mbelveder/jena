@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Анастасия и Евгений//Свадьба 2026//RU
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:wedding-20260808-anastasia-evgeny@jena
+DTSTAMP:20260503T000000Z
+DTSTART;TZID=Europe/Moscow:20260808T120000
+DTEND;TZID=Europe/Moscow:20260809T235900
+SUMMARY:Свадьба Анастасии и Евгения
+DESCRIPTION:Мы ждём вас на нашей свадьбе!\nБаза отдыха «Надежда»\nСтаница Ахметовская\, Краснодарский край
+LOCATION:База отдыха «Надежда»\, станица Ахметовская\, Краснодарский край
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

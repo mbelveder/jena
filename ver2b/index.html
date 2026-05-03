@@ -129,8 +129,8 @@
       --bg-alt:       #EDE8DC;
       --bg-deep:      #EDE8DC;
       --ink:          #1A1410;
-      --accent-blue:  #C0392B;
-      --accent-green: #B8860B;
+      --accent-red:  #C0392B;
+      --accent-brown: #B8860B;
       --rule:         #D4C9B0;
       --muted:        #7A7060;
     }
@@ -151,7 +151,7 @@
 
     /* ── Focus styles ── */
     :focus-visible {
-      outline: 2px solid var(--accent-green);
+      outline: 2px solid var(--accent-brown);
       outline-offset: 3px;
     }
 
@@ -162,7 +162,7 @@
       top: 0;
       width: 3px;
       height: 100vh;
-      background-color: var(--accent-blue);
+      background-color: var(--accent-red);
       transform: scaleY(0);
       transform-origin: top;
       z-index: 100;
@@ -188,7 +188,8 @@
     .section h2 {
       font-family: 'Corinthia', serif;
       font-weight: 400;
-      font-size: clamp(36px, 6vw, 64px);
+      font-size: clamp(48px, 7vw, 64px);
+      line-height: 1;
       text-align: center;
       text-wrap: balance;
       margin-bottom: 48px;
@@ -221,7 +222,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.35em;
-      color: var(--accent-blue);
+      color: var(--accent-red);
       margin-bottom: 40px;
       display: inline-block;
     }
@@ -229,7 +230,7 @@
     .hero__name {
       font-family: 'Corinthia', serif;
       font-weight: 400;
-      font-size: clamp(64px, 14vw, 130px);
+      font-size: clamp(92px, 18vw, 130px);
       color: rgb(97 105 37 / 75%);;
       line-height: 0.9;
       letter-spacing: -0.01em;
@@ -264,9 +265,9 @@
 
     .hero__tagline {
       font-family: 'Jost', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 15px;
-      color: var(--muted);
+      color: var(--accent-red);
       max-width: 360px;
       margin: 32px auto 40px;
       letter-spacing: 0.04em;
@@ -296,10 +297,6 @@
         padding: 48px 20px 0;
       }
       .hero__name {
-        font-size: clamp(80px, 22vw, 120px);
-      }
-      .section h2 {
-        font-size: clamp(52px, 14vw, 72px);
       }
     }
 
@@ -357,6 +354,7 @@
       color: var(--ink);
       line-height: 1.55;
       text-align: justify;
+      hyphens: auto;
       text-indent: 2em;
       margin-bottom: 24px;
     }
@@ -384,7 +382,7 @@
       left: 0;
       right: 0;
       bottom: -28px;
-      height: 150px;
+      height: 300px;
       background: linear-gradient(to bottom, transparent, var(--bg-alt));
       opacity: 1;
       transition: opacity 0.4s ease-out;
@@ -401,6 +399,7 @@
       color: var(--ink);
       line-height: 1.55;
       text-align: justify;
+      hyphens: auto;
       text-indent: 2em;
       margin-bottom: 24px;
       margin-top: 32px;
@@ -414,7 +413,7 @@
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.22em;
-      color: var(--muted);
+      color: var(--accent-red);
       background: none;
       border: none;
       cursor: pointer;
@@ -456,7 +455,7 @@
       content: '—';
       position: absolute;
       left: 0;
-      color: var(--accent-green);
+      color: var(--accent-brown);
     }
 
     .concept-divider {
@@ -511,7 +510,8 @@
     .concept-subtitle {
       font-family: 'Corinthia', serif;
       font-weight: 400;
-      font-size: clamp(32px, 4vw, 40px);
+      font-size: clamp(40px, 10vw, 40px);
+      line-height: 1;
       text-align: center;
       margin-bottom: 24px;
       color: var(--ink);
@@ -537,7 +537,7 @@
     .venue-info__name {
       font-family: 'Corinthia', serif;
       font-weight: 400;
-      font-size: 32px;
+      font-size: 36px;
       color: var(--ink);
       margin-bottom: 12px;
     }
@@ -557,7 +557,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      color: var(--accent-blue);
+      color: var(--accent-red);
       text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: border-color 0.2s;
@@ -565,12 +565,18 @@
 
     .venue-info__link:hover,
     .venue-info__link:focus-visible {
-      border-bottom-color: var(--accent-blue);
+      border-bottom-color: var(--accent-red);
     }
 
     .venue-map {
       width: 100%;
       min-height: 400px;
+    }
+
+    /* Tint map: target the iframe the constructor injects */
+    .venue-map iframe,
+    .venue-map [class*="ymaps-layers-pane"] {
+      filter: grayscale(100%) sepia(15%) brightness(1.05) contrast(0.92);
     }
 
     /* ── Schedule (timeline) ── */
@@ -620,7 +626,7 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--accent-green);
+      background: var(--accent-brown);
       opacity: 0.7;
     }
 
@@ -637,14 +643,14 @@
     .timeline-event {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 800;
-      font-size: 36px;
+      font-size: 32px;
       color: var(--ink);
     }
 
     .timeline-desc {
       font-family: 'Jost', sans-serif;
       font-weight: 300;
-      font-size: 13px;
+      font-size: 16px;
       color: var(--muted);
       line-height: 1.65;
       margin-top: 0.15rem;
@@ -724,25 +730,6 @@
       .schedule-card { padding: 32px 24px; }
     }
 
-    /* ── Directions ── */
-    .directions-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      width: 100%;
-    }
-
-    @media (max-width: 768px) {
-      .directions-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .directions-grid {
-        grid-template-columns: 1fr;
-      }
-    }
 
     /* ── RSVP ── */
     .rsvp .section__inner {
@@ -780,8 +767,21 @@
     .rsvp-success__text {
       font-family: 'Corinthia', serif;
       font-weight: 400;
-      font-size: clamp(28px, 5vw, 40px);
+      font-size: clamp(32px, 10vw, 60px);
       color: var(--ink);
+    }
+
+    .rsvp-calendar-btn {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--accent-red);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-red);
     }
 
     .form-group {
@@ -801,7 +801,7 @@
     }
 
     .required-mark {
-      color: var(--accent-green);
+      color: var(--accent-brown);
       margin-left: 2px;
     }
 
@@ -811,6 +811,7 @@
     }
 
     .form-group input[type="text"],
+    .form-group input[type="email"],
     .form-group textarea {
       width: 100%;
       font-family: 'Jost', sans-serif;
@@ -826,9 +827,10 @@
     }
 
     .form-group input[type="text"]:focus,
+    .form-group input[type="email"]:focus,
     .form-group textarea:focus {
       outline: none;
-      border-bottom-color: var(--accent-green);
+      border-bottom-color: var(--accent-brown);
     }
 
     .form-group textarea {
@@ -890,19 +892,19 @@
     }
 
     .radio-option input[type="radio"]:checked {
-      border-color: var(--accent-green);
+      border-color: var(--accent-brown);
     }
 
     .radio-option input[type="radio"]:checked::after {
       content: '';
       position: absolute;
       inset: 3px;
-      background-color: var(--accent-green);
+      background-color: var(--accent-brown);
       border-radius: 50%;
     }
 
     .radio-option input[type="radio"]:focus-visible {
-      outline: 2px solid var(--accent-green);
+      outline: 2px solid var(--accent-brown);
       outline-offset: 2px;
     }
 
@@ -942,8 +944,8 @@
     }
 
     .checkbox-option input[type="checkbox"]:checked {
-      border-color: var(--accent-green);
-      background-color: var(--accent-green);
+      border-color: var(--accent-brown);
+      background-color: var(--accent-brown);
     }
 
     .checkbox-option input[type="checkbox"]:disabled {
@@ -956,7 +958,7 @@
     }
 
     .checkbox-option input[type="checkbox"]:focus-visible {
-      outline: 2px solid var(--accent-green);
+      outline: 2px solid var(--accent-brown);
       outline-offset: 2px;
     }
 
@@ -967,12 +969,21 @@
       color: var(--ink);
     }
 
+    .form-hint {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--muted);
+      margin: 4px 0 10px;
+    }
+
     /* ── Error messages ── */
     .form-error {
       font-family: 'Jost', sans-serif;
       font-weight: 400;
       font-size: 13px;
-      color: var(--accent-blue);
+      color: var(--accent-red);
       margin-top: 6px;
       display: none;
     }
@@ -986,10 +997,10 @@
       display: inline-block;
       font-family: 'Corinthia', serif;
       font-weight: 400;
-      font-size: 22px;
+      font-size: 32px;
       color: var(--ink);
       background: transparent;
-      border: 1.5px solid var(--accent-green);
+      border: 1.5px solid var(--accent-red);
       padding: 14px 48px;
       cursor: pointer;
       letter-spacing: 0.05em;
@@ -998,7 +1009,7 @@
 
     .btn-submit:hover,
     .btn-submit:focus-visible {
-      background-color: var(--accent-green);
+      background-color: color-mix(in srgb, var(--accent-red) 12%, var(--bg));
       color: var(--ink);
     }
 
@@ -1011,8 +1022,21 @@
     }
 
     .footer__botanical {
-      width: 120px;
-      margin: 0 auto 20px;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 130px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(16px);
+      transform-origin: bottom right;
+      transition: opacity 1.4s ease-out, transform 1.4s ease-out;
+      z-index: 10;
+    }
+
+    .footer__botanical--visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .footer__botanical img {
@@ -1292,34 +1316,6 @@
     </div>
   </section>
 
-  <!-- ════════════ Как добраться ════════════ -->
-  <section class="section" id="directions" aria-labelledby="directions-heading">
-    <div class="section__inner">
-      <h2 id="directions-heading">Как добраться</h2>
-    </div>
-    <div class="directions-grid" role="list">
-
-      <article class="schedule-card" role="listitem" data-animate>
-        <p class="schedule-card__time">На автомобиле</p>
-        <h3 class="schedule-card__event">Личная машина</h3>
-        <p class="schedule-card__desc">[Маршрут и время в пути будут добавлены]</p>
-      </article>
-
-      <article class="schedule-card" role="listitem" data-animate>
-        <p class="schedule-card__time">Общественный транспорт</p>
-        <h3 class="schedule-card__event">Своим ходом</h3>
-        <p class="schedule-card__desc">[Информация о ближайших маршрутах будет добавлена]</p>
-      </article>
-
-      <article class="schedule-card" role="listitem" data-animate>
-        <p class="schedule-card__time">Организованный</p>
-        <h3 class="schedule-card__event">Трансфер</h3>
-        <p class="schedule-card__desc">[Подробности об организованном трансфере будут добавлены]</p>
-      </article>
-
-    </div>
-  </section>
-
   <!-- ════════════ Регламент ════════════ -->
   <section class="section section--alt" id="schedule" aria-labelledby="schedule-heading">
     <div class="section__inner">
@@ -1392,17 +1388,27 @@
       </div>
       <p class="form-error" id="rsvp-name-error" role="alert">Пожалуйста, укажите фамилию и имя</p>
 
+      <!-- Email -->
+      <div class="form-group">
+        <label for="rsvp-email">Электронная почта<span class="required-mark" aria-hidden="true">*</span></label>
+        <p class="form-hint" id="rsvp-email-hint">Мы отправим вам письмо, чтобы нужная информация была под рукой</p>
+        <input type="email" id="rsvp-email" name="email"
+               placeholder="example@mail.ru" autocomplete="email"
+               required aria-describedby="rsvp-email-hint rsvp-email-error">
+        <p class="form-error" id="rsvp-email-error" role="alert">Пожалуйста, укажите корректный адрес электронной почты</p>
+      </div>
+
       <!-- Attendance -->
       <div class="form-group">
         <fieldset>
-          <legend>Присутствие</legend>
+          <legend>Присутствие<span class="required-mark" aria-hidden="true">*</span></legend>
           <div class="radio-group" role="radiogroup" aria-required="true">
             <label class="radio-option">
-              <input type="radio" name="attendance" value="main" aria-describedby="rsvp-attendance-error">
+              <input type="radio" name="attendance" value="main" required aria-describedby="rsvp-attendance-error">
               <span>Могу только основной день (8 августа)</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="attendance" value="both">
+              <input type="radio" name="attendance" value="both" required>
               <span>Буду все 2 дня (8–9 августа)</span>
             </label>
           </div>
@@ -1440,7 +1446,7 @@
       <!-- Drink preferences -->
       <div class="form-group">
         <fieldset>
-          <legend>Предпочтения по напиткам (не более двух)</legend>
+          <legend>Предпочтения по алкогольным напиткам. Пропустите этот вопрос, если не планируете пить алкоголь.</legend>
           <div class="checkbox-group" role="group" aria-describedby="drink-hint">
             <label class="checkbox-option">
               <input type="checkbox" name="drink" value="samogon">
@@ -1457,10 +1463,6 @@
             <label class="checkbox-option">
               <input type="checkbox" name="drink" value="wine-red">
               <span>Вино красное</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="drink" value="none">
-              <span>Не планирую пить алкоголь (вода и соки)</span>
             </label>
           </div>
           <p id="drink-hint" style="font-family:'Jost',sans-serif;font-size:12px;color:var(--muted);margin-top:10px;">Можно выбрать не более двух вариантов</p>
@@ -1483,6 +1485,9 @@
 
     <div class="rsvp-success" id="rsvpSuccess" aria-live="polite">
       <p class="rsvp-success__text">Спасибо! Ждём вас.</p>
+      <a class="rsvp-calendar-btn" href="wedding.ics" download="Свадьба Анастасии и Евгения.ics">
+        Добавить событие в календарь
+      </a>
     </div>
 
   </div>
@@ -1491,16 +1496,14 @@
   </main>
 
   <!-- ════════════ Footer ════════════ -->
+  <div class="footer__botanical" id="outroBotanical" aria-hidden="true">
+    <img src="svg/outro_flower.svg" alt="">
+  </div>
+
   <footer class="footer" role="contentinfo">
-    <div class="footer__botanical" aria-hidden="true">
-      <img src="svg/outro_flower.svg" alt="">
-    </div>
-    <p class="footer__contact">
+    <!-- <p class="footer__contact">
       По всем вопросам: <a href="tel:+70001234567">+7 (000) 123-45-67</a>
-    </p>
-    <p class="footer__contact" style="margin-top: 4px; font-size: 12px;">
-      Просим подтвердить присутствие до 15 июня 2026
-    </p>
+    </p> -->
   </footer>
 
   <script>
@@ -1624,16 +1627,20 @@
 
         var surnameInput     = document.getElementById('rsvp-surname');
         var firstnameInput   = document.getElementById('rsvp-firstname');
+        var emailInput       = document.getElementById('rsvp-email');
         var nameError        = document.getElementById('rsvp-name-error');
         var attendanceError  = document.getElementById('rsvp-attendance-error');
+        var emailError       = document.getElementById('rsvp-email-error');
         var attendanceChecked = form.querySelector('input[name="attendance"]:checked');
         var valid = true;
 
         // Reset
         nameError.classList.remove('form-error--visible');
         attendanceError.classList.remove('form-error--visible');
+        emailError.classList.remove('form-error--visible');
         surnameInput.removeAttribute('aria-invalid');
         firstnameInput.removeAttribute('aria-invalid');
+        emailInput.removeAttribute('aria-invalid');
 
         // Surname + firstname required
         if (!surnameInput.value.trim() || !firstnameInput.value.trim()) {
@@ -1651,9 +1658,16 @@
         // Attendance required
         if (!attendanceChecked) {
           attendanceError.classList.add('form-error--visible');
-          if (valid) {
-            form.querySelector('input[name="attendance"]').focus();
-          }
+          if (valid) form.querySelector('input[name="attendance"]').focus();
+          valid = false;
+        }
+
+        // Email required + format
+        var emailVal = emailInput.value.trim();
+        if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+          emailError.classList.add('form-error--visible');
+          emailInput.setAttribute('aria-invalid', 'true');
+          if (valid) emailInput.focus();
           valid = false;
         }
 
@@ -1662,8 +1676,7 @@
         // Collect form data
         var drinkLabels = {
           'samogon': 'Самогон', 'cognac': 'Коньяк',
-          'wine-white': 'Вино белое', 'wine-red': 'Вино красное',
-          'none': 'Без алкоголя'
+          'wine-white': 'Вино белое', 'wine-red': 'Вино красное'
         };
         var drinks = [];
         form.querySelectorAll('input[name="drink"]:checked').forEach(function(cb) {
@@ -1682,7 +1695,8 @@
           'Откуда': form.querySelector('[name="from"]').value.trim(),
           'Транспорт': transportLabels[transportVal] || '',
           'Напитки': drinks.join(', '),
-          'Песни': form.querySelector('[name="songs"]').value.trim()
+          'Песни': form.querySelector('[name="songs"]').value.trim(),
+          'Email': emailVal
         };
 
         // Send to Google Sheets (fire-and-forget)
@@ -1711,6 +1725,10 @@
         document.getElementById('rsvp-heading').classList.add('rsvp-form--hidden');
         form.classList.add('rsvp-form--hidden');
         successEl.classList.add('rsvp-success--visible');
+        // Grow the outro flower in the corner
+        setTimeout(function () {
+          document.getElementById('outroBotanical').classList.add('footer__botanical--visible');
+        }, 400);
       });
     })();
   </script>
