@@ -251,11 +251,7 @@
       height: auto;
       margin: 28px auto 20px;
       opacity: 0;
-      transition: none;
-    }
-
-    .hero__sunflower--animate {
-      animation: sunflowerFadeIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 100ms forwards;
+      animation: sunflowerFadeIn 2.2s cubic-bezier(0.25, 1, 0.5, 1) 200ms forwards;
     }
 
     @keyframes sunflowerFadeIn {
@@ -1523,15 +1519,13 @@
       /* ── Hero name animations ── */
       var name1 = document.getElementById('name1');
       var name2 = document.getElementById('name2');
-      var sunflower = document.getElementById('sunflower');
 
-      requestAnimationFrame(function () {
+      setTimeout(function () {
         name1.classList.add('hero__name--visible');
         setTimeout(function () {
           name2.classList.add('hero__name--visible');
-        }, 200);
-        sunflower.classList.add('hero__sunflower--animate');
-      });
+        }, 300);
+      }, 1800);
 
       /* ── Scroll CTA ── */
       document.getElementById('scrollCta').addEventListener('click', function () {
