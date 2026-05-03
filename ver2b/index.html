@@ -106,6 +106,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    /* TODO: replace with your EmailJS public key from https://dashboard.emailjs.com/admin/account */
+    (function(){ emailjs.init({ publicKey: 'p32m1UEXwDjyf5IEq' }); })();
+  </script>
   <style>
     @font-face {
       font-family: 'Corinthia';
@@ -840,6 +845,13 @@
       padding: 10px 0;
       transition: border-color 0.2s;
       resize: vertical;
+    }
+
+    .form-group input[type="text"]:-webkit-autofill,
+    .form-group input[type="email"]:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 100px var(--bg) inset;
+      -webkit-text-fill-color: var(--ink);
+      caret-color: var(--ink);
     }
 
     .form-group input[type="text"]:focus,
@@ -1725,6 +1737,19 @@
         fetch(SHEET_URL, {
           method: 'POST',
           body: JSON.stringify(payload)
+        }).catch(function() {});
+
+        // Confirmation email to the guest via EmailJS
+        // TODO: replace service_XXXXXXX and template_XXXXXXX with your IDs from emailjs.com
+        // Template variables used below — create them in your EmailJS template:
+        //   {{to_name}}, {{to_email}}, {{attendance}}, {{transport}}, {{drinks}}, {{site_url}}
+        emailjs.send('service_lfklyim', 'template_yse7jet', {
+          to_name:    payload['Имя'],
+          to_email:   emailVal,
+          attendance: payload['Присутствие'],
+          transport:  payload['Транспорт'] || 'не указан',
+          drinks:     payload['Напитки']   || 'не указаны',
+          site_url:   window.location.href.split('?')[0]
         }).catch(function() {});
 
         // Email backup via FormSubmit.co (fire-and-forget)
