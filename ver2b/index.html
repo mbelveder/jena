@@ -1551,9 +1551,7 @@
 
       setTimeout(function () {
         name1.classList.add('hero__name--visible');
-        setTimeout(function () {
-          name2.classList.add('hero__name--visible');
-        }, 300);
+        name2.classList.add('hero__name--visible');
       }, 1800);
 
       /* ── Scroll CTA ── */
@@ -1734,7 +1732,7 @@
           _subject: 'Новый RSVP: ' + payload['Фамилия'] + ' ' + payload['Имя'],
           'Таблица ответов': 'https://docs.google.com/spreadsheets/d/1XxIZjD5McQabYZ2XHMD8o-VM7wWbM62r7HKIExaxURE/edit?usp=sharing'
         });
-        ['mike.belveder@gmail.com', 'mr.mbel@yandex.ru'].forEach(function(email) {
+        ['mike.belveder@gmail.com', 'orcheyok@gmail.com'].forEach(function(email) {
           fetch('https://formsubmit.co/ajax/' + email, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
