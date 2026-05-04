@@ -1734,35 +1734,56 @@
 
         // Send to Google Sheets (fire-and-forget)
         var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzgm-f2wHiF23kw49RMn6s6BSHGHdsBhhmC7Om76q2xFOokM0whriXVsZFEhyNz-mQA/exec';
+        console.log('[RSVP] Sending to Google Sheets…', payload);
         fetch(SHEET_URL, {
           method: 'POST',
           body: JSON.stringify(payload)
-        }).catch(function() {});
+        }).then(function(r) {
+          console.log('[Sheets] response status:', r.status);
+          return r.text();
+        }).then(function(t) {
+          console.log('[Sheets] response body:', t);
+        }).catch(function(err) {
+          console.error('[Sheets] fetch error:', err);
+        });
 
         // Confirmation email to the guest via EmailJS
-        // TODO: replace service_XXXXXXX and template_XXXXXXX with your IDs from emailjs.com
-        // Template variables used below — create them in your EmailJS template:
-        //   {{to_name}}, {{to_email}}, {{attendance}}, {{transport}}, {{drinks}}, {{site_url}}
-        emailjs.send('service_ys3ey74', 'template_yse7jet', {
+        var emailjsParams = {
           to_name:    payload['Имя'],
           to_email:   emailVal,
           attendance: payload['Присутствие'],
           transport:  payload['Транспорт'] || 'не указан',
           drinks:     payload['Напитки']   || 'не указаны',
           site_url:   window.location.href.split('?')[0]
-        }).catch(function() {});
+        };
+        console.log('[EmailJS] sending confirmation to guest…', emailjsParams);
+        emailjs.send('service_ys3ey74', 'template_yse7jet', emailjsParams)
+          .then(function(r) {
+            console.log('[EmailJS] success:', r.status, r.text);
+          })
+          .catch(function(err) {
+            console.error('[EmailJS] error:', err);
+          });
 
-        // Email backup via FormSubmit.co (fire-and-forget)
+        // Admin notification via FormSubmit.co
         var emailPayload = Object.assign({}, payload, {
           _subject: 'Новый RSVP: ' + payload['Фамилия'] + ' ' + payload['Имя'],
           'Таблица ответов': 'https://docs.google.com/spreadsheets/d/1XxIZjD5McQabYZ2XHMD8o-VM7wWbM62r7HKIExaxURE/edit?usp=sharing'
         });
         ['mike.belveder@gmail.com', 'orcheyok@gmail.com'].forEach(function(email) {
+          console.log('[FormSubmit] sending admin notification to', email);
           fetch('https://formsubmit.co/ajax/' + email, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify(emailPayload)
-          }).catch(function() {});
+          }).then(function(r) {
+            console.log('[FormSubmit →', email, '] status:', r.status);
+            return r.json();
+          }).then(function(j) {
+            console.log('[FormSubmit →', email, '] body:', j);
+          }).catch(function(err) {
+            console.error('[FormSubmit →', email, '] error:', err);
+          });
         });
 
         // 'fvevgeny@gmail.com'
