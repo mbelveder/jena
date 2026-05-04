@@ -792,6 +792,13 @@
       color: var(--ink);
     }
 
+    .rsvp-success__hint {
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
     .rsvp-calendar-btn {
       display: inline-block;
       margin-top: 20px;
@@ -1522,7 +1529,8 @@
 
     <div class="rsvp-success" id="rsvpSuccess" aria-live="polite">
       <p class="rsvp-success__text">Спасибо! Ждём вас.</p>
-      <a class="rsvp-calendar-btn" href="wedding.ics" download="Свадьба Анастасии и Евгения.ics">
+      <p class="rsvp-success__hint">Мы отправили вам письмо — если не видите его, проверьте папку «Спам».</p>
+      <a class="rsvp-calendar-btn" href="wedding.ics" download="svadbajin.ics">
         Добавить событие в календарь
       </a>
     </div>
